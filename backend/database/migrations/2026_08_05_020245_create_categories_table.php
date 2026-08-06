@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('parent_category_id')
+                ->nullable()
+                ->constrained('categories')
+                ->nullOnDelete();
+            $table->timestamps();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->decimal('commission_rate', 5, 2)->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
