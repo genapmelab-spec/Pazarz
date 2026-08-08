@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sub_order_id')
+                ->constrained('sub_orders')
+                ->cascadeOnDelete();
+            $table->foreignId('product_variant_id')
+                ->constrained('product_variants')
+                ->restrictOnDelete();
+            $table->string('product_title_snapshot');
+            $table->decimal('unit_price_snapshot', 12, 2);
+            $table->unsignedInteger('quantity');
+            $table->decimal('line_total', 12, 2);
             $table->timestamps();
+            $table->index('sub_order_id');
+            $table->index('product_variant_id');
         });
     }
 
