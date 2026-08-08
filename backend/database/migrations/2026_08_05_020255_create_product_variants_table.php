@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('product_id')
+                ->constrained('products')
+                ->cascadeOnDelete();
+            $table->string('sku')->unique();
+            $table->json('option_summary')->nullable();
+            $table->decimal('price', 12, 2);
+            $table->unsignedInteger('stock_qty')->default(0);
+            $table->unsignedInteger('weight_grams')->default(0);
             $table->timestamps();
+            $table->index(['product_id', 'stock_qty']);
         });
     }
 

@@ -17,7 +17,6 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('categories')
                 ->nullOnDelete();
-            $table->timestamps();
             $table->string('name');
             $table->string('slug')->unique();
             $table->decimal('commission_rate', 5, 2)->default(0);
