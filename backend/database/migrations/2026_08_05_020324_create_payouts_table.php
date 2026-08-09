@@ -13,7 +13,21 @@ return new class extends Migration
     {
         Schema::create('payouts', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('seller_id')
+                ->constrained('sellers')
+                ->restrictOnDelete();
+            $table->decimal('total_amount', 12, 2);
+            $table->enum('status', [
+                'pending',
+                'processing',
+                'paid',
+                'failed',
+                'cancelled',
+            ])->default('pending');
+            $table->string('bank_account_ref')->nullable();
+            $table->timestamp('paid_at')->nullable();
             $table->timestamps();
+            $table->index(['seller_id', 'status']);
         });
     }
 
