@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('disputes', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('order_id')->constrained('orders')->restrictOnDelete();
+            $table->foreignId('customer_id')->constrained('users')->restrictOnDelete();
+            $table->string('reason');
+            $table->text('description');
+            $table->enum('status', ['open', 'under_review', 'resolved', 'rejected', 'closed'])->default('open');
             $table->timestamps();
+            $table->index(['order_id', 'status']);
+            $table->index(['customer_id', 'status']);
         });
     }
 

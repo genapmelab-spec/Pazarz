@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('payout_items', function (Blueprint $table) {
-            $table->id();
+             $table->id();
+            $table->foreignId('payout_id')
+                ->constrained('payouts')
+                ->cascadeOnDelete();
+            $table->foreignId('sub_order_id')
+                ->constrained('sub_orders')
+                ->restrictOnDelete();
+            $table->decimal('amount', 12, 2);
             $table->timestamps();
+            $table->index('payout_id');
+            $table->index('sub_order_id');
         });
     }
 
