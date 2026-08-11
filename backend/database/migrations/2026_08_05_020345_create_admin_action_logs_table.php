@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('admin_action_logs', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('admin_id')->constrained('users')->restrictOnDelete();
+            $table->string('action');
+            $table->string('target_type')->nullable();
+            $table->unsignedBigInteger('target_id')->nullable();
+            $table->text('description')->nullable();
+            $table->string('ip_address', 45)->nullable();
             $table->timestamps();
+            $table->index(['target_type', 'target_id']);
+            $table->index(['admin_id', 'created_at']);
         });
     }
 

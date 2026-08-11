@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('user_id')
-                ->unique()
-                ->constrained('users')
-                ->cascadeOnDelete();
+            $table->foreignUuid('user_id')
+        ->constrained('users')
+        ->cascadeOnDelete();
 
             $table->string('store_name');
             $table->string('store_slug')->unique();

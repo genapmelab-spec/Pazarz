@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('order_item_id')
                 ->constrained('order_items')
                 ->cascadeOnDelete();
-            $table->foreignId('customer_id')
+            $table->foreignUuid('customer_id')
                 ->constrained('users')
                 ->restrictOnDelete();
             $table->unsignedTinyInteger('rating');

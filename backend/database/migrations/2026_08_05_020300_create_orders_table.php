@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->string('order_number')->unique();
-            $table->foreignId('customer_id')
+            $table->foreignUuid('customer_id')
                 ->constrained('users')
                 ->restrictOnDelete();
             $table->foreignId('shipping_address_id')
