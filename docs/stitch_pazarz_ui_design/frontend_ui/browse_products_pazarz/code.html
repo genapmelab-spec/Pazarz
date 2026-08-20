@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Categories</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "dark-surface-elevated": "#1F1F1F",
+                        "tertiary-container": "#001847",
+                        "outline": "#747878",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#001847",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "warning": "#B98900",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-surface-variant": "#444748",
+                        "surface-dim": "#dadad8",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary": "#ffffff",
+                        "text-muted": "#9A9A9A",
+                        "error": "#D8362B",
+                        "text-secondary": "#5E5E5E",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-error": "#ffffff",
+                        "dark-surface": "#171717",
+                        "on-primary-container": "#858383",
+                        "outline-variant": "#c4c7c7",
+                        "border": "#E4E4E1",
+                        "tertiary": "#000000",
+                        "background": "#FFFFFF",
+                        "on-surface": "#1a1c1b",
+                        "surface-elevated": "#FFFFFF",
+                        "surface": "#f9f9f7",
+                        "on-primary-fixed": "#1c1b1b",
+                        "info": "#2F6FED",
+                        "divider": "#EDEDEA",
+                        "success": "#1E8E5A",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container": "#eeeeec",
+                        "on-tertiary-container": "#427dfc",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e2e3e1",
+                        "surface-container-low": "#f4f4f2",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "text-primary": "#111111",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#474646",
+                        "secondary-fixed": "#e4e2e2",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "primary": "#000000",
+                        "primary-container": "#1c1b1b",
+                        "inverse-surface": "#2f3130",
+                        "on-background": "#1a1c1b",
+                        "secondary": "#5e5e5e",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "dark-background": "#0E0E0E",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "secondary-container": "#e4e2e2",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "hero-v": "120px",
+                        "gutter-customer": "24px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "section-dashboard": "32px",
+                        "gutter-dashboard": "20px",
+                        "md": "16px",
+                        "section-customer": "64px"
+                    },
+                    "fontFamily": {
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h3": ["Inter"],
+                        "body": ["Inter"],
+                        "caption": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label": ["13px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "display-mobile": ["40px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h1-mobile": ["28px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h3": ["24px", {"lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600"}],
+                        "body": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "caption": ["12px", {"lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["40px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "display": ["64px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<!-- Left: Brand & Search -->
+<div class="flex items-center gap-lg">
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary" href="#">Pazarz</a>
+<div class="hidden md:flex items-center gap-sm">
+<span class="material-symbols-outlined text-text-secondary">search</span>
+<input class="border-0 focus:ring-0 bg-transparent text-body font-body placeholder:text-text-muted" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Center: Navigation Links (Web) -->
+<nav class="hidden md:flex items-center gap-xl">
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 font-body text-body scale-95 duration-150 active:scale-98" href="#">Shop</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors duration-200 font-body text-body scale-95 duration-150 active:scale-98" href="#">Categories</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 font-body text-body scale-95 duration-150 active:scale-98" href="#">New Arrivals</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 font-body text-body scale-95 duration-150 active:scale-98" href="#">Archive</a>
+</nav>
+<!-- Right: Actions -->
+<div class="flex items-center gap-md">
+<button class="flex flex-col items-center justify-center w-12 h-12 rounded-full hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors" data-icon="shopping_bag">shopping_bag</span>
+</button>
+<button class="flex flex-col items-center justify-center w-12 h-12 rounded-full hover:bg-surface-container-low transition-colors group">
+<span class="material-symbols-outlined text-text-secondary group-hover:text-primary transition-colors" data-icon="person">person</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow max-w-[1280px] w-full mx-auto px-lg py-xl">
+<!-- Breadcrumbs & Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-xl gap-4">
+<div>
+<nav class="flex items-center gap-2 font-caption text-caption text-text-secondary mb-4">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-semibold">Categories</span>
+</nav>
+<h1 class="font-h1 text-h1 text-primary">All Categories</h1>
+</div>
+<div class="flex items-center gap-4">
+<span class="font-caption text-caption text-text-secondary">Sort by:</span>
+<div class="relative inline-block text-left">
+<button aria-expanded="true" aria-haspopup="true" class="inline-flex justify-between w-40 rounded-[10px] border border-border bg-surface-container-lowest px-4 py-2 font-body text-body text-text-primary hover:bg-surface-container-low focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-2" id="menu-button" type="button">
+                    Newest
+                    <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row gap-gutter-customer">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 flex-shrink-0 flex flex-col gap-xl">
+<!-- Filter Section: Categories -->
+<div class="border-b border-divider pb-md">
+<h3 class="font-label text-label text-primary mb-4 flex justify-between items-center cursor-pointer">
+                        Categories
+                        <span class="material-symbols-outlined text-text-muted">expand_less</span>
+</h3>
+<ul class="space-y-3">
+<li class="flex items-center gap-3">
+<input checked="" class="w-4 h-4 border-border rounded text-primary focus:ring-info" type="checkbox"/>
+<span class="font-body text-body text-text-primary">Outerwear</span>
+</li>
+<li class="flex items-center gap-3">
+<input class="w-4 h-4 border-border rounded text-primary focus:ring-info" type="checkbox"/>
+<span class="font-body text-body text-text-secondary">Knitwear</span>
+</li>
+<li class="flex items-center gap-3">
+<input class="w-4 h-4 border-border rounded text-primary focus:ring-info" type="checkbox"/>
+<span class="font-body text-body text-text-secondary">Trousers</span>
+</li>
+<li class="flex items-center gap-3">
+<input class="w-4 h-4 border-border rounded text-primary focus:ring-info" type="checkbox"/>
+<span class="font-body text-body text-text-secondary">Accessories</span>
+</li>
+</ul>
+</div>
+<!-- Filter Section: Price -->
+<div class="border-b border-divider pb-md">
+<h3 class="font-label text-label text-primary mb-4 flex justify-between items-center cursor-pointer">
+                        Price Range
+                        <span class="material-symbols-outlined text-text-muted">expand_less</span>
+</h3>
+<div class="flex items-center gap-2">
+<input class="w-full rounded-[10px] border border-border bg-surface-container-lowest px-3 py-2 font-body text-body focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-2" placeholder="Min" type="number"/>
+<span class="text-text-muted">-</span>
+<input class="w-full rounded-[10px] border border-border bg-surface-container-lowest px-3 py-2 font-body text-body focus:outline-none focus:ring-2 focus:ring-info focus:ring-offset-2" placeholder="Max" type="number"/>
+</div>
+</div>
+<!-- Filter Section: Size -->
+<div class="border-b border-divider pb-md">
+<h3 class="font-label text-label text-primary mb-4 flex justify-between items-center cursor-pointer">
+                        Size
+                        <span class="material-symbols-outlined text-text-muted">expand_less</span>
+</h3>
+<div class="flex flex-wrap gap-2">
+<button class="w-10 h-10 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors font-label text-label">S</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary font-label text-label">M</button>
+<button class="w-10 h-10 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors font-label text-label">L</button>
+<button class="w-10 h-10 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors font-label text-label">XL</button>
+</div>
+</div>
+</aside>
+<!-- Product Grid -->
+<div class="flex-grow">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-gutter-customer">
+<!-- Product Card 1 -->
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A striking high-fashion photograph of a minimalist wool coat on a hanger against a pristine white background. The coat is dark charcoal grey, almost black, with sharp tailoring and hidden buttons. High-key, soft white lighting emphasizes the texture of the wool. The composition is clean, modern, and editorial, perfectly aligned with a premium monochrome marketplace aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhSIMmAAYqAXkMV3Eg6eReW89B2UA42vNB5WU9M7a2eqL4Be7KRkcGKt7Clwe1WTqUYsgH79kMWnMzoO2IzTdyj8Q5k3dng_Nvr4BSj3uXvarGENnFC41f2ZxVD5Ot0985PcxHFHtwDovx5v8E-8Y-Ed0yi3XMnCOlGD_cyy9Ys9eu6MlTWTPRD10ACAF3vrkAZpMkM7ZT1R6Knr4zm9zol4dTwvuAHf6nFSODP5WUyGo6EHZn4UUS"/>
+<div class="absolute top-3 left-3 bg-tertiary text-on-tertiary px-3 py-1 rounded-full font-caption text-caption uppercase tracking-wider">New</div>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-primary hover:bg-primary hover:text-on-primary">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Outerwear</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Structured Wool Overcoat</h3>
+<span class="font-body text-body text-text-primary">$495</span>
+</div>
+</a>
+<!-- Product Card 2 -->
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A high-end editorial shot of a heavy knit sweater draped casually over a black wire chair in a stark white studio room. The sweater is a creamy off-white color with an intricate cable knit pattern. The lighting is diffused, casting soft, subtle shadows that highlight the depth of the knit. The mood is luxurious yet understated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP1mkRPNN_DTltnjAO0M2CczVxwTaS_twkL1wYUgJYICj6ZHJUVZGFf6UnwO9hyMNlAmfRyA_8sE9GyTsZY7EmDg9hlKrIpNF_5h_ekPgddk6eWn2lKvBBVSqmz3tzXSdCmet2tXNEV_e-lmSigQfbhDxHriX19uGDdOl8yyoe6iK3gDBZVO5Yy6oDjoxX1np-YnZ0_X27Vzz9LnmM6dv5PGyqh9bmHCEA1-eQzggKsAx2E9n_ikMV"/>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-primary hover:bg-primary hover:text-on-primary">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Knitwear</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Heavyweight Cable Knit</h3>
+<span class="font-body text-body text-text-primary">$220</span>
+</div>
+</a>
+<!-- Product Card 3 -->
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A close-up studio photograph of wide-leg tailored trousers folded neatly on a light grey plinth. The trousers are a deep, rich black fabric with a subtle sheen, suggesting high-quality wool or silk blend. The background is a slightly darker grey, creating a soft tonal separation. The image is crisp, focusing on the sharp crease of the pant leg." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAL1_liTQtT1sRTah-B7lX86KXpl7latX8NSpBT0mnJT5GYhgK6siEEvciiE6Lo3cxOD2Ox5iWxbaGmb1tDoSoCamdBD4LgTSdMqVethJxxuNiyYl7S2c1-PHFyHjrRSJ8OPKrJr6y5C-1X80PnizMutO5iHNL_IKKXfhGKHlsfFSjvsOGPgUeYYkBrHStHn_YaoFP77kRvbuXztr4pu_b5De_qJDof9t6x8kXqYdFNlVcSEGnoNK1S"/>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-primary hover:bg-primary hover:text-on-primary">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Trousers</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Pleated Wide-Leg Trouser</h3>
+<span class="font-body text-body text-text-primary">$180</span>
+</div>
+</a>
+<!-- Product Card 4 -->
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A minimalist still life featuring a sleek black leather tote bag resting on a polished marble surface. The lighting is dramatic, coming from a single side source to highlight the smooth texture of the leather and cast long, sharp shadows. The overall scene adheres strictly to a high-contrast black and white palette, exuding a premium, modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9hfjQPMg7m4YbPATNNJb80lpUThmZroekQOcIh65oN2VPZ_RXKpXexXSasoICx47zU5wsttuyh0WOL13jfbSYd_kRa70C9zjxPmvmwKk6Z5i3YH3tUHYEdT5XpCGcNutYG-wIqqB1nOYaKAUm3oFlJn-_8fIQjrjgGahK557WsJv9Uq_fIm2ecg_vsSrKP3cViwHhA84SmdDLfAxxz5VBkb5EfRDvZQ4--i4YhndCePApavckmItw"/>
+<button class="absolute bottom-3 right-3 w-10 h-10 bg-surface-container-lowest/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-primary hover:bg-primary hover:text-on-primary">
+<span class="material-symbols-outlined text-[20px]">shopping_bag</span>
+</button>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Accessories</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Minimalist Leather Tote</h3>
+<span class="font-body text-body text-text-primary">$350</span>
+</div>
+</a>
+<!-- Additional items to fill out the grid -->
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A modern fashion portrait showing only the torso of a model wearing a crisp white oversized button-down shirt. The shirt is slightly unbuttoned at the collar. The background is pure white, creating a high-key, airy feel. The lighting is very soft and flattering, emphasizing the clean lines and cotton texture of the garment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKwSo4QdiEg9kz0AWo0eRyPeKgh57a6KVoqWtK60Z2sHxFmHlZu6eQpdw8XSwfsiDPAZmsrUatmquXmgEdU22JF03GCQQNqbjW05lSXE6H_peexYLS8dsauorvs0UKLJQhdp9jfHgRL1E0H4t2t172KJAJI3k-5hZTVx5ooNyF0bnsCN-JAbCUxGSoey_4UPSxP_Lf_C8ZH55Y49shcT_z7-uY0O4QpcikViBEPjHUaFIFIK0-0GRz"/>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Tops</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Oversized Poplin Shirt</h3>
+<span class="font-body text-body text-text-primary">$120</span>
+</div>
+</a>
+<a class="group flex flex-col gap-sm relative rounded-[16px] transition-transform duration-300 hover:scale-[1.02]" href="#">
+<div class="w-full aspect-[3/4] bg-surface-container-low rounded-[16px] overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A close-up shot of a pair of classic black leather derbies resting on a concrete floor. The shoes are highly polished, reflecting a single, strong light source. The concrete floor provides a raw, textured contrast to the smooth, refined leather. The color palette is strictly monochrome, emphasizing form and texture over hue." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBv2iJbmCmRq3JCkk5a9Pagu5kt-WW-Gr_NKC7D-pqNF7SzsexWvdU8iiZE84es-Btq24sJgbyJqvdXW59YOLru0jXPS9uzhsSAlEdPp7ctMbYAAJAb4W_7L0av26yz7SrMMSNFRJy3mm-K2jIAREQqqSgSZMhtwyut_lYoO9YTgQpMfEuyzm5TuC8Jo-h2vifl6NYq1IHxZHW-o7oSeoUn9Kfh_-inueCwl10tf_o-DrdlwnUi-jvG"/>
+</div>
+<div class="flex flex-col gap-xs px-1">
+<span class="font-label text-label text-text-secondary uppercase">Footwear</span>
+<h3 class="font-body text-body font-semibold text-primary truncate">Classic Leather Derby</h3>
+<span class="font-body text-body text-text-primary">$290</span>
+</div>
+</a>
+</div>
+<!-- Pagination -->
+<div class="mt-xl flex justify-center items-center gap-2">
+<button class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-on-primary font-label text-label flex items-center justify-center">1</button>
+<button class="w-10 h-10 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors font-label text-label flex items-center justify-center">2</button>
+<button class="w-10 h-10 rounded-full border border-border text-text-secondary hover:border-primary hover:text-primary transition-colors font-label text-label flex items-center justify-center">3</button>
+<span class="text-text-muted px-2">...</span>
+<button class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-primary hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-customer bg-background dark:bg-dark-background border-t border-divider dark:border-outline-variant flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-y-lg">
+<div class="font-display text-h2 text-primary dark:text-on-primary">Pazarz</div>
+<nav class="flex flex-wrap justify-center gap-md md:gap-lg">
+<a class="text-text-muted hover:text-primary transition-opacity duration-200 font-caption text-caption" href="#">Privacy Policy</a>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200 font-caption text-caption" href="#">Terms of Service</a>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200 font-caption text-caption" href="#">Shipping &amp; Returns</a>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200 font-caption text-caption" href="#">Contact Us</a>
+</nav>
+<div class="font-caption text-caption text-text-secondary dark:text-text-muted">
+                © 2024 Pazarz Editorial Marketplace. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout - Pazarz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1b",
+                        "tertiary-container": "#001847",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "divider": "#EDEDEA",
+                        "secondary": "#5e5e5e",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "outline": "#747878",
+                        "surface": "#f9f9f7",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-container": "#e4e2e2",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-dim": "#dadad8",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-low": "#f4f4f2",
+                        "on-primary-fixed-variant": "#474646",
+                        "success": "#1E8E5A",
+                        "tertiary-fixed": "#dae2ff",
+                        "surface-container": "#eeeeec",
+                        "primary": "#000000",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#858383",
+                        "surface-elevated": "#FFFFFF",
+                        "on-tertiary-fixed": "#001847",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary": "#ffffff",
+                        "background": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c8c6c5",
+                        "dark-background": "#0E0E0E",
+                        "error": "#D8362B",
+                        "outline-variant": "#c4c7c7",
+                        "text-primary": "#111111",
+                        "warning": "#B98900",
+                        "primary-fixed": "#e5e2e1",
+                        "dark-surface": "#171717",
+                        "inverse-on-surface": "#f1f1ef",
+                        "secondary-fixed": "#e4e2e2",
+                        "text-secondary": "#5E5E5E",
+                        "on-surface-variant": "#444748",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-tint": "#5f5e5e",
+                        "text-muted": "#9A9A9A",
+                        "tertiary": "#000000",
+                        "info": "#2F6FED",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary-container": "#427dfc",
+                        "surface-container-highest": "#e2e3e1",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-variant": "#e2e3e1",
+                        "border": "#E4E4E1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-customer": "64px",
+                        "xs": "4px",
+                        "hero-v": "120px",
+                        "sm": "8px",
+                        "gutter-dashboard": "20px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter-customer": "24px",
+                        "section-dashboard": "32px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "display": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "body": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "label": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FFFFFF; color: #111111; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active { border-left-color: #000000; }
+        .step-inactive { border-left-color: #E4E4E1; opacity: 0.6; }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+<!-- TopNavBar: Suppressed navigation links as per Shared Components Logic (Transactional Page) -->
+<header class="w-full sticky top-0 z-50 bg-background border-b border-divider h-20 flex items-center justify-center px-lg">
+<a class="font-display text-h3 tracking-tight text-primary" href="#">Pazarz</a>
+</header>
+<main class="flex-grow max-w-[1280px] w-full mx-auto px-lg py-section-customer grid grid-cols-1 lg:grid-cols-12 gap-xl relative">
+<!-- Left Column: Checkout Steps -->
+<div class="lg:col-span-7 flex flex-col gap-section-customer">
+<h1 class="font-h1 text-h1 text-primary">Checkout</h1>
+<!-- Step 1: Shipping Address -->
+<section class="pl-md border-l-2 step-active transition-all duration-300" id="step-1">
+<div class="flex items-center gap-sm mb-lg">
+<span class="bg-primary text-on-primary w-8 h-8 rounded-full flex items-center justify-center font-label text-label">1</span>
+<h2 class="font-h2 text-h2 text-primary">Shipping Address</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label text-label text-text-primary mb-xs">Email</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="email" value="alex@example.com"/>
+</div>
+<div class="col-span-1 md:col-span-2 mt-md">
+<h3 class="font-h3 text-h3 text-primary mb-sm">Delivery Details</h3>
+</div>
+<div>
+<label class="block font-label text-label text-text-primary mb-xs">First Name</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="text"/>
+</div>
+<div>
+<label class="block font-label text-label text-text-primary mb-xs">Last Name</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="text"/>
+</div>
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label text-label text-text-primary mb-xs">Address</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="text"/>
+</div>
+<div>
+<label class="block font-label text-label text-text-primary mb-xs">City</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="text"/>
+</div>
+<div>
+<label class="block font-label text-label text-text-primary mb-xs">Postal Code</label>
+<input class="w-full rounded-[10px] border-border focus:border-info focus:ring-2 focus:ring-info/20 px-md py-sm bg-surface font-body text-body text-text-primary transition-all" type="text"/>
+</div>
+<div class="col-span-1 md:col-span-2 mt-md flex justify-end">
+<button class="bg-primary text-on-primary px-xl py-md rounded-full font-label text-label hover:bg-black/90 active:scale-[0.98] transition-all duration-200">Continue to Shipping</button>
+</div>
+</div>
+</section>
+<!-- Step 2: Shipping Method -->
+<section class="pl-md border-l-2 step-inactive transition-all duration-300" id="step-2">
+<div class="flex items-center gap-sm mb-lg opacity-60">
+<span class="bg-surface-dim text-text-secondary w-8 h-8 rounded-full flex items-center justify-center font-label text-label border border-border">2</span>
+<h2 class="font-h2 text-h2 text-text-secondary">Shipping Method</h2>
+</div>
+<!-- Content hidden until active -->
+</section>
+<!-- Step 3: Payment -->
+<section class="pl-md border-l-2 step-inactive transition-all duration-300" id="step-3">
+<div class="flex items-center gap-sm mb-lg opacity-60">
+<span class="bg-surface-dim text-text-secondary w-8 h-8 rounded-full flex items-center justify-center font-label text-label border border-border">3</span>
+<h2 class="font-h2 text-h2 text-text-secondary">Payment</h2>
+</div>
+<!-- Content hidden until active -->
+</section>
+</div>
+<!-- Right Column: Order Summary (Sticky) -->
+<aside class="lg:col-span-5 relative">
+<div class="sticky top-24 bg-surface rounded-[24px] p-lg md:p-xl flex flex-col gap-lg border border-border">
+<h3 class="font-h3 text-h3 text-primary">Order Summary</h3>
+<!-- Items -->
+<div class="flex flex-col gap-md">
+<div class="flex gap-md items-start">
+<div class="w-20 h-24 rounded-lg bg-surface-dim relative overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="A minimalist editorial flat lay photograph of a sleek, structural black leather tote bag resting on a pristine white marble surface. Soft, high-key studio lighting casts gentle, diffused shadows, highlighting the premium texture of the leather. The mood is sophisticated and luxurious, embodying a high-end fashion aesthetic with strict monochrome adherence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuACQelKw9CTS-afIXIDUfS0AKXS7WZyDswkUFCARyocERLB5KCCQZneFt9LbYPlXoOLBwQLWf0JCeZxZ_a327wQgNeqtbgiAOUo53n2aree3MRBAo4-Zck-_7Maimp6WrTTWGVgj2Cv5QJpaoKiy7x5dXTxYWWa2VJqYrYZYMtAxC5haXxyGJdbkzxgNavjLIIIeyp2zGnzMRR9_nF0vqLoiEUpKbAXIsl0Xj3bD9R-LF5Eq_UGhD9c"/>
+<span class="absolute top-[-8px] right-[-8px] bg-primary text-on-primary w-6 h-6 rounded-full flex items-center justify-center font-caption text-[10px] font-bold z-10 border-2 border-surface">1</span>
+</div>
+<div class="flex-grow flex flex-col justify-between h-24 py-xs">
+<div>
+<p class="font-label text-label text-primary line-clamp-1">Structured Leather Tote</p>
+<p class="font-caption text-caption text-text-secondary mt-xs">Curated by Studio N</p>
+</div>
+<p class="font-body text-body text-primary font-semibold">$450.00</p>
+</div>
+</div>
+</div>
+<hr class="border-border"/>
+<!-- Totals -->
+<div class="flex flex-col gap-sm font-body text-body">
+<div class="flex justify-between text-text-secondary">
+<span>Subtotal</span>
+<span>$450.00</span>
+</div>
+<div class="flex justify-between text-text-secondary">
+<span>Shipping</span>
+<span>Calculated at next step</span>
+</div>
+<div class="flex justify-between text-text-secondary">
+<span>Taxes</span>
+<span>$0.00</span>
+</div>
+</div>
+<hr class="border-border"/>
+<div class="flex justify-between items-center">
+<span class="font-h3 text-h3 text-primary">Total</span>
+<span class="font-h2 text-h2 text-primary font-bold tracking-tight">USD $450.00</span>
+</div>
+<div class="mt-md text-center">
+<p class="font-caption text-caption text-text-muted flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                        Secure Encrypted Checkout
+                    </p>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-customer border-t border-divider bg-background">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-md">
+<span class="font-display text-h2 text-primary">Pazarz</span>
+<div class="flex gap-lg font-caption text-caption text-text-muted">
+<a class="hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+<a class="hover:text-primary transition-opacity duration-200" href="#">Contact Us</a>
+</div>
+<p class="font-caption text-caption text-text-secondary">© 2024 Pazarz Editorial Marketplace. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

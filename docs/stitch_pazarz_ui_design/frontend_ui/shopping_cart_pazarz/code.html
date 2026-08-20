@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cart - Pazarz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-background": "#1a1c1b",
+                      "tertiary-container": "#001847",
+                      "secondary-fixed-dim": "#c8c6c6",
+                      "divider": "#EDEDEA",
+                      "secondary": "#5e5e5e",
+                      "primary-container": "#1c1b1b",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "outline": "#747878",
+                      "surface": "#f9f9f7",
+                      "surface-bright": "#f9f9f7",
+                      "secondary-container": "#e4e2e2",
+                      "surface-container-high": "#e8e8e6",
+                      "surface-dim": "#dadad8",
+                      "inverse-surface": "#2f3130",
+                      "surface-container-low": "#f4f4f2",
+                      "on-primary-fixed-variant": "#474646",
+                      "success": "#1E8E5A",
+                      "tertiary-fixed": "#dae2ff",
+                      "surface-container": "#eeeeec",
+                      "primary": "#000000",
+                      "on-error": "#ffffff",
+                      "on-primary-container": "#858383",
+                      "surface-elevated": "#FFFFFF",
+                      "on-tertiary-fixed": "#001847",
+                      "tertiary-fixed-dim": "#b1c5ff",
+                      "on-surface": "#1a1c1b",
+                      "on-secondary": "#ffffff",
+                      "background": "#FFFFFF",
+                      "on-tertiary-fixed-variant": "#0040a0",
+                      "error-container": "#ffdad6",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "on-error-container": "#93000a",
+                      "inverse-primary": "#c8c6c5",
+                      "dark-background": "#0E0E0E",
+                      "error": "#D8362B",
+                      "outline-variant": "#c4c7c7",
+                      "text-primary": "#111111",
+                      "warning": "#B98900",
+                      "primary-fixed": "#e5e2e1",
+                      "dark-surface": "#171717",
+                      "inverse-on-surface": "#f1f1ef",
+                      "secondary-fixed": "#e4e2e2",
+                      "text-secondary": "#5E5E5E",
+                      "on-surface-variant": "#444748",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed-variant": "#474747",
+                      "surface-tint": "#5f5e5e",
+                      "text-muted": "#9A9A9A",
+                      "tertiary": "#000000",
+                      "info": "#2F6FED",
+                      "surface-container-lowest": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "on-secondary-container": "#646464",
+                      "on-tertiary-container": "#427dfc",
+                      "surface-container-highest": "#e2e3e1",
+                      "dark-surface-elevated": "#1F1F1F",
+                      "on-primary-fixed": "#1c1b1b",
+                      "surface-variant": "#e2e3e1",
+                      "border": "#E4E4E1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px",
+                      "card": "16px",
+                      "button": "9999px"
+              },
+              "spacing": {
+                      "section-customer": "64px",
+                      "xs": "4px",
+                      "hero-v": "120px",
+                      "sm": "8px",
+                      "gutter-dashboard": "20px",
+                      "lg": "24px",
+                      "md": "16px",
+                      "base": "4px",
+                      "gutter-customer": "24px",
+                      "section-dashboard": "32px",
+                      "xl": "48px"
+              },
+              "fontFamily": {
+                      "h1": ["Inter"],
+                      "h2": ["Inter"],
+                      "display": ["Inter"],
+                      "h1-mobile": ["Inter"],
+                      "caption": ["Inter"],
+                      "body": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-mobile": ["Inter"],
+                      "label": ["Inter"],
+                      "h3": ["Inter"]
+              },
+              "fontSize": {
+                      "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                      "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                      "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                      "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                      "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                      "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                      "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                      "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                      "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }]
+              },
+              "boxShadow": {
+                  "elevation-1": "0 2px 8px rgba(0, 0, 0, 0.05)"
+              }
+            },
+          }
+        }
+    </script>
+<style>
+        body {
+            background-color: #FFFFFF;
+            color: #111111;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body text-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<div class="flex items-center gap-xl">
+<!-- Brand Logo -->
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary scale-95 duration-150 active:scale-98" href="#">
+                    Pazarz
+                </a>
+<!-- Desktop Navigation Links -->
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 font-body text-body" href="#">Shop</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 font-body text-body" href="#">Categories</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 font-body text-body" href="#">New Arrivals</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 font-body text-body" href="#">Archive</a>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-md">
+<button aria-label="Cart" class="text-primary font-bold border-b-2 border-primary pb-1 transition-colors duration-200 scale-95 duration-150 active:scale-98 flex items-center gap-xs font-body text-body">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="hidden md:inline">Cart</span>
+</button>
+<button aria-label="Profile" class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 flex items-center gap-xs font-body text-body">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="hidden md:inline">Profile</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="max-w-[1280px] mx-auto px-lg py-section-customer min-h-[70vh]">
+<header class="mb-xl">
+<h1 class="font-h1 text-h1-mobile md:text-h1">Your Cart</h1>
+<p class="font-body text-body text-text-secondary mt-sm">Review your curated items before checkout.</p>
+</header>
+<div class="flex flex-col lg:flex-row gap-xl">
+<!-- Cart Items (Grouped by Seller) -->
+<div class="flex-1 flex flex-col gap-xl">
+<!-- Seller Group 1 -->
+<section class="bg-surface p-lg rounded-card">
+<div class="flex items-center justify-between mb-md border-b border-divider pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-text-secondary">storefront</span>
+<h2 class="font-h3 text-h3">Studio Minimal</h2>
+</div>
+<span class="font-caption text-caption text-text-secondary">2 Items</span>
+</div>
+<div class="flex flex-col gap-lg">
+<!-- Item 1 -->
+<div class="flex gap-md items-start group">
+<img alt="Item Image" class="w-[100px] h-[133px] object-cover rounded-md bg-surface-container-high transition-transform duration-300 group-hover:scale-105" data-alt="A meticulously crafted ceramic vase sitting on a white pedestal. High-key lighting highlights its matte texture against a pristine white background. The aesthetic is extremely minimalist, luxurious, and editorial. High contrast monochrome style with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGGAB-h9nzJYpVHp9nMSoVYKdge5YtuQ5T798SM4HwT84OIhiEBisK-hLSMvspMxNBxpqUMqNEMn7Ty5S7vzaptwgWDllcjWGFpLEaVN4rTUERZvEvtWshmhth_q-F_CU3QF-tBCx-jbiywU6Dxc26nP64EH_J9UqnPtWkNQ5QZ1zJqn4fj8zNMWATavMN4T9dufISQK77gcJgGpw7cqTy4k1X31o3KOU1Pj3tq2zGBjL1Wy0y0rgN"/>
+<div class="flex-1 flex flex-col justify-between h-full py-xs">
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold">Matte Ceramic Vase</h3>
+<p class="font-body text-body text-text-secondary mt-xs">Color: Off-White | Size: Medium</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-sm">
+<div class="flex items-center border border-border rounded-button overflow-hidden h-[36px]">
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">-</button>
+<span class="font-label text-label px-sm w-[3ch] text-center">1</span>
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">+</button>
+</div>
+<span class="font-body-lg text-body-lg font-semibold">$145.00</span>
+</div>
+</div>
+<button aria-label="Remove item" class="text-text-muted hover:text-error transition-colors p-xs">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-md items-start group">
+<img alt="Item Image" class="w-[100px] h-[133px] object-cover rounded-md bg-surface-container-high transition-transform duration-300 group-hover:scale-105" data-alt="A beautifully bound hardcover book with stark black typography on a textured white cover. It lies flat on a light grey concrete surface. Studio lighting emphasizes the debossed texture. The composition is clean, modern, and high-end editorial." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeROn61Jv-lEXVkO1OzRS2svqmTnZ8v7ur2RenXSR5kRldLcwOacVzLiqjIl5QEMooGes8ZfGdvhdYrdcf8Iay8R93R7n5VXAhWz3EDY_fcG2K2IaQgXsOiULxBrcZ6QWDKHkoPcGOJRyjw4OO6nBOAe9PvOOEbvnJn4gCwvY4StfykpAAPe6kyMLxKrY_mIUExqgqzo67wD9EouHqD6FXGrZ8QuXfe7bsmpjF-4SgPiVUiWZuXiSt"/>
+<div class="flex-1 flex flex-col justify-between h-full py-xs">
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold">Architecture Monograph Volume II</h3>
+<p class="font-body text-body text-text-secondary mt-xs">Hardcover | First Edition</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-sm">
+<div class="flex items-center border border-border rounded-button overflow-hidden h-[36px]">
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">-</button>
+<span class="font-label text-label px-sm w-[3ch] text-center">2</span>
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">+</button>
+</div>
+<span class="font-body-lg text-body-lg font-semibold">$85.00</span>
+</div>
+</div>
+<button aria-label="Remove item" class="text-text-muted hover:text-error transition-colors p-xs">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Seller Group 2 -->
+<section class="bg-surface p-lg rounded-card">
+<div class="flex items-center justify-between mb-md border-b border-divider pb-sm">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-text-secondary">storefront</span>
+<h2 class="font-h3 text-h3">Atelier Noir</h2>
+</div>
+<span class="font-caption text-caption text-text-secondary">1 Item</span>
+</div>
+<div class="flex flex-col gap-lg">
+<!-- Item 3 -->
+<div class="flex gap-md items-start group">
+<img alt="Item Image" class="w-[100px] h-[133px] object-cover rounded-md bg-surface-container-high transition-transform duration-300 group-hover:scale-105" data-alt="A sleek, matte black structured leather tote bag presented against a stark white background. Hard directional lighting creates sharp, dramatic shadows, emphasizing its geometric silhouette. The aesthetic is luxurious, severe, and strictly monochromatic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmVonT1jd63DuQzgU9RZvAtn0sHacogQNqQU_KcyhPmRJsKE3dg-Rk31UjABoKUAI1CA71BlYT9ftDR0rDeWihOS3kX1caTq3NZyO5GmM_tNwdd_SGFJwVGFt1lZrfr-I6DWIpS8W_zItnEl0PEqwcwbOhbdPzxmJU4aBGAuI4Q0iluDuq0B_ZORC20888q49HiQY4ypaZIsMw2K3njj3bdxWXY2rRIxbdBCzY94e83eFOiTBxnLbW"/>
+<div class="flex-1 flex flex-col justify-between h-full py-xs">
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold">Structured Leather Tote</h3>
+<p class="font-body text-body text-text-secondary mt-xs">Color: Onyx | Material: Calfskin</p>
+</div>
+<div class="flex items-center justify-between mt-auto pt-sm">
+<div class="flex items-center border border-border rounded-button overflow-hidden h-[36px]">
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">-</button>
+<span class="font-label text-label px-sm w-[3ch] text-center">1</span>
+<button class="px-md text-text-secondary hover:bg-surface-container transition-colors">+</button>
+</div>
+<span class="font-body-lg text-body-lg font-semibold">$520.00</span>
+</div>
+</div>
+<button aria-label="Remove item" class="text-text-muted hover:text-error transition-colors p-xs">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Summary Sidebar -->
+<aside class="w-full lg:w-[380px] shrink-0">
+<div class="bg-surface p-lg rounded-card sticky top-[100px]">
+<h2 class="font-h3 text-h3 mb-md">Order Summary</h2>
+<div class="flex flex-col gap-sm border-b border-divider pb-md mb-md">
+<div class="flex justify-between font-body text-body">
+<span class="text-text-secondary">Subtotal (3 items)</span>
+<span>$835.00</span>
+</div>
+<div class="flex justify-between font-body text-body">
+<span class="text-text-secondary">Shipping</span>
+<span>Calculated at checkout</span>
+</div>
+<div class="flex justify-between font-body text-body">
+<span class="text-text-secondary">Taxes</span>
+<span>Calculated at checkout</span>
+</div>
+</div>
+<div class="flex justify-between items-end mb-lg">
+<span class="font-body-lg text-body-lg font-semibold">Estimated Total</span>
+<span class="font-h2 text-h2">$835.00</span>
+</div>
+<button class="w-full bg-primary text-on-primary font-label text-label py-md rounded-button hover:bg-[#1f1f1f] active:scale-[0.98] transition-all duration-200">
+                        Proceed to Checkout
+                    </button>
+<div class="mt-md text-center">
+<p class="font-caption text-caption text-text-muted flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">lock</span>
+                            Secure encrypted checkout
+                        </p>
+</div>
+</div>
+</aside>
+</div>
+<!-- Empty State (Hidden by default, shown via JS if cart is empty) -->
+<!--
+        <div class="flex flex-col items-center justify-center py-hero-v text-center">
+            <span class="material-symbols-outlined text-[64px] text-text-muted mb-md font-light">shopping_cart</span>
+            <h2 class="font-h2 text-h2 mb-sm">Your cart is empty</h2>
+            <p class="font-body text-body text-text-secondary mb-lg max-w-md mx-auto">Discover curated pieces from our exclusive sellers to start building your collection.</p>
+            <button class="bg-primary text-on-primary font-label text-label py-md px-xl rounded-button hover:bg-[#1f1f1f] active:scale-[0.98] transition-all duration-200">
+                Explore Shop
+            </button>
+        </div>
+        -->
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-customer border-t border-divider dark:border-outline-variant bg-background dark:bg-dark-background flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-lg">
+<a class="font-display text-h2 text-primary dark:text-on-primary transition-opacity duration-200 hover:opacity-80" href="#">
+                Pazarz
+            </a>
+<nav class="flex flex-wrap justify-center gap-md md:gap-lg">
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-colors duration-200" href="#">Shipping &amp; Returns</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-colors duration-200" href="#">Contact Us</a>
+</nav>
+<p class="font-caption text-caption text-text-secondary dark:text-text-muted text-center md:text-right">
+                © 2024 Pazarz Editorial Marketplace. All rights reserved.
+            </p>
+</div>
+</footer>
+</body></html>

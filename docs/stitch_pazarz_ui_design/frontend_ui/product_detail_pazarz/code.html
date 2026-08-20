@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Product Detail Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "dark-surface-elevated": "#1F1F1F",
+                        "tertiary-container": "#001847",
+                        "outline": "#747878",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-tertiary-fixed": "#001847",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "warning": "#B98900",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-surface-variant": "#444748",
+                        "surface-dim": "#dadad8",
+                        "surface-tint": "#5f5e5e",
+                        "surface-container-high": "#e8e8e6",
+                        "on-secondary": "#ffffff",
+                        "text-muted": "#9A9A9A",
+                        "error": "#D8362B",
+                        "text-secondary": "#5E5E5E",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-error": "#ffffff",
+                        "dark-surface": "#171717",
+                        "on-primary-container": "#858383",
+                        "outline-variant": "#c4c7c7",
+                        "border": "#E4E4E1",
+                        "tertiary": "#000000",
+                        "background": "#FFFFFF",
+                        "on-surface": "#1a1c1b",
+                        "surface-elevated": "#FFFFFF",
+                        "surface": "#f9f9f7",
+                        "on-primary-fixed": "#1c1b1b",
+                        "info": "#2F6FED",
+                        "divider": "#EDEDEA",
+                        "success": "#1E8E5A",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container": "#eeeeec",
+                        "on-tertiary-container": "#427dfc",
+                        "on-error-container": "#93000a",
+                        "surface-variant": "#e2e3e1",
+                        "surface-container-low": "#f4f4f2",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "text-primary": "#111111",
+                        "surface-bright": "#f9f9f7",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#474646",
+                        "secondary-fixed": "#e4e2e2",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "primary": "#000000",
+                        "primary-container": "#1c1b1b",
+                        "inverse-surface": "#2f3130",
+                        "on-background": "#1a1c1b",
+                        "secondary": "#5e5e5e",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "dark-background": "#0E0E0E",
+                        "on-primary": "#ffffff",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "secondary-container": "#e4e2e2",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "hero-v": "120px",
+                        "gutter-customer": "24px",
+                        "xs": "4px",
+                        "base": "4px",
+                        "xl": "48px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "section-dashboard": "32px",
+                        "gutter-dashboard": "20px",
+                        "md": "16px",
+                        "section-customer": "64px"
+                    },
+                    "fontFamily": {
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "h3": ["Inter"],
+                        "body": ["Inter"],
+                        "caption": ["Inter"],
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "display": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-primary antialiased">
+<!-- TopNavBar -->
+<header class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background flat no shadows border-b border-divider">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<div class="flex items-center gap-lg">
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary" href="#">Pazarz</a>
+<nav class="hidden md:flex gap-md">
+<a class="font-body text-body text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="font-body text-body text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Categories</a>
+<a class="font-body text-body text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">New Arrivals</a>
+<a class="font-body text-body text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Archive</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="scale-95 duration-150 active:scale-98 text-primary dark:text-on-primary hover:text-primary transition-colors duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+<button class="scale-95 duration-150 active:scale-98 text-primary dark:text-on-primary hover:text-primary transition-colors duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="hidden md:inline font-body text-body">Cart</span>
+</button>
+<button class="scale-95 duration-150 active:scale-98 text-primary dark:text-on-primary hover:text-primary transition-colors duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="hidden md:inline font-body text-body">Profile</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-[1280px] mx-auto px-lg py-xl">
+<!-- Product Main Section -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter-customer mb-section-customer">
+<!-- Gallery (Left) -->
+<div class="md:col-span-7 flex flex-col-reverse md:flex-row gap-md">
+<!-- Thumbnails -->
+<div class="flex md:flex-col gap-sm overflow-x-auto md:overflow-visible no-scrollbar w-full md:w-24 shrink-0">
+<button class="w-24 h-32 rounded-lg overflow-hidden border-2 border-primary shrink-0 transition-transform duration-200 hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="Close up shot of a minimalist white ceramic vase sitting on a light oak table. Natural soft morning light filtering through a window, highlighting the smooth matte texture of the vase. The aesthetic is serene, premium, and editorial monochrome, focusing on subtle shadow interplay." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmJ00kLB99uXOOwtIHPmD7AMZnCgqgGHCwBIy0Gpp3qtZKR4dZ3-DIjqjvCodn5kkUFoV1Ipuzy-7UW-_CrSCbmVCqMbhwNGlez2V6M0w0awX6JJLZPHa60cIUNo7hr3_sixhTITzMJovWILZhoHCeeuI8-I1XIq7a9ljQEdCZH3yK3cFdmLmZfks38Z3VUlqkXo2KUamukLCgp2xzyQdwRtyDWXrF6Z7lDalOKm5WgATmW64JbxH5"/>
+</button>
+<button class="w-24 h-32 rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 shrink-0 transition-transform duration-200 hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="Top-down view of a minimalist white ceramic vase on a stark white background. Soft, diffused lighting creates gentle shadows, emphasizing the clean, contemporary lines and flawless matte finish. High-end editorial product photography style, emphasizing high-contrast minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPT-JAFmaH1dHX-sVnM_f4Zj0gGpeEBZdoFjS1oDEOMEZDeVLqIHRt61OzgaY2AJ_ffsgTgagEbdCapKcICuxvtqY8OBpkuRIy6UMY_H9qqy4H2gVhWBaE3KwFfOS-9YHWBvgirWQDFEVfxccZradQi8ZYYWysqc8lnJGv62MRaaIGK0FRzj-aOLXAEU0t-YWXWUpa1F9xKMq64JM144g2dQ-NR6gLMqiUIMXe7rbO4gCzOLReTZxm"/>
+</button>
+<button class="w-24 h-32 rounded-lg overflow-hidden border border-border opacity-60 hover:opacity-100 shrink-0 transition-transform duration-200 hover:scale-[1.02]">
+<img class="w-full h-full object-cover" data-alt="Detail shot of the rim of a minimalist white ceramic vase. Macro photography capturing the slightly porous, matte texture of the premium ceramic material. Strong, directional lighting casts deep shadows, contributing to a bold, confident editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFdMk-H5oi9gmqVjVrS3bVvH2Yl7V3QnUw7NWKTJ00qdy3Hl2Py_4lIAZx7nNVeyrEGvAMaIWB5oR5zfbkesjSLlfxyu9FyHoBfGSodbPbr0X5oPr6PaxjzCRIsuQ5IyjIm7GLIM1VxDvvM5IYjYmfEORQqE9VnRFqg9bOEP0Wfg-hbaHgzucWA_6Hpu7y3ltCNrpGpklYcmnCEEk38zCmNVjheEFuhJ6twCngiXad1TzkHGaO6tut"/>
+</button>
+</div>
+<!-- Main Image -->
+<div class="w-full rounded-2xl overflow-hidden bg-surface flex-grow aspect-[3/4] relative">
+<img class="w-full h-full object-cover" data-alt="A large, high-resolution product shot of a beautifully crafted, minimalist white ceramic vase. It stands alone in a spacious, light-filled studio setting with pristine white walls and a polished concrete floor. The lighting is soft yet architectural, casting a long, elegant shadow. The mood is quiet luxury, fitting perfectly into a high-contrast minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCm9tFLuP7zgeCxCDFmYVqiXb3iGjGpPAqLY5tUj8egfhQ1KSg4t-457JxG90MMhTZlOPdFYkhLriJSw3_HcMzKwgWDSQDlLyojyQNkDUmOay1W9_k2BHHRjjnqL7u3ow3udhOO72iie4HTlyihUD1bNyjhs1830WJcRQAmSk8U6Q7eA_KCHIQxRxrEMA7_e95Q06e2WKNXkrKXuOUAFSLf3JQHjovrOBC__-rwcpWt3Yx2tOPOauuZ"/>
+</div>
+</div>
+<!-- Info Panel (Right - Sticky) -->
+<div class="md:col-span-5 relative">
+<div class="sticky top-28 flex flex-col gap-lg">
+<!-- Title & Price -->
+<div class="flex flex-col gap-sm">
+<div class="flex items-center gap-xs text-text-muted">
+<span class="font-body text-body">Home</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-body text-body">Decor</span>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="font-body text-body text-primary">Vases</span>
+</div>
+<h1 class="font-h1 text-h1 text-primary">Ovoid Ceramic Vase</h1>
+<p class="font-h2 text-h2 text-primary">$145.00</p>
+<!-- Rating -->
+<div class="flex items-center gap-sm mt-xs">
+<div class="flex text-primary">
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<span class="font-body text-body text-secondary underline cursor-pointer hover:text-primary transition-colors">4.8 (124 Reviews)</span>
+</div>
+</div>
+<p class="font-body text-body text-secondary border-b border-divider pb-lg">
+                        A study in minimalist form, this handcrafted ovoid vase brings a sense of quiet luxury to any space. The matte finish and sculptural silhouette are designed to stand alone or hold a single, dramatic stem.
+                    </p>
+<!-- Selectors -->
+<div class="flex flex-col gap-md">
+<!-- Color -->
+<div class="flex flex-col gap-sm">
+<span class="font-label text-label uppercase tracking-widest text-secondary">Color: <span class="text-primary font-bold ml-1">Chalk White</span></span>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-full border border-border p-[2px] transition-transform hover:scale-110">
+<div class="w-full h-full rounded-full bg-[#F5F5F5] border border-border"></div>
+</button>
+<button class="w-10 h-10 rounded-full border-2 border-primary p-[2px] transition-transform hover:scale-110">
+<div class="w-full h-full rounded-full bg-[#111111] border border-border"></div>
+</button>
+<button class="w-10 h-10 rounded-full border border-border p-[2px] transition-transform hover:scale-110">
+<div class="w-full h-full rounded-full bg-[#A89F91] border border-border"></div>
+</button>
+</div>
+</div>
+<!-- Size -->
+<div class="flex flex-col gap-sm">
+<div class="flex justify-between items-center">
+<span class="font-label text-label uppercase tracking-widest text-secondary">Size</span>
+<a class="font-caption text-caption text-secondary underline hover:text-primary transition-colors" href="#">Size Guide</a>
+</div>
+<div class="flex gap-sm flex-wrap">
+<button class="px-md py-sm border border-border rounded-lg font-body text-body text-primary hover:border-primary transition-colors">Small</button>
+<button class="px-md py-sm border-2 border-primary bg-surface rounded-lg font-body text-body text-primary font-bold">Medium</button>
+<button class="px-md py-sm border border-border rounded-lg font-body text-body text-primary hover:border-primary transition-colors">Large</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col gap-sm mt-md">
+<button class="w-full bg-[#111111] text-white font-label text-label rounded-full py-md hover:bg-black hover:scale-[0.98] transition-all duration-200 flex justify-center items-center gap-sm shadow-sm">
+                            Add to Cart
+                        </button>
+<button class="w-full border border-[#E4E4E1] text-[#111111] font-label text-label rounded-full py-md hover:bg-surface transition-colors duration-200 flex justify-center items-center gap-sm">
+<span class="material-symbols-outlined text-xl">favorite_border</span>
+                            Save to Wishlist
+                        </button>
+</div>
+<!-- Meta -->
+<div class="flex flex-col gap-xs mt-sm text-secondary">
+<div class="flex items-center gap-sm font-caption text-caption">
+<span class="material-symbols-outlined text-sm">local_shipping</span>
+<span>Free shipping on orders over $200</span>
+</div>
+<div class="flex items-center gap-sm font-caption text-caption">
+<span class="material-symbols-outlined text-sm">keyboard_return</span>
+<span>Complimentary returns within 30 days</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-customer bg-background dark:bg-dark-background border-t border-divider dark:border-outline-variant flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-lg">
+<a class="font-display text-h2 text-primary dark:text-on-primary" href="#">Pazarz</a>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Contact Us</a>
+</div>
+<p class="font-caption text-caption text-text-secondary dark:text-text-muted">© 2024 Pazarz Editorial Marketplace. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

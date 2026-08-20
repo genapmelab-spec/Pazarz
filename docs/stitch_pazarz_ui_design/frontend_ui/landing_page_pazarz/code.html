@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PAZARZ - Curated Essentials</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "dark-surface-elevated": "#1F1F1F",
+                      "tertiary-container": "#001847",
+                      "outline": "#747878",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary-fixed-variant": "#474747",
+                      "on-tertiary-fixed": "#001847",
+                      "inverse-on-surface": "#f1f1ef",
+                      "on-tertiary-fixed-variant": "#0040a0",
+                      "warning": "#B98900",
+                      "surface-container-highest": "#e2e3e1",
+                      "on-surface-variant": "#444748",
+                      "surface-dim": "#dadad8",
+                      "surface-tint": "#5f5e5e",
+                      "surface-container-high": "#e8e8e6",
+                      "on-secondary": "#ffffff",
+                      "text-muted": "#9A9A9A",
+                      "error": "#D8362B",
+                      "text-secondary": "#5E5E5E",
+                      "tertiary-fixed": "#dae2ff",
+                      "on-error": "#ffffff",
+                      "dark-surface": "#171717",
+                      "on-primary-container": "#858383",
+                      "outline-variant": "#c4c7c7",
+                      "border": "#E4E4E1",
+                      "tertiary": "#000000",
+                      "background": "#FFFFFF",
+                      "on-surface": "#1a1c1b",
+                      "surface-elevated": "#FFFFFF",
+                      "surface": "#f9f9f7",
+                      "on-primary-fixed": "#1c1b1b",
+                      "info": "#2F6FED",
+                      "divider": "#EDEDEA",
+                      "success": "#1E8E5A",
+                      "inverse-primary": "#c8c6c5",
+                      "surface-container": "#eeeeec",
+                      "on-tertiary-container": "#427dfc",
+                      "on-error-container": "#93000a",
+                      "surface-variant": "#e2e3e1",
+                      "surface-container-low": "#f4f4f2",
+                      "secondary-fixed-dim": "#c8c6c6",
+                      "text-primary": "#111111",
+                      "surface-bright": "#f9f9f7",
+                      "on-secondary-container": "#646464",
+                      "on-tertiary": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#474646",
+                      "secondary-fixed": "#e4e2e2",
+                      "tertiary-fixed-dim": "#b1c5ff",
+                      "primary": "#000000",
+                      "primary-container": "#1c1b1b",
+                      "inverse-surface": "#2f3130",
+                      "on-background": "#1a1c1b",
+                      "secondary": "#5e5e5e",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "dark-background": "#0E0E0E",
+                      "on-primary": "#ffffff",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "secondary-container": "#e4e2e2",
+                      "primary-fixed": "#e5e2e1"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "hero-v": "120px",
+                      "gutter-customer": "24px",
+                      "xs": "4px",
+                      "base": "4px",
+                      "xl": "48px",
+                      "lg": "24px",
+                      "sm": "8px",
+                      "section-dashboard": "32px",
+                      "gutter-dashboard": "20px",
+                      "md": "16px",
+                      "section-customer": "64px"
+              },
+              "fontFamily": {
+                      "label": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "display-mobile": [
+                              "Inter"
+                      ],
+                      "h1-mobile": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "body": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "label": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h1-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h3": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.25",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.35",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h2": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+</head>
+<body class="bg-background text-primary font-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Shared Component -->
+<nav class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<!-- Brand Logo -->
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary scale-95 duration-150 active:scale-98" href="#">
+                Pazarz
+            </a>
+<!-- Navigation Links -->
+<div class="hidden md:flex items-center gap-x-xl font-body text-body">
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Categories</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1" href="#">New Arrivals</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Archive</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-x-lg">
+<button aria-label="Cart" class="scale-95 duration-150 active:scale-98 text-primary dark:text-on-primary hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+</button>
+<button aria-label="Profile" class="scale-95 duration-150 active:scale-98 text-primary dark:text-on-primary hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="max-w-[1280px] mx-auto px-lg pt-hero-v pb-section-customer flex flex-col items-center text-center">
+<h1 class="font-display text-display md:text-display text-primary mb-lg max-w-4xl tracking-tight leading-none">
+                CURATED ESSENTIALS
+            </h1>
+<p class="font-body-lg text-body-lg text-secondary mb-xl max-w-2xl">
+                Discover our meticulously selected collection of premium lifestyle pieces designed for the modern aesthete.
+            </p>
+<a class="inline-flex items-center justify-center bg-[#111111] hover:bg-[#111111]/90 active:bg-[#111111]/80 active:scale-98 text-white font-label text-label px-xl py-md rounded-full transition-all duration-200" href="#trending">
+                Shop Now
+            </a>
+</section>
+<!-- Featured Editorial Split -->
+<section class="max-w-[1280px] mx-auto px-lg py-section-customer">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter-customer">
+<div class="rounded-[16px] overflow-hidden group cursor-pointer aspect-[3/4] relative">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="High fashion editorial shot of a model wearing a structured black oversized blazer and wide-leg trousers standing against a stark white background. Sharp, high-contrast lighting emphasizing textures and architectural lines. Premium monochromatic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsDT35DxGA4w4X5whFAV_zjdapW2eNixOZJ7xojVxlAd0ylaS5kb3IyZGnhTXVMdkLlFUQJ1hI6dDiU4TH9NlMYIVjNDp6zPJL5J5jJ3k8DWHi0-F5S42mgjRZxp9TApvlEH8HfPov_Uvg7cOMQwjx0Okg6yOqrpg7pBsFMXZoG3PWX9iNfQyTxPeF5Rf1PllQBJx45_HUyAIMzVarsi01EW6XlHQhu6oap_c3i8faRL6S0_VB8JbV"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full bg-gradient-to-t from-black/60 to-transparent">
+<h2 class="font-h2 text-h2 text-white mb-xs">The Silhouette</h2>
+<p class="font-body text-body text-white/80">Architectural forms for daily wear.</p>
+</div>
+</div>
+<div class="flex flex-col gap-gutter-customer h-full">
+<div class="rounded-[16px] overflow-hidden group cursor-pointer flex-1 relative min-h-[300px]">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Minimalist flat lay of premium leather accessories including a minimalist black wallet, silver keychain, and sleek sunglasses on a polished light grey concrete surface. Sharp shadows, editorial product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtDy_PM8l-zfrLBkmRzwzEOClug2Wmb6lA9wTCNjN9p4p_nz9wOBfAXagx6GDoGHsM4cia8XtuMWQMt5TGtoLRPnf79JSB9EMmLL_HccpSUdN0h6tPn1jDscO8L2K_D41VlGo4y5eWNe_9TNEPZdoK1-n3NPd7xyNY1BsCzljHVTWDPIP2Y0XThqGvmTCTMSHHWh6qpyFDaFbobwqDJDBlzlvwQWqGg0YXISil_2AirWAIND8S9rZk"/>
+<div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500"></div>
+<div class="absolute bottom-0 left-0 p-lg w-full bg-gradient-to-t from-black/60 to-transparent">
+<h2 class="font-h3 text-h3 text-white mb-xs">Refined Details</h2>
+</div>
+</div>
+<div class="bg-surface rounded-[16px] p-xl flex flex-col justify-center items-start flex-1 group hover:bg-surface-container-high transition-colors duration-300">
+<h3 class="font-h3 text-h3 text-primary mb-md">Our Philosophy</h3>
+<p class="font-body text-body text-secondary mb-lg">We believe in fewer, better things. Every item in our marketplace is vetted for design integrity, material quality, and timeless appeal.</p>
+<a class="inline-flex items-center gap-xs font-label text-label text-primary hover:text-info transition-colors" href="#">
+                            Read the manifesto <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Section -->
+<section class="max-w-[1280px] mx-auto px-lg py-section-customer" id="trending">
+<div class="flex justify-between items-end mb-xl border-b border-divider pb-sm">
+<h2 class="font-h2 text-h2 text-primary">Trending</h2>
+<a class="font-label text-label text-secondary hover:text-primary transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-gutter-customer">
+<!-- Product 1 -->
+<a class="group block" href="#">
+<div class="rounded-[16px] overflow-hidden bg-surface mb-sm aspect-[3/4] relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A sleek minimalist matte black ceramic vase placed on a stark white pedestal against a pure white background. Soft, diffused lighting highlighting the smooth texture of the vase. High-contrast monochromatic editorial aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLT_4x546SiAi0NYRPuf666yVcETrfG0NBcHUj2Eoh8_4Kk25x0ISIQeF_VFm7oohFPd-Q63aXQN5WjyodxDs5cOmHns64CTgyQ99fb8iLbjCXJ40kHAo_ndy1OFkrX8n3DYcflh4NCRm5yyPUZCN4WDtljHeQmShqGP2exJ7oUIUynFA3FTsvGZS3cy2oGVTX5A5K981V9OakXpKCZTbOgyOpwBy4yGrJ3wjsadb_tBd-h7roCp-e"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[16px]"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label text-label text-primary mb-xs">Noir Ceramic Vase</h3>
+<p class="font-caption text-caption text-secondary">Object Studio</p>
+</div>
+<span class="font-label text-label text-primary">$120</span>
+</div>
+</a>
+<!-- Product 2 -->
+<a class="group block" href="#">
+<div class="rounded-[16px] overflow-hidden bg-surface mb-sm aspect-[3/4] relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A premium heavy-weight cotton t-shirt in stark white, neatly folded on a textured concrete surface. Minimalist lifestyle photography, harsh side lighting creating distinct shadows. Monochrome focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwmKi6846azVO0S3lm7u9lNxPxvrMJpOSThYlY2aUI8DcZDhIlXWpJL0C0a2AwExa2F64Cifcsj5EMbZ5EWKhca76WuOGFLf-TgPmWCRmRiZ3lNStPBZJf-cX5qCJ8nU5kSDWW77kJeen31sDmP5H-wiNC8MiG6R8DtXRPAqzzLfXnYZIhsSeGR8r9mTgtfJ0cNhrrXAbFfh8fpZ1YYJ-PcOvA0R-eH8mP4fyR3l8z-wcsl4ve4-e9"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[16px]"></div>
+<span class="absolute top-sm left-sm bg-surface-container-lowest px-sm py-[2px] rounded-full font-caption text-caption text-primary">New</span>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label text-label text-primary mb-xs">Heavyweight Tee</h3>
+<p class="font-caption text-caption text-secondary">Atelier Basics</p>
+</div>
+<span class="font-label text-label text-primary">$85</span>
+</div>
+</a>
+<!-- Product 3 -->
+<a class="group block" href="#">
+<div class="rounded-[16px] overflow-hidden bg-surface mb-sm aspect-[3/4] relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A pair of minimalist black leather loafers with a thick chunky sole, photographed from a slight angle on a stark white background. Studio lighting emphasizing the smooth leather finish and structural design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUQZHvP_vIuUvn30fnZyiBV9DsCCT3tBkM2BsY8qQ_hu1B-MSpNv1lDn4uy217eAatepqzhOMewbHlNMxHPels0aNNlaXQURWg6a4h0pHfxyTVxi61tbb838U9vVl1vMe8aJIYojye9ZKnLRWFEKOivn0AEd2LGWDGRnldRBiU-1_IqJAfJedrXTs2aDHSDkWhWBeeSm7UxYbOTVj-HOZtMv6Pso_0NdkHSPOzGB2LMtreTKAkrJZh"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[16px]"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label text-label text-primary mb-xs">Chunky Loafer</h3>
+<p class="font-caption text-caption text-secondary">Studio Footwear</p>
+</div>
+<span class="font-label text-label text-primary">$340</span>
+</div>
+</a>
+<!-- Product 4 -->
+<a class="group block" href="#">
+<div class="rounded-[16px] overflow-hidden bg-surface mb-sm aspect-[3/4] relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="A minimalist architectural desk lamp made of brushed steel, standing on a dark grey surface. The lamp casts a sharp geometric shadow. High contrast, moody, modern editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9FyrLNIpDVxB10eRJTTQIDTYzPfJ6F5vwQuKdC9HSYfNOcLIx7_0IPIHlnuk2GBNzOkE00DnplJjy5OuuO0HHYglgRNWAspojMxaryJbyEzBgHol7Vzt3l9bl5QrLQZ1YMTkq_wAZ4gLJc8qvsiJBToUKXeltK3QvMruXjnCnlDfB4QcUWGiJX5im_H2cPo2VX9L_JFZtqNyGBbsZDu7n5hic1lfm5Cez6ZSisLSF3-8F2qcoSWle"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[16px]"></div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-label text-label text-primary mb-xs">Linear Task Lamp</h3>
+<p class="font-caption text-caption text-secondary">Lumina</p>
+</div>
+<span class="font-label text-label text-primary">$210</span>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer Shared Component -->
+<footer class="w-full mt-section-customer bg-background dark:bg-dark-background border-t border-divider dark:border-outline-variant flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-y-xl">
+<!-- Brand -->
+<div class="font-display text-h2 text-primary dark:text-on-primary">
+                Pazarz
+            </div>
+<!-- Links -->
+<nav class="flex flex-wrap justify-center gap-x-lg gap-y-md">
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Contact Us</a>
+</nav>
+<!-- Copyright -->
+<div class="font-caption text-caption text-text-secondary dark:text-text-muted">
+                © 2024 Pazarz Editorial Marketplace. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

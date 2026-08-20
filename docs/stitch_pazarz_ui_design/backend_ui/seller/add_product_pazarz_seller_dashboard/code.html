@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Add/Edit Product - Pazarz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "warning": "#B98900",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e8e8e6",
+                        "text-primary": "#111111",
+                        "background": "#FFFFFF",
+                        "on-surface": "#1a1c1b",
+                        "primary-container": "#1c1b1b",
+                        "inverse-primary": "#c8c6c5",
+                        "on-tertiary-container": "#427dfc",
+                        "surface-bright": "#f9f9f7",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f4f4f2",
+                        "secondary": "#5e5e5e",
+                        "surface-dim": "#dadad8",
+                        "on-error": "#ffffff",
+                        "outline": "#747878",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#D8362B",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "surface-container": "#eeeeec",
+                        "on-primary-container": "#858383",
+                        "tertiary": "#000000",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-tint": "#5f5e5e",
+                        "text-muted": "#9A9A9A",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-container": "#001847",
+                        "text-secondary": "#5E5E5E",
+                        "outline-variant": "#c4c7c7",
+                        "on-surface-variant": "#444748",
+                        "divider": "#EDEDEA",
+                        "on-tertiary-fixed": "#001847",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-primary-fixed": "#1c1b1b",
+                        "dark-surface": "#171717",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-container": "#e4e2e2",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-secondary-fixed-variant": "#474747",
+                        "border": "#E4E4E1",
+                        "success": "#1E8E5A",
+                        "inverse-surface": "#2f3130",
+                        "info": "#2F6FED",
+                        "dark-background": "#0E0E0E",
+                        "surface-elevated": "#FFFFFF",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "primary": "#000000",
+                        "on-background": "#1a1c1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xl": "48px",
+                        "section-customer": "64px",
+                        "gutter-dashboard": "20px",
+                        "sm": "8px",
+                        "hero-v": "120px",
+                        "gutter-customer": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "section-dashboard": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "h2": ["Inter"],
+                        "label": ["Inter"],
+                        "display": ["Inter"],
+                        "h3": ["Inter"],
+                        "display-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background dark:bg-dark-background text-text-primary dark:text-on-primary antialiased min-h-screen flex">
+<!-- SideNavBar -->
+<nav class="bg-surface dark:bg-dark-surface fixed left-0 top-0 h-full w-[260px] flex flex-col p-gutter-dashboard gap-y-sm z-40">
+<div class="mb-lg">
+<h1 class="font-display text-h3 text-primary dark:text-on-primary">Pazarz</h1>
+<p class="font-caption text-caption text-text-secondary dark:text-text-muted mt-xs">Store Manager</p>
+</div>
+<div class="flex flex-col gap-y-xs flex-grow font-label text-label">
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="bg-primary text-on-primary rounded-lg flex items-center gap-x-md px-md py-sm Active: scale(0.98)" href="#">
+<span class="material-symbols-outlined" data-weight="fill">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">shopping_cart</span>
+<span>Orders</span>
+</a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">bar_chart</span>
+<span>Analytics</span>
+</a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">payments</span>
+<span>Payments</span>
+</a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">settings</span>
+<span>Settings</span>
+</a>
+</div>
+<div class="mt-auto flex flex-col gap-y-xs font-label text-label">
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">help_outline</span>
+<span>Support</span>
+</a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated flex items-center gap-x-md px-md py-sm rounded-lg hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-weight="fill">logout</span>
+<span>Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] w-full p-section-dashboard flex flex-col min-h-screen">
+<!-- Header Actions -->
+<header class="flex justify-between items-center mb-xl">
+<div>
+<a class="text-text-muted flex items-center gap-x-xs mb-xs hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span class="font-label text-label">Back to Inventory</span>
+</a>
+<h2 class="font-h2 text-h2 text-primary dark:text-on-primary">Add New Product</h2>
+</div>
+<div class="flex gap-x-md">
+<button class="font-label text-label bg-transparent text-primary dark:text-on-primary border border-border px-xl py-sm rounded-full hover:bg-surface-container transition-colors">
+                    Save as Draft
+                </button>
+<button class="font-label text-label bg-primary dark:bg-on-primary text-on-primary dark:text-primary px-xl py-sm rounded-full hover:bg-surface-tint transition-colors active:scale-98">
+                    Save &amp; Publish
+                </button>
+</div>
+</header>
+<!-- Form Layout (Bento Grid approach) -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-lg flex-grow">
+<!-- Left Column (Main Info) -->
+<div class="xl:col-span-2 flex flex-col gap-y-lg">
+<!-- Basic Info Card -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg">
+<h3 class="font-h3 text-h3 text-primary dark:text-on-primary mb-md">Basic Information</h3>
+<div class="flex flex-col gap-y-md">
+<div>
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Product Title</label>
+<input class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body text-primary dark:text-on-primary focus:outline-none focus:ring-2 focus:ring-info focus:border-info transition-shadow" placeholder="e.g. Minimalist Ceramic Vase" type="text"/>
+</div>
+<div>
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Description</label>
+<textarea class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body text-primary dark:text-on-primary focus:outline-none focus:ring-2 focus:ring-info focus:border-info transition-shadow" placeholder="Describe the item, materials, and origin..." rows="5"></textarea>
+</div>
+</div>
+</section>
+<!-- Media Upload Card -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-h3 text-h3 text-primary dark:text-on-primary">Media</h3>
+<span class="font-caption text-caption text-text-muted">Aspect ratio 3:4 recommended</span>
+</div>
+<div class="border-2 border-dashed border-border rounded-xl p-xl flex flex-col items-center justify-center bg-background dark:bg-dark-background hover:bg-surface-container transition-colors cursor-pointer group">
+<span class="material-symbols-outlined text-[48px] text-text-muted group-hover:text-primary transition-colors mb-sm">cloud_upload</span>
+<p class="font-label text-label text-primary dark:text-on-primary mb-xs">Click to upload or drag and drop</p>
+<p class="font-caption text-caption text-text-muted">SVG, PNG, JPG or GIF (max. 10MB)</p>
+</div>
+<!-- Uploaded Previews (Placeholder) -->
+<div class="grid grid-cols-4 gap-md mt-md">
+<div class="aspect-[3/4] rounded-lg overflow-hidden relative border border-border bg-background">
+<img class="w-full h-full object-cover" data-alt="A minimalist digital art installation featuring glowing, generative geometric shapes suspended in a vast, pristine gallery space. High-key, soft white lighting creates a bright, modern light-mode aesthetic. A sophisticated palette of deep blacks and pristine whites is punctuated by intense accents of vibrant red. The mood is serene yet technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDGGIHXFX-jKEFxKd0I0swCei09bX_6Imf_S4L7ZNcyTszhhojuwi0yINzKfJJl1QxRLUBXdZuhN3d7rHXUzYTaU5GsJqHJVVASVi3qWRic5wdFCDEO8b5hKwJ1yq7MP2RtnJgpE2YiClvcIjXvOKuRyEOvkzeJvxyg2BNe6Yu4ldlIzQr8wfZ2ARHAzP6zyuF_HGK-bAkkabBMfslqyUF54PU3GolxVT-g1ZSe-udJ8NfAvb2HhZMp"/>
+<button class="absolute top-xs right-xs bg-background rounded-full p-xs hover:bg-error hover:text-on-error transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[16px]">close</span>
+</button>
+</div>
+<div class="aspect-[3/4] rounded-lg overflow-hidden relative border border-border flex items-center justify-center bg-surface-container-highest cursor-pointer hover:bg-surface-dim transition-colors">
+<span class="material-symbols-outlined text-text-muted">add</span>
+</div>
+</div>
+</section>
+<!-- Variants Card -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg">
+<div class="flex justify-between items-center mb-md">
+<h3 class="font-h3 text-h3 text-primary dark:text-on-primary">Variants</h3>
+<button class="font-label text-label text-info hover:underline flex items-center gap-x-xs">
+<span class="material-symbols-outlined text-[16px]">add</span> Add Option
+                        </button>
+</div>
+<div class="border border-border rounded-lg overflow-hidden">
+<!-- Variant Row 1 -->
+<div class="flex items-center justify-between p-md bg-background dark:bg-dark-background border-b border-border">
+<div class="flex items-center gap-x-md w-full">
+<div class="w-1/3">
+<label class="block font-caption text-caption text-text-secondary mb-xs">Option Name</label>
+<select class="w-full bg-surface border border-border rounded-lg px-sm py-xs font-body text-body focus:ring-2 focus:ring-info outline-none">
+<option>Color</option>
+<option>Size</option>
+<option>Material</option>
+</select>
+</div>
+<div class="w-2/3">
+<label class="block font-caption text-caption text-text-secondary mb-xs">Values (comma separated)</label>
+<input class="w-full bg-surface border border-border rounded-lg px-sm py-xs font-body text-body focus:ring-2 focus:ring-info outline-none" type="text" value="Matte Black, Bone White"/>
+</div>
+</div>
+<button class="ml-md text-text-muted hover:text-error transition-colors p-xs mt-[20px]">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column (Meta & Pricing) -->
+<div class="flex flex-col gap-y-lg">
+<!-- Pricing & Inventory -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg">
+<h3 class="font-h3 text-h3 text-primary dark:text-on-primary mb-md">Pricing</h3>
+<div class="flex flex-col gap-y-md">
+<div>
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Price (USD)</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 text-text-muted font-body">$</span>
+<input class="w-full bg-background dark:bg-dark-background border border-border rounded-lg pl-xl pr-md py-sm font-body text-body text-primary focus:outline-none focus:ring-2 focus:ring-info focus:border-info" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="flex gap-x-md">
+<div class="w-1/2">
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">SKU</label>
+<input class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body focus:outline-none focus:ring-2 focus:ring-info" placeholder="e.g. VASE-01" type="text"/>
+</div>
+<div class="w-1/2">
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Stock Qty</label>
+<input class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body focus:outline-none focus:ring-2 focus:ring-info" placeholder="0" type="number"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Categorization -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg">
+<h3 class="font-h3 text-h3 text-primary dark:text-on-primary mb-md">Categorization</h3>
+<div class="flex flex-col gap-y-md">
+<div>
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Primary Category</label>
+<select class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body focus:outline-none focus:ring-2 focus:ring-info">
+<option>Select category...</option>
+<option>Home Decor</option>
+<option>Apparel</option>
+<option>Art</option>
+</select>
+</div>
+<div>
+<label class="block font-label text-label text-text-secondary dark:text-text-muted mb-xs">Tags</label>
+<input class="w-full bg-background dark:bg-dark-background border border-border rounded-lg px-md py-sm font-body text-body focus:outline-none focus:ring-2 focus:ring-info" placeholder="e.g. ceramic, modern, handmade" type="text"/>
+<div class="flex flex-wrap gap-xs mt-sm">
+<span class="bg-surface-container text-text-primary px-sm py-xs rounded-full font-caption text-caption flex items-center gap-x-xs">
+                                    ceramic <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+<span class="bg-surface-container text-text-primary px-sm py-xs rounded-full font-caption text-caption flex items-center gap-x-xs">
+                                    minimalist <span class="material-symbols-outlined text-[14px] cursor-pointer hover:text-error">close</span>
+</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Status Summary -->
+<section class="bg-surface dark:bg-dark-surface rounded-xl p-lg border border-border bg-gradient-to-br from-surface to-background">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-label text-label text-text-secondary">Current Status</p>
+<div class="flex items-center gap-x-sm mt-xs">
+<span class="w-2 h-2 rounded-full bg-warning"></span>
+<p class="font-h3 text-h3 text-primary">Draft</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-[32px] text-text-muted">visibility_off</span>
+</div>
+</section>
+</div>
+</div>
+</main>
+</body></html>

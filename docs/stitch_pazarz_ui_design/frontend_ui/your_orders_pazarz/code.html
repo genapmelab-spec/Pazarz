@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customer Orders - Pazarz Editorial Marketplace</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary-container": "#e4e2e2",
+                    "tertiary-fixed-dim": "#b1c5ff",
+                    "on-tertiary-container": "#427dfc",
+                    "text-primary": "#111111",
+                    "surface-container-high": "#e8e8e6",
+                    "text-muted": "#9A9A9A",
+                    "surface-bright": "#f9f9f7",
+                    "on-surface-variant": "#444748",
+                    "surface-container-lowest": "#ffffff",
+                    "dark-surface-elevated": "#1F1F1F",
+                    "inverse-on-surface": "#f1f1ef",
+                    "surface-container": "#eeeeec",
+                    "on-tertiary-fixed": "#001847",
+                    "surface-container-low": "#f4f4f2",
+                    "divider": "#EDEDEA",
+                    "surface-elevated": "#FFFFFF",
+                    "on-secondary-container": "#646464",
+                    "on-primary": "#ffffff",
+                    "error": "#D8362B",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-fixed-variant": "#0040a0",
+                    "surface-container-highest": "#e2e3e1",
+                    "outline": "#747878",
+                    "on-surface": "#1a1c1b",
+                    "on-secondary": "#ffffff",
+                    "inverse-primary": "#c8c6c5",
+                    "success": "#1E8E5A",
+                    "dark-surface": "#171717",
+                    "tertiary-fixed": "#dae2ff",
+                    "surface": "#f9f9f7",
+                    "on-primary-fixed-variant": "#474646",
+                    "tertiary-container": "#001847",
+                    "border": "#E4E4E1",
+                    "secondary": "#5e5e5e",
+                    "primary-container": "#1c1b1b",
+                    "primary": "#000000",
+                    "on-primary-container": "#858383",
+                    "surface-dim": "#dadad8",
+                    "outline-variant": "#c4c7c7",
+                    "dark-background": "#0E0E0E",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "warning": "#B98900",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "secondary-fixed": "#e4e2e2",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary": "#ffffff",
+                    "info": "#2F6FED",
+                    "text-secondary": "#5E5E5E",
+                    "background": "#FFFFFF",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "on-background": "#1a1c1b",
+                    "error-container": "#ffdad6",
+                    "surface-variant": "#e2e3e1",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-tint": "#5f5e5e",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "tertiary": "#000000",
+                    "primary-fixed": "#e5e2e1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xs": "4px",
+                    "base": "4px",
+                    "section-customer": "64px",
+                    "hero-v": "120px",
+                    "section-dashboard": "32px",
+                    "gutter-dashboard": "20px",
+                    "lg": "24px",
+                    "xl": "48px",
+                    "gutter-customer": "24px",
+                    "md": "16px",
+                    "sm": "8px"
+            },
+            "fontFamily": {
+                    "body": [
+                            "Inter"
+                    ],
+                    "display": [
+                            "Inter"
+                    ],
+                    "body-lg": [
+                            "Inter"
+                    ],
+                    "display-mobile": [
+                            "Inter"
+                    ],
+                    "h2": [
+                            "Inter"
+                    ],
+                    "caption": [
+                            "Inter"
+                    ],
+                    "h3": [
+                            "Inter"
+                    ],
+                    "h1": [
+                            "Inter"
+                    ],
+                    "label": [
+                            "Inter"
+                    ],
+                    "h1-mobile": [
+                            "Inter"
+                    ]
+            },
+            "fontSize": {
+                    "body": [
+                            "16px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display": [
+                            "64px",
+                            {
+                                    "lineHeight": "1.05",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "1.5",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "display-mobile": [
+                            "40px",
+                            {
+                                    "lineHeight": "1.05",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "h2": [
+                            "32px",
+                            {
+                                    "lineHeight": "1.2",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "caption": [
+                            "12px",
+                            {
+                                    "lineHeight": "1.35",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "h3": [
+                            "24px",
+                            {
+                                    "lineHeight": "1.25",
+                                    "letterSpacing": "0",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h1": [
+                            "40px",
+                            {
+                                    "lineHeight": "1.15",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "label": [
+                            "13px",
+                            {
+                                    "lineHeight": "1.3",
+                                    "letterSpacing": "0.02em",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "h1-mobile": [
+                            "28px",
+                            {
+                                    "lineHeight": "1.15",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "700"
+                            }
+                    ]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Hide scrollbar for smooth horizontal scrolling on mobile */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Component -->
+<header class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<!-- Left: Search (Implicit based on JSON 'search_bar': 'on_left' intention, though not explicitly in links) -->
+<div class="hidden md:flex flex-1">
+<button class="text-text-primary hover:text-primary transition-colors duration-200">
+<span class="material-symbols-outlined text-h3" data-icon="search">search</span>
+</button>
+</div>
+<!-- Center: Logo -->
+<div class="flex-shrink-0">
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary block hover:opacity-80 transition-opacity" href="#">
+                    Pazarz
+                </a>
+</div>
+<!-- Right: Navigation & Actions -->
+<div class="flex flex-1 justify-end items-center gap-lg">
+<nav class="hidden md:flex items-center gap-lg font-body text-body">
+<!-- Nav links all inactive since we are on 'Orders', an internal account page -->
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Categories</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">New Arrivals</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Archive</a>
+</nav>
+<div class="flex items-center gap-md">
+<!-- Trailing Icon Actions -->
+<button class="text-text-primary hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98 relative">
+<span class="material-symbols-outlined text-h3" data-icon="person">person</span>
+<!-- Active indicator for account area -->
+<span class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-primary rounded-full"></span>
+</button>
+<button class="text-text-primary hover:text-primary transition-colors duration-200 scale-95 duration-150 active:scale-98">
+<span class="material-symbols-outlined text-h3" data-icon="shopping_bag">shopping_bag</span>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="w-full">
+<div class="max-w-[1280px] mx-auto px-gutter-customer py-section-customer">
+<!-- Page Header -->
+<header class="mb-xl flex flex-col md:flex-row md:items-end justify-between gap-lg border-b border-divider pb-lg">
+<div>
+<h1 class="font-h1-mobile md:font-h1 text-h1-mobile md:text-h1 text-text-primary mb-sm">Order History</h1>
+<p class="font-body text-body text-text-secondary">View and track your past and current acquisitions.</p>
+</div>
+<!-- Sub-navigation / Filters -->
+<nav class="w-full md:w-auto overflow-x-auto no-scrollbar">
+<ul class="flex items-center gap-md font-label text-label">
+<li>
+<button class="px-sm py-sm text-primary font-bold border-b-2 border-primary pb-1 whitespace-nowrap">All Orders</button>
+</li>
+<li>
+<button class="px-sm py-sm text-text-secondary hover:text-primary transition-colors duration-200 whitespace-nowrap">Processing</button>
+</li>
+<li>
+<button class="px-sm py-sm text-text-secondary hover:text-primary transition-colors duration-200 whitespace-nowrap">Shipped</button>
+</li>
+<li>
+<button class="px-sm py-sm text-text-secondary hover:text-primary transition-colors duration-200 whitespace-nowrap">Completed</button>
+</li>
+<li>
+<button class="px-sm py-sm text-text-secondary hover:text-primary transition-colors duration-200 whitespace-nowrap">Cancelled</button>
+</li>
+</ul>
+</nav>
+</header>
+<!-- Orders List Canvas -->
+<div class="flex flex-col gap-lg">
+<!-- Order Card 1: Completed -->
+<article class="bg-surface-container-lowest border border-border rounded-xl p-md md:p-lg transition-transform duration-300 hover:scale-[1.01] hover:shadow-sm">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-sm mb-lg">
+<div class="flex flex-col gap-xs">
+<span class="font-label text-label text-text-secondary">Order #PZ-88492</span>
+<span class="font-body text-body text-text-primary">October 12, 2024</span>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg w-full md:w-auto">
+<div class="flex flex-col md:items-end gap-xs">
+<span class="font-label text-label text-text-secondary">Total Amount</span>
+<span class="font-h3 text-h3 text-text-primary">$1,250.00</span>
+</div>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container-high font-label text-label text-success">
+                                Completed
+                            </span>
+</div>
+</div>
+<div class="border-t border-divider py-lg">
+<div class="flex flex-col gap-md">
+<!-- Item Preview -->
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A high-end, minimalist wristwatch resting on a stark, matte white pedestal. The lighting is soft but directional, creating deep, dramatic shadows that emphasize the watch's metallic textures and geometric precision. The overall aesthetic perfectly matches a clean, modern light-mode editorial style, using a sophisticated palette of pristine whites, cool grays, and brushed steel with an absolute lack of clutter. The mood is luxurious, quiet, and confidently refined." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEDP9bdmIcqTBXnRDCeJwaSfH6SRUKoAkkcYHIT_VANsJiK0ZvHyNzu8EjYqnwV8jwKNTxHpzCq5cJRPgyZo4VK4-wnhGrnRm7cNkTrP6jP9dtpJZ-53Rf-3Qq4qN0IDe5vVgJb2r5qTV07iAjFyXlVbhKGgNGeTRcrqPxwOuXuMBBbqfonj68wX4oggVFpZN5N6q_8KFPo5FxzqEOjqugtz1_JZzIP05b3XhQJ9DgXHtljchAb0ZC"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label text-label text-text-primary">Chronograph Titanium Series</h3>
+<p class="font-caption text-caption text-text-secondary mt-xs">Qty: 1</p>
+</div>
+<div class="hidden md:block font-body text-body text-text-primary">
+                                    $1,250.00
+                                </div>
+</div>
+</div>
+</div>
+<div class="border-t border-divider pt-md flex justify-end">
+<button class="border border-border bg-transparent text-text-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface-container transition-colors duration-200">
+                            View Details
+                        </button>
+</div>
+</article>
+<!-- Order Card 2: Processing -->
+<article class="bg-surface-container-lowest border border-border rounded-xl p-md md:p-lg transition-transform duration-300 hover:scale-[1.01] hover:shadow-sm">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-sm mb-lg">
+<div class="flex flex-col gap-xs">
+<span class="font-label text-label text-text-secondary">Order #PZ-88501</span>
+<span class="font-body text-body text-text-primary">October 24, 2024</span>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg w-full md:w-auto">
+<div class="flex flex-col md:items-end gap-xs">
+<span class="font-label text-label text-text-secondary">Total Amount</span>
+<span class="font-h3 text-h3 text-text-primary">$895.00</span>
+</div>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-surface-container font-label text-label text-text-primary">
+                                Processing
+                            </span>
+</div>
+</div>
+<div class="border-t border-divider py-lg">
+<div class="flex flex-col gap-md">
+<!-- Item Preview 1 -->
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A structured, luxury leather tote bag positioned asymmetrically against a seamless, high-key white studio background. The smooth, premium leather catches subtle highlights from large softboxes, revealing fine grain and flawless craftsmanship. The visual language is strictly editorial monochrome, focusing on form, negative space, and architectural lines without any distracting colors or props. The atmosphere feels curated, expensive, and effortlessly chic, ideal for a premium marketplace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi1soFW-kC2QYjcRn3nQlzr91AW36jKHIw_gXYfbn6t4P4XK-Hh5zXvmr4_1DboS1pS-2qhfzL0o24ACZX3Vw3CDSiLFKb-8Qrd_CmjJ2cbSpMAQSz1KBaTIqFzJlWueQ0G3o7kjjdiBfv8klnp9b4m_rnWMfjQoQEHDwnmdq-MpIylZfuBy6WsErpHP0YZZya10B1kvnIGmKuG3EsitqANV1uieYh84cZh0idJKKTgBMbWV2FUSCw"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label text-label text-text-primary">Structured Leather Tote</h3>
+<p class="font-caption text-caption text-text-secondary mt-xs">Qty: 1</p>
+</div>
+<div class="hidden md:block font-body text-body text-text-primary">
+                                    $895.00
+                                </div>
+</div>
+</div>
+</div>
+<div class="border-t border-divider pt-md flex justify-end">
+<button class="border border-border bg-transparent text-text-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface-container transition-colors duration-200">
+                            View Details
+                        </button>
+</div>
+</article>
+<!-- Order Card 3: Cancelled -->
+<article class="bg-surface-container-lowest border border-border rounded-xl p-md md:p-lg opacity-75 hover:opacity-100 transition-opacity duration-300">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-sm mb-lg">
+<div class="flex flex-col gap-xs">
+<span class="font-label text-label text-text-secondary">Order #PZ-88210</span>
+<span class="font-body text-body text-text-primary">September 15, 2024</span>
+</div>
+<div class="flex items-center justify-between md:justify-end gap-lg w-full md:w-auto">
+<div class="flex flex-col md:items-end gap-xs">
+<span class="font-label text-label text-text-secondary text-text-muted line-through">Total Amount</span>
+<span class="font-h3 text-h3 text-text-muted line-through">$340.00</span>
+</div>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-error-container/50 font-label text-label text-error">
+                                Cancelled
+                            </span>
+</div>
+</div>
+<div class="border-t border-divider py-lg">
+<div class="flex flex-col gap-md opacity-60">
+<!-- Item Preview -->
+<div class="flex items-center gap-md">
+<div class="w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-surface-container">
+<img class="w-full h-full object-cover grayscale" data-alt="An artisanal, matte black ceramic vase featuring an organic, sculptural shape, standing alone on a pristine white marble surface. The lighting creates a high-contrast minimalist scene, sharply defining the silhouette of the object against the bright background. The aesthetic is strictly governed by a modern, light-mode editorial palette consisting of absolute black and brilliant white, ensuring the object feels like a curated gallery piece. The overall tone is calm, sophisticated, and architecturally stark." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4-XDiBfingn70Ox3kocBy2iEXG3Big5NysGsS88OETt9YvcIP_vANSMV5TzYaWd5fMShj5JhlajCnxkeqDjYCh7fNdRj4iOR7a5W7PO2V5PuJj0mw1zkl3VhKWLu6N9U56TeLjuC8AqeZe50f4olT52DLzOXDUmWJnbqvD2Fk5wo48mvcBmatPKd3_-kAEAZdpYZnS7BdoBIl_jtGDzkNw9TU-a7TXQ2B4b91RS1bBCRMymKNdPcL"/>
+</div>
+<div class="flex-1">
+<h3 class="font-label text-label text-text-primary">Matte Black Ceramic Vase</h3>
+<p class="font-caption text-caption text-text-secondary mt-xs">Qty: 2</p>
+</div>
+</div>
+</div>
+</div>
+<div class="border-t border-divider pt-md flex justify-end">
+<button class="border border-border bg-transparent text-text-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface-container transition-colors duration-200">
+                            View Details
+                        </button>
+</div>
+</article>
+</div>
+<!-- Pagination / Load More (Ghost Button) -->
+<div class="mt-xl flex justify-center">
+<button class="text-text-primary font-label text-label hover:text-text-secondary transition-colors duration-200 uppercase tracking-widest border-b border-text-primary hover:border-text-secondary pb-1">
+                    Load Previous Orders
+                </button>
+</div>
+</div>
+</main>
+<!-- Footer Component -->
+<footer class="w-full mt-section-customer bg-background dark:bg-dark-background border-t border-divider dark:border-outline-variant flat no shadows">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="font-display text-h2 text-primary dark:text-on-primary">
+                Pazarz
+            </div>
+<nav>
+<ul class="flex flex-wrap justify-center gap-md md:gap-lg font-caption text-caption">
+<li>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+</li>
+<li>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+</li>
+<li>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+</li>
+<li>
+<a class="text-text-muted hover:text-primary transition-opacity duration-200" href="#">Contact Us</a>
+</li>
+</ul>
+</nav>
+<div class="font-caption text-caption text-text-secondary dark:text-text-muted text-center md:text-right">
+                © 2024 Pazarz Editorial Marketplace. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

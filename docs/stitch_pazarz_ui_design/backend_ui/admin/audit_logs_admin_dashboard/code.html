@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Audit Log</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "dark-surface": "#171717",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "success": "#1E8E5A",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-tertiary-container": "#427dfc",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#001847",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "divider": "#EDEDEA",
+                        "on-secondary-fixed-variant": "#474747",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-secondary-container": "#646464",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#1a1c1b",
+                        "on-tertiary-fixed": "#001847",
+                        "surface-container-low": "#f4f4f2",
+                        "on-primary-container": "#858383",
+                        "surface-container": "#eeeeec",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-dim": "#dadad8",
+                        "error": "#D8362B",
+                        "surface-container-high": "#e8e8e6",
+                        "text-muted": "#9A9A9A",
+                        "text-primary": "#111111",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-fixed": "#e4e2e2",
+                        "inverse-on-surface": "#f1f1ef",
+                        "inverse-surface": "#2f3130",
+                        "surface-elevated": "#FFFFFF",
+                        "border": "#E4E4E1",
+                        "surface-tint": "#5f5e5e",
+                        "info": "#2F6FED",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "text-secondary": "#5E5E5E",
+                        "background": "#FFFFFF",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#444748",
+                        "secondary": "#5e5e5e",
+                        "warning": "#B98900",
+                        "primary-container": "#1c1b1b",
+                        "on-background": "#1a1c1b",
+                        "primary": "#000000",
+                        "secondary-container": "#e4e2e2",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "primary-fixed": "#e5e2e1",
+                        "on-error-container": "#93000a",
+                        "dark-background": "#0E0E0E",
+                        "outline-variant": "#c4c7c7",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface": "#f9f9f7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter-customer": "24px",
+                        "gutter-dashboard": "20px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "section-dashboard": "32px",
+                        "hero-v": "120px",
+                        "section-customer": "64px",
+                        "sm": "8px",
+                        "md": "16px",
+                        "base": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "h3": ["Inter"],
+                        "caption": ["Inter"],
+                        "h2": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "label": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body flex min-h-screen">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-surface fixed left-0 top-0 h-full w-[260px] flex flex-col p-gutter-dashboard gap-y-sm z-40 hidden md:flex border-r border-divider">
+<div class="mb-section-dashboard flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden shrink-0">
+<img alt="Seller Storefront Logo" class="w-full h-full object-cover" data-alt="A minimalist, monochromatic logo design for a premium seller storefront, high contrast black and white with clean geometric lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdjz3C3VsTBfyTRMBg2QxxNuNA1skDlDXWpN_Sze_aezZI-B9P8KKBZQiJjhNumUud58pmPNKVPqFYVGKP8JTPE5X_ORhGY3w4rAhcZ3CqCZlii7x4gdGMqDR-k4Ax2kEM9h9pxrQ224ubuTlB3uhtRhPvpVOiPgp2xyecU0rMnQqX6t7P5hcMBoeVa4hLlYgBsI9ve1vG-OMLDqLF1rAGIlV8qqauwFbt2mcHM3VAGNvGC_W1i609"/>
+</div>
+<div>
+<h2 class="font-display text-h3 text-primary truncate">Store Manager</h2>
+<p class="font-caption text-caption text-text-secondary">Premium Merchant</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary rounded-full font-label text-label py-sm px-md mb-md hover:bg-opacity-90 transition-all duration-200 active:scale-95 flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Add Product
+        </button>
+<div class="flex-1 flex flex-col gap-y-xs overflow-y-auto">
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="dashboard">dashboard</span>
+                Overview
+            </a>
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_cart">shopping_cart</span>
+                Orders
+            </a>
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="bar_chart">bar_chart</span>
+                Analytics
+            </a>
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="payments">payments</span>
+                Payments
+            </a>
+<!-- Active State Semantic Intent mapping to Settings/Audit Log -->
+<a class="font-label text-label bg-primary text-on-primary rounded-lg flex items-center gap-md py-sm px-sm shadow-sm active:scale-[0.98] transition-transform" href="#">
+<span class="material-symbols-outlined text-[20px] icon-fill" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<div class="mt-auto pt-md border-t border-divider flex flex-col gap-y-xs">
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="help_outline">help_outline</span>
+                Support
+            </a>
+<a class="font-label text-label text-text-secondary hover:bg-surface-container-highest transition-all duration-200 flex items-center gap-md py-sm px-sm rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="logout">logout</span>
+                Sign Out
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 ml-0 md:ml-[260px] min-h-screen bg-background p-gutter-dashboard md:p-section-dashboard flex flex-col">
+<!-- Header Section -->
+<header class="mb-section-dashboard flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div>
+<h1 class="font-h1 text-h1 text-primary">Audit Log</h1>
+<p class="font-body text-body text-text-secondary mt-base">Review platform activity, administrative actions, and security events.</p>
+</div>
+<div class="flex items-center gap-sm w-full md:w-auto">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full bg-surface border border-border rounded-[10px] py-sm pl-xl pr-md font-body text-body text-text-primary focus:outline-none focus:border-info focus:ring-1 focus:ring-info transition-colors" placeholder="Search logs..." type="text"/>
+</div>
+<button class="bg-surface border border-border text-text-primary rounded-full h-10 px-md flex items-center justify-center hover:bg-surface-container-low transition-colors shrink-0">
+<span class="material-symbols-outlined text-[20px] mr-xs">filter_list</span>
+<span class="font-label text-label hidden md:inline">Filter</span>
+</button>
+</div>
+</header>
+<!-- Audit Log Data Table Container -->
+<div class="bg-surface-elevated rounded-2xl border border-divider overflow-hidden flex-1 flex flex-col shadow-sm">
+<div class="overflow-x-auto flex-1">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<thead class="bg-surface sticky top-0 z-10 border-b border-divider">
+<tr>
+<th class="py-md px-md font-label text-label text-text-secondary font-medium w-[15%]">Timestamp</th>
+<th class="py-md px-md font-label text-label text-text-secondary font-medium w-[15%]">Actor</th>
+<th class="py-md px-md font-label text-label text-text-secondary font-medium w-[20%]">Action</th>
+<th class="py-md px-md font-label text-label text-text-secondary font-medium w-[15%]">Subject</th>
+<th class="py-md px-md font-label text-label text-text-secondary font-medium w-[30%]">Details</th>
+<th class="py-md px-sm w-10"></th>
+</tr>
+</thead>
+<tbody class="font-body text-[14px] text-text-primary">
+<!-- Row 1 -->
+<tr class="border-b border-divider hover:bg-surface-bright transition-colors group cursor-pointer" onclick="toggleDetails('row1-details', this)">
+<td class="py-md px-md align-top">
+<div class="text-text-primary">Oct 24, 14:32:05</div>
+<div class="text-text-muted text-caption mt-xs font-caption">UTC-4</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label text-[10px]">JD</div>
+<span class="font-medium">Jane Doe</span>
+</div>
+</td>
+<td class="py-md px-md align-top">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-surface-container-highest text-text-primary text-[11px] font-label font-semibold tracking-wide">
+                                    UPDATE_CATEGORY
+                                </span>
+</td>
+<td class="py-md px-md align-top">
+<div class="font-medium">Category ID: #8821</div>
+<div class="text-text-muted text-caption mt-xs font-caption">"Vintage Watches"</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="text-text-secondary line-clamp-1">Updated category commission rate and display order.</div>
+</td>
+<td class="py-md px-sm align-top text-center">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors transform group-[.is-open]:rotate-180 duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Expanded Details Row 1 -->
+<tr class="hidden bg-surface-bright border-b border-divider" id="row1-details">
+<td class="p-md" colspan="6">
+<div class="flex flex-col md:flex-row gap-lg bg-background p-md rounded-lg border border-divider">
+<div class="flex-1">
+<h4 class="font-label text-label text-text-secondary mb-sm">Before</h4>
+<pre class="bg-surface p-sm rounded text-[12px] font-mono text-text-secondary overflow-x-auto border border-border">
+{
+  "commission_rate": "0.12",
+  "display_order": 4,
+  "is_active": true
+}</pre>
+</div>
+<div class="flex-1">
+<h4 class="font-label text-label text-text-secondary mb-sm">After</h4>
+<pre class="bg-surface p-sm rounded text-[12px] font-mono text-text-primary overflow-x-auto border border-border">
+{
+  <span class="text-info bg-info/10 px-1 rounded">"commission_rate": "0.15",</span>
+  <span class="text-info bg-info/10 px-1 rounded">"display_order": 2,</span>
+  "is_active": true
+}</pre>
+</div>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-divider hover:bg-surface-bright transition-colors group cursor-pointer" onclick="toggleDetails('row2-details', this)">
+<td class="py-md px-md align-top">
+<div class="text-text-primary">Oct 24, 11:15:42</div>
+<div class="text-text-muted text-caption mt-xs font-caption">UTC-4</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label text-[10px]">AS</div>
+<span class="font-medium">Admin System</span>
+</div>
+</td>
+<td class="py-md px-md align-top">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-error/10 text-error text-[11px] font-label font-semibold tracking-wide">
+                                    SUSPEND_USER
+                                </span>
+</td>
+<td class="py-md px-md align-top">
+<div class="font-medium">User ID: #1094</div>
+<div class="text-text-muted text-caption mt-xs font-caption">"alex_buyer"</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="text-text-secondary line-clamp-1">Automated suspension due to payment fraud flags.</div>
+</td>
+<td class="py-md px-sm align-top text-center">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors transform group-[.is-open]:rotate-180 duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Expanded Details Row 2 -->
+<tr class="hidden bg-surface-bright border-b border-divider" id="row2-details">
+<td class="p-md" colspan="6">
+<div class="bg-background p-md rounded-lg border border-divider">
+<h4 class="font-label text-label text-text-secondary mb-sm">Event Payload</h4>
+<pre class="bg-surface p-sm rounded text-[12px] font-mono text-text-primary overflow-x-auto border border-border">
+{
+  "trigger": "fraud_detection_engine",
+  "reason_code": "STOLEN_CARD_PATTERN",
+  "affected_orders": ["ORD-9921", "ORD-9922"],
+  "previous_status": "active",
+  "new_status": "suspended"
+}</pre>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-divider hover:bg-surface-bright transition-colors group cursor-pointer" onclick="toggleDetails('row3-details', this)">
+<td class="py-md px-md align-top">
+<div class="text-text-primary">Oct 23, 09:05:11</div>
+<div class="text-text-muted text-caption mt-xs font-caption">UTC-4</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="flex items-center gap-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-label text-[10px]">MR</div>
+<span class="font-medium">Mark R.</span>
+</div>
+</td>
+<td class="py-md px-md align-top">
+<span class="inline-flex items-center px-2 py-1 rounded-full bg-success/10 text-success text-[11px] font-label font-semibold tracking-wide">
+                                    APPROVE_SELLER
+                                </span>
+</td>
+<td class="py-md px-md align-top">
+<div class="font-medium">Seller ID: #4402</div>
+<div class="text-text-muted text-caption mt-xs font-caption">"Luxe Leather Goods"</div>
+</td>
+<td class="py-md px-md align-top">
+<div class="text-text-secondary line-clamp-1">Manual approval after documentation review.</div>
+</td>
+<td class="py-md px-sm align-top text-center">
+<span class="material-symbols-outlined text-text-muted group-hover:text-primary transition-colors transform group-[.is-open]:rotate-180 duration-200">expand_more</span>
+</td>
+</tr>
+<!-- Expanded Details Row 3 -->
+<tr class="hidden bg-surface-bright border-b border-divider" id="row3-details">
+<td class="p-md" colspan="6">
+<div class="bg-background p-md rounded-lg border border-divider">
+<div class="grid grid-cols-2 gap-md text-[13px]">
+<div>
+<span class="font-label text-text-secondary block mb-xs">Reviewer Notes:</span>
+<p class="text-text-primary">Documents verified via 3rd party KYC provider. Tax ID matches business registration.</p>
+</div>
+<div>
+<span class="font-label text-text-secondary block mb-xs">State Change:</span>
+<div class="flex items-center gap-xs font-mono text-[12px]">
+<span class="bg-surface px-1 rounded border border-border">pending_review</span>
+<span class="material-symbols-outlined text-[16px] text-text-muted">arrow_right_alt</span>
+<span class="bg-success/10 text-success px-1 rounded border border-success/20">approved</span>
+</div>
+</div>
+</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface border-t border-divider p-md flex items-center justify-between">
+<span class="font-caption text-caption text-text-secondary">Showing 1-3 of 1,240 records</span>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-secondary hover:bg-surface-container-low disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded bg-primary text-on-primary flex items-center justify-center font-label text-[13px]">1</button>
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-secondary hover:bg-surface-container-low font-label text-[13px]">2</button>
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-secondary hover:bg-surface-container-low font-label text-[13px]">3</button>
+<span class="text-text-muted px-xs">...</span>
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-secondary hover:bg-surface-container-low">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<script>
+        function toggleDetails(rowId, rowElement) {
+            const detailsRow = document.getElementById(rowId);
+            if (detailsRow.classList.contains('hidden')) {
+                detailsRow.classList.remove('hidden');
+                rowElement.classList.add('is-open');
+                rowElement.classList.add('bg-surface-bright');
+            } else {
+                detailsRow.classList.add('hidden');
+                rowElement.classList.remove('is-open');
+                rowElement.classList.remove('bg-surface-bright');
+            }
+        }
+    </script>
+</body></html>

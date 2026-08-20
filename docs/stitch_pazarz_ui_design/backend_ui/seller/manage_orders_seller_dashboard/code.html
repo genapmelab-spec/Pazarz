@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Order Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for a cleaner dashboard look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #E4E4E1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dadad8;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "error": "#D8362B",
+                        "tertiary-container": "#001847",
+                        "dark-background": "#0E0E0E",
+                        "background": "#FFFFFF",
+                        "dark-surface": "#171717",
+                        "surface-bright": "#f9f9f7",
+                        "surface": "#f9f9f7",
+                        "text-muted": "#9A9A9A",
+                        "tertiary-fixed": "#dae2ff",
+                        "outline-variant": "#c4c7c7",
+                        "primary-container": "#1c1b1b",
+                        "secondary": "#5e5e5e",
+                        "tertiary": "#000000",
+                        "on-surface-variant": "#444748",
+                        "surface-elevated": "#FFFFFF",
+                        "divider": "#EDEDEA",
+                        "surface-variant": "#e2e3e1",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#646464",
+                        "outline": "#747878",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "border": "#E4E4E1",
+                        "secondary-fixed": "#e4e2e2",
+                        "surface-container-highest": "#e2e3e1",
+                        "on-background": "#1a1c1b",
+                        "on-primary-fixed": "#1c1b1b",
+                        "primary": "#000000",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-tint": "#5f5e5e",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-surface": "#1a1c1b",
+                        "surface-container-high": "#e8e8e6",
+                        "inverse-primary": "#c8c6c5",
+                        "info": "#2F6FED",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#e4e2e2",
+                        "on-tertiary-container": "#427dfc",
+                        "surface-container-low": "#f4f4f2",
+                        "inverse-on-surface": "#f1f1ef",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-container": "#eeeeec",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "success": "#1E8E5A",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "warning": "#B98900",
+                        "on-error-container": "#93000a",
+                        "surface-dim": "#dadad8",
+                        "primary-fixed": "#e5e2e1",
+                        "text-primary": "#111111",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "text-secondary": "#5E5E5E",
+                        "on-primary-container": "#858383",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-tertiary-fixed": "#001847"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-dashboard": "32px",
+                        "md": "16px",
+                        "xs": "4px",
+                        "gutter-dashboard": "20px",
+                        "xl": "48px",
+                        "gutter-customer": "24px",
+                        "lg": "24px",
+                        "sm": "8px",
+                        "hero-v": "120px",
+                        "section-customer": "64px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "display-mobile": ["Inter"],
+                        "h2": ["Inter"],
+                        "label": ["Inter"],
+                        "body": ["Inter"],
+                        "h1": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h3": ["Inter"],
+                        "caption": ["Inter"]
+                    },
+                    "fontSize": {
+                        "display-mobile": ["40px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "label": ["13px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "body": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h1": ["40px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "h1-mobile": ["28px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "display": ["64px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "h3": ["24px", {"lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600"}],
+                        "caption": ["12px", {"lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-surface-bright text-text-primary font-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- Global Layout Wrapper -->
+<div class="flex min-h-screen">
+<!-- SideNavBar (from JSON) -->
+<nav class="bg-surface dark:bg-dark-surface fixed left-0 top-0 h-full w-[260px] flex flex-col p-gutter-dashboard gap-y-sm z-40 border-r border-divider">
+<!-- Brand / Store Info -->
+<div class="mb-section-dashboard px-sm">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-variant flex-shrink-0 border border-divider">
+<img alt="Seller Storefront Logo" class="w-full h-full object-cover" data-alt="A minimalist, high-contrast monochrome geometric logo design suitable for a premium fashion brand, isolated on a stark white background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB04YiOXHV_o6j7Q-f1gSF7tQsVMV0h6ewOHf02E_yzMY5PH6oiVPxDUmhGfhhMjTFLaJsKc95J8NoWJVxEuAqFqT_tGYCIAmC-OTjA3T48nYMGITieOT-HqeOHnzypp_1eOCPlCbq4eDIAdghC8kymcpNTYhX0uwL1XGgZpNJGw3jFxkd9Bjiz9hvjM7hbvRgdJk5hufz8jx8fusmkGEVJ_o6VGCrwYrooOtXPkRau799hNxY_JohK"/>
+</div>
+<div>
+<h2 class="font-display text-h3 text-primary dark:text-on-primary leading-none">Store Manager</h2>
+<span class="font-caption text-caption text-text-secondary">Premium Merchant</span>
+</div>
+</div>
+</div>
+<!-- Primary Navigation Tabs -->
+<div class="flex flex-col gap-y-xs flex-1">
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="dashboard">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="inventory_2">inventory_2</span>
+                    Inventory
+                </a>
+<!-- ACTIVE TAB: Orders -->
+<a class="flex items-center gap-md px-md py-sm font-label text-label bg-primary text-on-primary rounded-lg transition-all duration-200" href="#" style="transform: scale(0.98);">
+<span class="material-symbols-outlined text-[20px]" data-icon="shopping_cart">shopping_cart</span>
+                    Orders
+                </a>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="bar_chart">bar_chart</span>
+                    Analytics
+                </a>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="payments">payments</span>
+                    Payments
+                </a>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="settings">settings</span>
+                    Settings
+                </a>
+</div>
+<!-- Footer Navigation & CTA -->
+<div class="mt-auto flex flex-col gap-y-sm border-t border-divider pt-sm">
+<button class="w-full bg-primary text-on-primary rounded-full py-sm font-label text-label hover:bg-[#222222] transition-colors mb-sm">
+                    Add Product
+                </button>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="help_outline">help_outline</span>
+                    Support
+                </a>
+<a class="flex items-center gap-md px-md py-sm font-label text-label text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated hover:bg-surface-container-highest transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px] opacity-70 group-hover:opacity-100" data-icon="logout">logout</span>
+                    Sign Out
+                </a>
+</div>
+</nav>
+<!-- Main Content Area (Offset by Sidebar Width) -->
+<main class="flex-1 ml-[260px] p-section-dashboard bg-background min-h-screen">
+<!-- Page Header -->
+<header class="flex flex-col md:flex-row justify-between items-start md:items-end mb-section-dashboard gap-y-md">
+<div>
+<h1 class="font-display text-display text-text-primary tracking-tight leading-none mb-xs">Orders</h1>
+<p class="font-body text-body text-text-secondary">Manage and process incoming sub-orders.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-2 border border-border rounded-full px-lg py-sm font-label text-label text-text-primary hover:bg-surface transition-colors">
+<span class="material-symbols-outlined text-[18px]">download</span>
+                        Export CSV
+                    </button>
+</div>
+</header>
+<!-- Status Tabs -->
+<div class="flex overflow-x-auto border-b border-divider mb-lg hide-scrollbar">
+<div class="flex space-x-lg px-xs">
+<button class="font-label text-label py-sm border-b-2 border-primary text-primary font-bold whitespace-nowrap">
+                        New <span class="ml-1 bg-surface-container-high text-text-secondary px-2 py-0.5 rounded-full text-[10px]">2</span>
+</button>
+<button class="font-label text-label py-sm border-b-2 border-transparent text-text-secondary hover:text-primary transition-colors whitespace-nowrap">
+                        Processing
+                    </button>
+<button class="font-label text-label py-sm border-b-2 border-transparent text-text-secondary hover:text-primary transition-colors whitespace-nowrap">
+                        Shipped
+                    </button>
+<button class="font-label text-label py-sm border-b-2 border-transparent text-text-secondary hover:text-primary transition-colors whitespace-nowrap">
+                        Completed
+                    </button>
+<button class="font-label text-label py-sm border-b-2 border-transparent text-text-secondary hover:text-primary transition-colors whitespace-nowrap">
+                        Cancelled
+                    </button>
+</div>
+</div>
+<!-- Utilities Bar (Search & Filter) -->
+<div class="flex flex-col md:flex-row justify-between items-center gap-md mb-md">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[20px]">search</span>
+<input class="w-full pl-10 pr-4 py-2 border border-border rounded-[10px] font-body text-body focus:outline-none focus:border-info focus:ring-1 focus:ring-info transition-shadow bg-surface-elevated" placeholder="Search order number or customer name..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label text-label text-text-secondary">Sort by:</span>
+<select class="border border-border rounded-[10px] px-3 py-2 font-body text-body bg-surface-elevated focus:outline-none focus:border-primary cursor-pointer">
+<option>Date (Newest First)</option>
+<option>Date (Oldest First)</option>
+<option>Total Price (High to Low)</option>
+</select>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-surface-elevated rounded-xl border border-divider overflow-x-auto shadow-sm">
+<table class="w-full text-left border-collapse min-w-[800px]">
+<!-- Table Header -->
+<thead class="bg-surface font-label text-label text-text-secondary border-b border-divider">
+<tr>
+<th class="py-md px-lg font-medium w-12">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer" type="checkbox"/>
+</th>
+<th class="py-md px-lg font-medium tracking-wide">Order #</th>
+<th class="py-md px-lg font-medium tracking-wide">Customer Name</th>
+<th class="py-md px-lg font-medium tracking-wide text-center">Items</th>
+<th class="py-md px-lg font-medium tracking-wide text-right">Total Price</th>
+<th class="py-md px-lg font-medium tracking-wide">Date</th>
+<th class="py-md px-lg font-medium tracking-wide text-center">Status</th>
+<th class="py-md px-lg font-medium tracking-wide text-right">Action</th>
+</tr>
+</thead>
+<!-- Table Body -->
+<tbody class="font-body text-body text-text-primary">
+<!-- Row 1: New Order -->
+<tr class="border-b border-divider hover:bg-[#fafaf9] transition-colors group">
+<td class="py-md px-lg">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-md px-lg font-medium">#PZ-8924</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-label font-bold text-text-secondary">EV</div>
+                                    Eleanor Vance
+                                </div>
+</td>
+<td class="py-md px-lg text-center text-text-secondary">3</td>
+<td class="py-md px-lg text-right font-medium">$145.00</td>
+<td class="py-md px-lg text-text-secondary">Oct 24, 2023</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-caption font-bold tracking-widest uppercase bg-tertiary text-on-tertiary">
+                                    New
+                                </span>
+</td>
+<td class="py-md px-lg text-right">
+<button class="bg-primary text-on-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface-tint active:scale-95 transition-all inline-block whitespace-nowrap">
+                                    Confirm Order
+                                </button>
+</td>
+</tr>
+<!-- Row 2: New Order -->
+<tr class="border-b border-divider hover:bg-[#fafaf9] transition-colors group">
+<td class="py-md px-lg">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-md px-lg font-medium">#PZ-8923</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-label font-bold text-text-secondary">AT</div>
+                                    Alistair Thorne
+                                </div>
+</td>
+<td class="py-md px-lg text-center text-text-secondary">1</td>
+<td class="py-md px-lg text-right font-medium">$89.50</td>
+<td class="py-md px-lg text-text-secondary">Oct 24, 2023</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-caption font-bold tracking-widest uppercase bg-tertiary text-on-tertiary">
+                                    New
+                                </span>
+</td>
+<td class="py-md px-lg text-right">
+<button class="bg-primary text-on-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface-tint active:scale-95 transition-all inline-block whitespace-nowrap">
+                                    Confirm Order
+                                </button>
+</td>
+</tr>
+<!-- Row 3: Processing -->
+<tr class="border-b border-divider hover:bg-[#fafaf9] transition-colors group">
+<td class="py-md px-lg">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer" type="checkbox"/>
+</td>
+<td class="py-md px-lg font-medium">#PZ-8920</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-label font-bold text-text-secondary">SC</div>
+                                    Sophia Chen
+                                </div>
+</td>
+<td class="py-md px-lg text-center text-text-secondary">5</td>
+<td class="py-md px-lg text-right font-medium">$420.00</td>
+<td class="py-md px-lg text-text-secondary">Oct 23, 2023</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-caption font-bold tracking-widest uppercase border border-border text-text-secondary bg-surface-container-lowest">
+                                    Processing
+                                </span>
+</td>
+<td class="py-md px-lg text-right">
+<button class="border border-border text-text-primary rounded-full px-lg py-sm font-label text-label hover:bg-surface active:scale-95 transition-all inline-block whitespace-nowrap bg-surface-elevated">
+                                    Input Tracking
+                                </button>
+</td>
+</tr>
+<!-- Row 4: Shipped (Reference styling, not matching active tab filter strictly for visual variety in mockup) -->
+<tr class="border-b border-divider hover:bg-[#fafaf9] transition-colors group">
+<td class="py-md px-lg">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer disabled:opacity-50" disabled="" type="checkbox"/>
+</td>
+<td class="py-md px-lg font-medium text-text-secondary">#PZ-8915</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-label font-bold text-text-secondary opacity-70">MJ</div>
+<span class="text-text-secondary">Marcus Johnson</span>
+</div>
+</td>
+<td class="py-md px-lg text-center text-text-muted">2</td>
+<td class="py-md px-lg text-right font-medium text-text-secondary">$115.00</td>
+<td class="py-md px-lg text-text-muted">Oct 21, 2023</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-caption font-bold tracking-widest uppercase text-success bg-surface-bright">
+                                    Shipped
+                                </span>
+</td>
+<td class="py-md px-lg text-right">
+<button class="text-text-secondary hover:text-primary font-label text-label transition-colors">
+                                    View Details
+                                </button>
+</td>
+</tr>
+<!-- Row 5: Cancelled -->
+<tr class="hover:bg-[#fafaf9] transition-colors group">
+<td class="py-md px-lg">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary focus:ring-offset-0 cursor-pointer disabled:opacity-50" disabled="" type="checkbox"/>
+</td>
+<td class="py-md px-lg font-medium text-text-muted line-through">#PZ-8912</td>
+<td class="py-md px-lg">
+<div class="flex items-center gap-3 opacity-50">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-label font-bold text-text-secondary">IR</div>
+<span class="text-text-muted">Isabella Rossi</span>
+</div>
+</td>
+<td class="py-md px-lg text-center text-text-muted">1</td>
+<td class="py-md px-lg text-right font-medium text-text-muted">$45.00</td>
+<td class="py-md px-lg text-text-muted">Oct 20, 2023</td>
+<td class="py-md px-lg text-center">
+<span class="inline-flex items-center px-3 py-1 rounded-full text-caption font-bold tracking-widest uppercase text-error bg-surface-bright">
+                                    Cancelled
+                                </span>
+</td>
+<td class="py-md px-lg text-right">
+<button class="text-text-muted hover:text-text-primary font-label text-label transition-colors">
+                                    View Details
+                                </button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination (Simple Footer) -->
+<div class="flex items-center justify-between mt-md px-sm">
+<span class="font-body text-body text-text-secondary">Showing 1 to 5 of 24 orders</span>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:bg-surface hover:text-primary transition-colors disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[20px]">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:bg-surface hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dashboard Overview - Pazarz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "warning": "#B98900",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e8e8e6",
+                        "text-primary": "#111111",
+                        "background": "#FFFFFF",
+                        "on-surface": "#1a1c1b",
+                        "primary-container": "#1c1b1b",
+                        "inverse-primary": "#c8c6c5",
+                        "on-tertiary-container": "#427dfc",
+                        "surface-bright": "#f9f9f7",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f4f4f2",
+                        "secondary": "#5e5e5e",
+                        "surface-dim": "#dadad8",
+                        "on-error": "#ffffff",
+                        "outline": "#747878",
+                        "inverse-on-surface": "#f1f1ef",
+                        "error": "#D8362B",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "surface-container": "#eeeeec",
+                        "on-primary-container": "#858383",
+                        "tertiary": "#000000",
+                        "on-primary-fixed-variant": "#474646",
+                        "surface-tint": "#5f5e5e",
+                        "text-muted": "#9A9A9A",
+                        "tertiary-fixed": "#dae2ff",
+                        "on-primary": "#ffffff",
+                        "surface-variant": "#e2e3e1",
+                        "tertiary-container": "#001847",
+                        "text-secondary": "#5E5E5E",
+                        "outline-variant": "#c4c7c7",
+                        "on-surface-variant": "#444748",
+                        "divider": "#EDEDEA",
+                        "on-tertiary-fixed": "#001847",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e3e1",
+                        "secondary-fixed": "#e4e2e2",
+                        "on-primary-fixed": "#1c1b1b",
+                        "dark-surface": "#171717",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "primary-fixed": "#e5e2e1",
+                        "secondary-container": "#e4e2e2",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-secondary-fixed-variant": "#474747",
+                        "border": "#E4E4E1",
+                        "success": "#1E8E5A",
+                        "inverse-surface": "#2f3130",
+                        "info": "#2F6FED",
+                        "dark-background": "#0E0E0E",
+                        "surface-elevated": "#FFFFFF",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f9f9f7",
+                        "primary": "#000000",
+                        "on-background": "#1a1c1b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "xl": "48px",
+                        "section-customer": "64px",
+                        "gutter-dashboard": "20px",
+                        "sm": "8px",
+                        "hero-v": "120px",
+                        "gutter-customer": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "section-dashboard": "32px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "h1": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "h2": ["Inter"],
+                        "label": ["Inter"],
+                        "display": ["Inter"],
+                        "h3": ["Inter"],
+                        "display-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #E4E4E1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body antialiased min-h-screen flex">
+<!-- SideNavBar (from Shared Components JSON) -->
+<nav class="bg-surface dark:bg-dark-surface fixed left-0 top-0 h-full w-[260px] hidden md:flex flex-col p-gutter-dashboard gap-y-sm z-40">
+<!-- Brand/Header -->
+<div class="mb-section-dashboard px-sm">
+<h1 class="font-display text-h3 text-primary dark:text-on-primary tracking-tight">Pazarz Admin</h1>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-y-xs">
+<a class="bg-primary text-on-primary rounded-lg font-label text-label flex items-center gap-3 px-4 py-3 transition-all duration-200 Active: scale(0.98)" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Overview
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+                Inventory
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+                Orders
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+                Analytics
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                Payments
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+</div>
+<!-- Footer Links -->
+<div class="mt-auto flex flex-col gap-y-xs border-t border-divider pt-4">
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+                Support
+            </a>
+<a class="text-text-secondary dark:text-text-muted hover:bg-surface-container-highest dark:hover:bg-dark-surface-elevated font-label text-label flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                Sign Out
+            </a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] min-h-screen bg-background">
+<!-- Top App Bar (Mobile Nav Alternative) -->
+<header class="md:hidden sticky top-0 z-50 bg-background border-b border-divider h-16 flex items-center justify-between px-gutter-customer">
+<h1 class="font-display text-h3 tracking-tight text-primary">Pazarz Admin</h1>
+<button class="text-primary p-2">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</header>
+<!-- Dashboard Content -->
+<div class="p-gutter-customer md:p-section-dashboard max-w-7xl mx-auto space-y-section-dashboard">
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+<div>
+<h2 class="font-h1 text-h1 text-text-primary tracking-tight">Platform Overview</h2>
+<p class="font-body text-body text-text-secondary mt-2">High-level metrics and moderation tasks across Pazarz.</p>
+</div>
+<div class="flex gap-sm">
+<button class="bg-surface text-text-primary border border-border rounded-full px-6 py-3 font-label text-label hover:bg-surface-container-highest transition-colors">
+                        Export Report
+                    </button>
+<button class="bg-primary text-on-primary rounded-full px-6 py-3 font-label text-label hover:bg-[#1f1f1f] transition-colors shadow-[0_1px_3px_rgba(0,0,0,0.1)] hover:shadow-[0_2px_5px_rgba(0,0,0,0.15)] transform hover:scale-[1.02] active:scale-[0.98]">
+                        Manage Sellers
+                    </button>
+</div>
+</div>
+<!-- Bento Grid: Key Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter-dashboard">
+<!-- GMV Card -->
+<div class="bg-surface rounded-2xl p-lg flex flex-col justify-between h-[160px] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label text-label text-text-secondary uppercase tracking-wider">Total GMV</span>
+<div class="bg-success/10 text-success rounded-full px-2 py-1 flex items-center gap-1 font-caption text-caption">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+                            +12.5%
+                        </div>
+</div>
+<div>
+<div class="font-display text-display text-text-primary tracking-tight">$4.2M</div>
+<div class="font-caption text-caption text-text-muted mt-1">Last 30 days</div>
+</div>
+</div>
+<!-- Total Orders Card -->
+<div class="bg-surface rounded-2xl p-lg flex flex-col justify-between h-[160px] hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label text-label text-text-secondary uppercase tracking-wider">Total Orders</span>
+<div class="bg-success/10 text-success rounded-full px-2 py-1 flex items-center gap-1 font-caption text-caption">
+<span class="material-symbols-outlined text-[14px]" data-icon="trending_up">trending_up</span>
+                            +8.2%
+                        </div>
+</div>
+<div>
+<div class="font-display text-display text-text-primary tracking-tight">12,450</div>
+<div class="font-caption text-caption text-text-muted mt-1">Last 30 days</div>
+</div>
+</div>
+<!-- Pending Verification Card -->
+<div class="bg-surface rounded-2xl p-lg flex flex-col justify-between h-[160px] border border-warning/20 hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label text-label text-text-secondary uppercase tracking-wider">Pending Sellers</span>
+<div class="bg-warning/10 text-warning rounded-full px-2 py-1 flex items-center gap-1 font-caption text-caption">
+                            Action Req.
+                        </div>
+</div>
+<div>
+<div class="font-display text-display text-warning tracking-tight">48</div>
+<div class="font-caption text-caption text-text-muted mt-1">Awaiting KYC verification</div>
+</div>
+</div>
+<!-- Active Disputes Card -->
+<div class="bg-surface rounded-2xl p-lg flex flex-col justify-between h-[160px] border border-error/20 hover:shadow-[0_4px_20px_rgba(0,0,0,0.05)] transition-shadow duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label text-label text-text-secondary uppercase tracking-wider">Active Disputes</span>
+<div class="bg-error/10 text-error rounded-full px-2 py-1 flex items-center gap-1 font-caption text-caption">
+                            Urgent
+                        </div>
+</div>
+<div>
+<div class="font-display text-display text-error tracking-tight">12</div>
+<div class="font-caption text-caption text-text-muted mt-1">Requires moderation</div>
+</div>
+</div>
+</div>
+<!-- Main Layout Area: Chart and Quick Actions -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter-dashboard">
+<!-- Chart Area (Spans 2 columns) -->
+<div class="lg:col-span-2 bg-surface rounded-2xl p-lg flex flex-col border border-border">
+<div class="flex justify-between items-center mb-xl">
+<h3 class="font-h3 text-h3 text-text-primary">Platform Sales Trend</h3>
+<div class="flex gap-2">
+<button class="px-3 py-1 bg-surface-container-highest rounded-full font-caption text-caption text-text-primary">7D</button>
+<button class="px-3 py-1 bg-primary text-on-primary rounded-full font-caption text-caption">30D</button>
+<button class="px-3 py-1 bg-surface-container-highest rounded-full font-caption text-caption text-text-primary">90D</button>
+</div>
+</div>
+<!-- Placeholder for Chart (Stylized Canvas) -->
+<div class="flex-1 w-full bg-surface-container-lowest rounded-xl min-h-[300px] border border-divider relative overflow-hidden flex items-end justify-between p-4">
+<!-- Abstract Chart Representation -->
+<div class="w-1/12 h-[20%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[35%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[30%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[50%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[45%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[60%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[85%] bg-primary rounded-t-sm"></div>
+<div class="w-1/12 h-[75%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[90%] bg-border rounded-t-sm"></div>
+<div class="w-1/12 h-[65%] bg-border rounded-t-sm"></div>
+<!-- Overlay Line Representation -->
+<svg class="absolute inset-0 w-full h-full pointer-events-none" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="opacity-50" d="M0,80 Q10,70 20,65 T40,50 T60,40 T80,15 T100,25" fill="none" stroke="#000000" stroke-width="0.5"></path>
+</svg>
+</div>
+</div>
+<!-- Quick Actions / Moderation Panel -->
+<div class="bg-surface rounded-2xl p-lg flex flex-col border border-border">
+<h3 class="font-h3 text-h3 text-text-primary mb-xl">Quick Actions</h3>
+<div class="flex-1 flex flex-col gap-4">
+<!-- Action Item 1 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest border border-border hover:border-primary transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-warning/10 text-warning flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="verified_user">verified_user</span>
+</div>
+<div>
+<div class="font-label text-label text-text-primary group-hover:underline">Verify Sellers</div>
+<div class="font-caption text-caption text-text-secondary">48 awaiting review</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Action Item 2 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest border border-border hover:border-primary transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-error/10 text-error flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="gavel">gavel</span>
+</div>
+<div>
+<div class="font-label text-label text-text-primary group-hover:underline">Resolve Disputes</div>
+<div class="font-caption text-caption text-text-secondary">12 active cases</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="chevron_right">chevron_right</span>
+</div>
+<!-- Action Item 3 -->
+<div class="group flex items-center justify-between p-4 rounded-xl bg-surface-container-lowest border border-border hover:border-primary transition-colors cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-info/10 text-info flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="campaign">campaign</span>
+</div>
+<div>
+<div class="font-label text-label text-text-primary group-hover:underline">Platform Announcement</div>
+<div class="font-caption text-caption text-text-secondary">Draft new message</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

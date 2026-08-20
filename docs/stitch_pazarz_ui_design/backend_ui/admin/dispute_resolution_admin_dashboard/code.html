@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Dispute Resolution</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#e4e2e2",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "on-tertiary-container": "#427dfc",
+                        "text-primary": "#111111",
+                        "surface-container-high": "#e8e8e6",
+                        "text-muted": "#9A9A9A",
+                        "surface-bright": "#f9f9f7",
+                        "on-surface-variant": "#444748",
+                        "surface-container-lowest": "#ffffff",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container": "#eeeeec",
+                        "on-tertiary-fixed": "#001847",
+                        "surface-container-low": "#f4f4f2",
+                        "divider": "#EDEDEA",
+                        "surface-elevated": "#FFFFFF",
+                        "on-secondary-container": "#646464",
+                        "on-primary": "#ffffff",
+                        "error": "#D8362B",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "surface-container-highest": "#e2e3e1",
+                        "outline": "#747878",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "success": "#1E8E5A",
+                        "dark-surface": "#171717",
+                        "tertiary-fixed": "#dae2ff",
+                        "surface": "#f9f9f7",
+                        "on-primary-fixed-variant": "#474646",
+                        "tertiary-container": "#001847",
+                        "border": "#E4E4E1",
+                        "secondary": "#5e5e5e",
+                        "primary-container": "#1c1b1b",
+                        "primary": "#000000",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dadad8",
+                        "outline-variant": "#c4c7c7",
+                        "dark-background": "#0E0E0E",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "warning": "#B98900",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "secondary-fixed": "#e4e2e2",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "info": "#2F6FED",
+                        "text-secondary": "#5E5E5E",
+                        "background": "#FFFFFF",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-background": "#1a1c1b",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-tint": "#5f5e5e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary": "#000000",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "4px",
+                        "section-customer": "64px",
+                        "hero-v": "120px",
+                        "section-dashboard": "32px",
+                        "gutter-dashboard": "20px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "gutter-customer": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "h2": ["Inter"],
+                        "caption": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "label": ["Inter"],
+                        "h1-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom Scrollbar for high-density admin feel */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9A9A9A;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body flex h-screen w-full overflow-hidden antialiased">
+<!-- Shared Component: SideNavBar -->
+<nav class="bg-surface dark:bg-dark-surface fixed left-0 top-0 h-full w-[260px] border-r border-divider z-40 flex flex-col">
+<!-- Header -->
+<div class="p-lg flex items-center gap-x-md border-b border-divider shrink-0">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center shrink-0 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist, high-contrast monochrome logo icon representing a premium digital storefront manager. Crisp white lines on a deep black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpZ0zekCajC6LWrpV12BIot25jIkKQhZRL4BuqGUENH0xdiEAVpNSwocqAGtuMjbYMfws0mVpYIvn2OagBqqXyLGVTCWnDDz9N6j3QxnqaWUYL73HMH4iV4IlPjQn-yGUjUE16HPonq-h1z4cOK1gC9thdILsa4rmxWO-erT-0-1KpvLR_IIva7hMKvCJySil5Q4KLbrd8XcDRx2AXHyHe7jCOHKI319FHVDm7b-i1dtHGwooq61FP"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label text-label text-text-primary">Store Manager</span>
+<span class="font-caption text-caption text-text-secondary">Premium Merchant</span>
+</div>
+</div>
+<!-- Main Nav -->
+<div class="flex flex-col p-gutter-dashboard gap-y-sm flex-1 overflow-y-auto">
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label text-label">Overview</span>
+</a>
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">inventory_2</span>
+<span class="font-label text-label">Inventory</span>
+</a>
+<!-- Active State: 'Orders' matches closely with Disputes context -->
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg bg-primary text-on-primary Active: scale(0.98)" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_cart</span>
+<span class="font-label text-label">Orders</span>
+</a>
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">bar_chart</span>
+<span class="font-label text-label">Analytics</span>
+</a>
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">payments</span>
+<span class="font-label text-label">Payments</span>
+</a>
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label text-label">Settings</span>
+</a>
+<div class="mt-auto pt-lg">
+<button class="w-full bg-primary text-on-primary font-label text-label py-sm px-md rounded-full hover:bg-primary-container transition-colors duration-200 flex items-center justify-center gap-x-sm">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                    Add Product
+                </button>
+</div>
+</div>
+<!-- Footer Nav -->
+<div class="flex flex-col p-gutter-dashboard gap-y-sm border-t border-divider shrink-0">
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help_outline</span>
+<span class="font-label text-label">Support</span>
+</a>
+<a class="flex items-center gap-x-md px-md py-sm rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-label text-label">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="ml-[260px] flex-1 flex h-full overflow-hidden bg-background">
+<!-- PANE 1: Disputes List (Left Sidebar) -->
+<aside class="w-[340px] flex-shrink-0 border-r border-divider bg-surface-bright flex flex-col h-full z-10">
+<!-- Header & Search -->
+<div class="p-gutter-dashboard border-b border-divider shrink-0 flex flex-col gap-y-md">
+<div class="flex items-center justify-between">
+<h2 class="font-h3 text-h3 text-text-primary tracking-tight">Active Disputes</h2>
+<span class="bg-surface-container-high text-text-secondary font-label text-label px-2 py-1 rounded-md">24</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted text-[18px]">search</span>
+<input class="w-full bg-surface-container-lowest border border-border rounded-lg pl-9 pr-3 py-2 font-body text-caption focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent transition-all" placeholder="Search orders or ID..." type="text"/>
+</div>
+<div class="flex gap-x-2">
+<button class="bg-primary text-on-primary font-caption text-caption px-3 py-1.5 rounded-full">All</button>
+<button class="border border-border text-text-secondary font-caption text-caption px-3 py-1.5 rounded-full hover:bg-surface-container-highest">Urgent</button>
+<button class="border border-border text-text-secondary font-caption text-caption px-3 py-1.5 rounded-full hover:bg-surface-container-highest">Pending</button>
+</div>
+</div>
+<!-- List -->
+<div class="flex-1 overflow-y-auto">
+<!-- List Item (Active/Selected) -->
+<div class="p-md border-l-4 border-primary bg-surface-container-highest border-b border-divider cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label text-label text-text-primary">#DSP-8829</span>
+<span class="bg-error-container text-on-error-container font-caption text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Critical</span>
+</div>
+<h4 class="font-label text-label text-text-primary mb-1">E. Vance vs. Minimalist Ceramics</h4>
+<p class="font-caption text-caption text-text-secondary line-clamp-2 mb-2">Customer claims the 'Onyx Serving Bowl' arrived shattered. Seller refuses refund stating improper unboxing.</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-caption text-caption text-text-muted">Updated 10m ago</span>
+<div class="flex -space-x-2">
+<img class="w-6 h-6 rounded-full border-2 border-surface-container-highest object-cover" data-alt="A stark black and white headshot portrait of a frustrated customer. Studio lighting, high contrast editorial style. The subject has an intense, impatient expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTJ6nLlc8TSA1WEeXpTd0PJ5xEhxeE2z74l_8fkc3NEps7C9DAmMuO00szLYKXE2eVk1itmdDTtbT91j-SZTf7K9Ba0P8UGtm4fAdLFIkWut_pY4b_x1trf315OOfWP5Oxvj3sAUVySnMIR7zCfto-txh-K8jh3rzyVxC3LW-uvrCk9ZL2jQz9Wp_xhMwN1dT6SXIbIdrR1q_2mtLBHd4nQDzybbHKA6J5LzGgxt2Hqdb91vQuiM7R"/>
+<div class="w-6 h-6 rounded-full border-2 border-surface-container-highest bg-surface-container flex items-center justify-center text-[10px] font-bold">MC</div>
+</div>
+</div>
+</div>
+<!-- List Item (Inactive) -->
+<div class="p-md border-l-4 border-transparent hover:bg-surface-container-low transition-colors border-b border-divider cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label text-label text-text-secondary">#DSP-8824</span>
+<span class="bg-warning/20 text-warning font-caption text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Action Req</span>
+</div>
+<h4 class="font-label text-label text-text-primary mb-1">S. Miller vs. Thread &amp; Co.</h4>
+<p class="font-caption text-caption text-text-secondary line-clamp-2 mb-2">Item not as described. The woven throw blanket is entirely the wrong material compared to listing.</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-caption text-caption text-text-muted">Updated 2h ago</span>
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full border-2 border-surface-bright bg-surface-container-high flex items-center justify-center text-[10px] font-bold">SM</div>
+<div class="w-6 h-6 rounded-full border-2 border-surface-bright bg-surface-container flex items-center justify-center text-[10px] font-bold">TC</div>
+</div>
+</div>
+</div>
+<!-- List Item (Inactive) -->
+<div class="p-md border-l-4 border-transparent hover:bg-surface-container-low transition-colors border-b border-divider cursor-pointer">
+<div class="flex justify-between items-start mb-1">
+<span class="font-label text-label text-text-secondary">#DSP-8790</span>
+<span class="bg-surface-container-high text-text-secondary font-caption text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Awaiting Reply</span>
+</div>
+<h4 class="font-label text-label text-text-primary mb-1">J. Doe vs. AudioTech</h4>
+<p class="font-caption text-caption text-text-secondary line-clamp-2 mb-2">Package marked delivered but never received. Carrier confirms GPS coordinates do not match address.</p>
+<div class="flex items-center justify-between mt-2">
+<span class="font-caption text-caption text-text-muted">Updated 1d ago</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- PANE 2: Center Thread (Canvas) -->
+<section class="flex-1 flex flex-col h-full relative z-0">
+<!-- Thread Header -->
+<header class="h-[80px] px-lg border-b border-divider flex items-center justify-between shrink-0 bg-background/80 backdrop-blur-md sticky top-0 z-10">
+<div class="flex items-center gap-x-md">
+<div class="flex flex-col">
+<div class="flex items-center gap-x-2">
+<h1 class="font-h3 text-h3 text-text-primary tracking-tight">Dispute #DSP-8829</h1>
+<span class="bg-surface-container px-2 py-0.5 rounded text-text-secondary font-caption text-[10px] tracking-wider uppercase font-bold">Escalated</span>
+</div>
+<span class="font-caption text-caption text-text-secondary mt-1">Order #ORD-2023-991 • $245.00 USD</span>
+</div>
+</div>
+<div class="flex items-center gap-x-3">
+<button class="p-2 text-text-secondary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">print</span>
+</button>
+<button class="p-2 text-text-secondary hover:bg-surface-container rounded-full transition-colors">
+<span class="material-symbols-outlined text-[20px]">more_vert</span>
+</button>
+</div>
+</header>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-section-dashboard bg-surface-bright/30">
+<div class="max-w-3xl mx-auto flex flex-col gap-y-xl">
+<!-- System Event -->
+<div class="flex flex-col items-center gap-y-2">
+<span class="bg-surface-container-high text-text-secondary font-caption text-caption px-3 py-1 rounded-full">Dispute opened • Oct 24, 09:41 AM</span>
+<div class="w-px h-8 bg-divider"></div>
+</div>
+<!-- Customer Message -->
+<div class="flex gap-x-md">
+<img class="w-10 h-10 rounded-full object-cover shrink-0 border border-border" data-alt="A stark black and white headshot portrait of a frustrated customer. Studio lighting, high contrast editorial style. The subject has an intense, impatient expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm4xoBQkoFD0W4Th9ZjIIxwqV9HcdmUYDovoo90v-RloDWRFzrhUk04HfoM9Q2UYfUFfvPXa0wR9cWP1INXx7pUtkIDJI6UxJ8n0d2Nv6kVkrTiYxQQEbSMqOP5S0gtQQ_mWpzrkRIB607Pm0b7EkOFz8BskYv7RGbsLbeQmY6d5gUEo5oXzawp38xh_SatqaxNFhSd379OEOUFJ-8xDiYSSqFdfhBzSoHWXMUwInLuhaBLq_gzrRF"/>
+<div class="flex flex-col gap-y-1 items-start max-w-[85%]">
+<div class="flex items-baseline gap-x-2 ml-1">
+<span class="font-label text-label text-text-primary">Elias Vance</span>
+<span class="font-caption text-caption text-text-muted">Customer • Oct 24, 09:45 AM</span>
+</div>
+<div class="bg-surface-elevated border border-border p-md rounded-xl rounded-tl-sm shadow-sm">
+<p class="font-body text-body text-text-primary mb-4">I received the Onyx Serving Bowl today and the box sounded like a maraca before I even opened it. Upon opening, it's completely shattered. There was barely any bubble wrap. I need a full refund immediately.</p>
+<!-- Evidence Attached -->
+<div class="flex flex-col gap-y-2 mt-4 pt-4 border-t border-divider">
+<span class="font-caption text-caption text-text-secondary flex items-center gap-x-1">
+<span class="material-symbols-outlined text-[14px]">attachment</span>
+                                        2 Attachments provided
+                                    </span>
+<div class="flex gap-x-3">
+<div class="w-24 h-24 rounded-lg overflow-hidden border border-border relative group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A close up, high contrast black and white photograph of a shattered premium ceramic bowl inside a cardboard box. Fragments are sharp and scattered. Harsh, dramatic lighting emphasizing the destruction. Editorial product photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX_KBgZrdMYHFQEAW0o2XTjwNSalg5WqQ8hgjWPgj34sIKV4tJIIL5qIIF4KRIJ3LsLD_ymbwOak98tjpI4I0mihlSZDMwmP_LC8cSzDNqpjN4-26TvMnHsdoG9FYqNEbyFkJaZmvRda9Brhg-uPJ796Lwh3oT752W4H-sr8HI01cI4vgdO34sdiwzZ4Ekkbf1Hpiav_jjZWGsondVgLMyupp0lHfIabtUIfoWSKg43VE0BWN5PCaO"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md">zoom_in</span>
+</div>
+</div>
+<div class="w-24 h-24 rounded-lg overflow-hidden border border-border relative group cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A close up photograph showing crushed cardboard packaging material, lacking sufficient bubble wrap. Monochrome palette, emphasizing texture and the inadequacy of the protective materials. High-end, dramatic lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8piuTDrF3UM7qHg-JsSS0JWtBc1p9K5kSeJ2Ts3o44Sh1uO0fSQLdVpmfbgrHhF0_Y95p2E-t_QbwRrNUixZBHB9n8v28RLU9FVsKwF3PL46OZESbQzBT1i05ztuYYtetfFxSyEKx7LcmZa9iftgUB1tnX11nPvsoSOk6ReFdvG7xmLtMY46vT5rxiAN5ix8XIuRpGy1C6TGi12mUeElDAj7657tcWbS499EvbFTQ_t-4OGFOowzA"/>
+<div class="absolute inset-0 bg-primary/0 group-hover:bg-primary/10 transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-white opacity-0 group-hover:opacity-100 drop-shadow-md">zoom_in</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Seller Message -->
+<div class="flex gap-x-md flex-row-reverse">
+<div class="w-10 h-10 rounded-full bg-surface-container border border-border flex items-center justify-center shrink-0">
+<span class="font-label text-label text-text-primary">MC</span>
+</div>
+<div class="flex flex-col gap-y-1 items-end max-w-[85%]">
+<div class="flex items-baseline gap-x-2 mr-1">
+<span class="font-caption text-caption text-text-muted">Oct 24, 11:20 AM • Seller</span>
+<span class="font-label text-label text-text-primary">Minimalist Ceramics</span>
+</div>
+<div class="bg-surface-container-low p-md rounded-xl rounded-tr-sm">
+<p class="font-body text-body text-text-primary">Hello Elias, we are sorry to hear this. However, our records and shipping logs show the item was packaged according to our strict QA guidelines with double-layered cellular cushioning. The carrier marks the box as delivered without outer damage. Was the exterior box damaged when you received it?</p>
+</div>
+</div>
+</div>
+<!-- System Event -->
+<div class="flex flex-col items-center gap-y-2 mt-4">
+<div class="w-px h-8 bg-divider"></div>
+<span class="bg-error-container text-on-error-container font-caption text-caption px-3 py-1 rounded-full flex items-center gap-x-1">
+<span class="material-symbols-outlined text-[14px]">warning</span>
+                            Escalated to Admin by Customer • Oct 25, 08:15 AM
+                        </span>
+<div class="w-px h-8 bg-divider"></div>
+</div>
+</div>
+</div>
+<!-- Admin Composer -->
+<div class="p-lg border-t border-divider bg-background shrink-0">
+<div class="max-w-3xl mx-auto flex gap-x-4 items-end">
+<div class="flex-1 relative">
+<textarea class="w-full bg-surface-container-lowest border border-border rounded-xl px-4 py-3 font-body text-body focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent transition-all resize-none block" placeholder="Type a message to both parties..." rows="2"></textarea>
+<div class="absolute bottom-3 left-3 flex gap-x-2">
+<button class="text-text-muted hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">attach_file</span>
+</button>
+<button class="text-text-muted hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]">format_list_bulleted</span>
+</button>
+</div>
+</div>
+<button class="bg-primary text-on-primary h-[48px] px-6 rounded-full font-label text-label hover:bg-primary-container transition-colors shrink-0 flex items-center gap-x-2">
+                        Send <span class="material-symbols-outlined text-[18px]">send</span>
+</button>
+</div>
+<p class="text-center font-caption text-caption text-text-muted mt-3">Messages sent here are visible to both the Customer and Seller.</p>
+</div>
+</section>
+<!-- PANE 3: Resolution Actions (Right Sidebar) -->
+<aside class="w-[320px] flex-shrink-0 border-l border-divider bg-surface-bright flex flex-col h-full z-10 shadow-[-4px_0_24px_rgba(0,0,0,0.02)]">
+<!-- Header -->
+<div class="p-lg border-b border-divider shrink-0">
+<h3 class="font-h3 text-h3 text-text-primary tracking-tight">Resolution Center</h3>
+</div>
+<!-- Scrollable Content -->
+<div class="p-lg flex flex-col gap-y-xl overflow-y-auto flex-1">
+<!-- Financial Overview -->
+<div class="bg-surface-container-lowest border border-border rounded-xl p-md">
+<h4 class="font-label text-label text-text-secondary mb-3 uppercase tracking-wider">Dispute Financials</h4>
+<div class="flex justify-between items-baseline mb-2">
+<span class="font-body text-body text-text-primary">Disputed Amount</span>
+<span class="font-h3 text-h3 text-text-primary">$245.00</span>
+</div>
+<div class="flex justify-between items-baseline">
+<span class="font-caption text-caption text-text-muted">Platform Fee (Held)</span>
+<span class="font-caption text-caption text-text-secondary">$12.25</span>
+</div>
+</div>
+<!-- Primary Actions -->
+<div class="flex flex-col gap-y-3">
+<h4 class="font-label text-label text-text-secondary mb-1 uppercase tracking-wider">Mediation Actions</h4>
+<button class="w-full bg-primary text-on-primary font-label text-label py-3 px-4 rounded-full hover:bg-primary-container transition-all duration-200 Active: scale(0.98) flex items-center justify-center gap-x-2 shadow-sm hover:shadow">
+<span class="material-symbols-outlined text-[18px]">undo</span>
+                        Refund Customer
+                    </button>
+<button class="w-full border border-border text-text-primary font-label text-label py-3 px-4 rounded-full hover:bg-surface-container-highest transition-all duration-200 flex items-center justify-center gap-x-2">
+<span class="material-symbols-outlined text-[18px]">done_all</span>
+                        Release Funds to Seller
+                    </button>
+<button class="w-full bg-transparent text-text-primary font-label text-label py-3 px-4 rounded-full hover:bg-surface-container-low transition-all duration-200 flex items-center justify-center gap-x-2">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                        Request Info from Seller
+                    </button>
+</div>
+<hr class="border-divider"/>
+<!-- Internal Notes -->
+<div class="flex flex-col gap-y-2">
+<div class="flex items-center justify-between mb-1">
+<h4 class="font-label text-label text-text-secondary uppercase tracking-wider">Internal Admin Notes</h4>
+<span class="material-symbols-outlined text-text-muted text-[16px]">lock</span>
+</div>
+<textarea class="w-full bg-[#fdfdfc] border border-border rounded-xl px-3 py-2 font-caption text-caption text-text-primary focus:outline-none focus:ring-2 focus:ring-info focus:border-transparent transition-all resize-none" placeholder="Add private notes here. Not visible to users..." rows="5"></textarea>
+<button class="self-end text-primary font-label text-label hover:underline mt-1">Save Note</button>
+</div>
+</div>
+</aside>
+</main>
+</body></html>

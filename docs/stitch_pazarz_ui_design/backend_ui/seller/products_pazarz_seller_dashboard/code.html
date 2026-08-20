@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Store Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "warning": "#B98900",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-high": "#e8e8e6",
+                      "text-primary": "#111111",
+                      "background": "#FFFFFF",
+                      "on-surface": "#1a1c1b",
+                      "primary-container": "#1c1b1b",
+                      "inverse-primary": "#c8c6c5",
+                      "on-tertiary-container": "#427dfc",
+                      "surface-bright": "#f9f9f7",
+                      "on-tertiary-fixed-variant": "#0040a0",
+                      "on-error-container": "#93000a",
+                      "surface-container-low": "#f4f4f2",
+                      "secondary": "#5e5e5e",
+                      "surface-dim": "#dadad8",
+                      "on-error": "#ffffff",
+                      "outline": "#747878",
+                      "inverse-on-surface": "#f1f1ef",
+                      "error": "#D8362B",
+                      "primary-fixed-dim": "#c8c6c5",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c8c6c6",
+                      "surface-container": "#eeeeec",
+                      "on-primary-container": "#858383",
+                      "tertiary": "#000000",
+                      "on-primary-fixed-variant": "#474646",
+                      "surface-tint": "#5f5e5e",
+                      "text-muted": "#9A9A9A",
+                      "tertiary-fixed": "#dae2ff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#e2e3e1",
+                      "tertiary-container": "#001847",
+                      "text-secondary": "#5E5E5E",
+                      "outline-variant": "#c4c7c7",
+                      "on-surface-variant": "#444748",
+                      "divider": "#EDEDEA",
+                      "on-tertiary-fixed": "#001847",
+                      "on-secondary-container": "#646464",
+                      "on-tertiary": "#ffffff",
+                      "surface-container-highest": "#e2e3e1",
+                      "secondary-fixed": "#e4e2e2",
+                      "on-primary-fixed": "#1c1b1b",
+                      "dark-surface": "#171717",
+                      "tertiary-fixed-dim": "#b1c5ff",
+                      "primary-fixed": "#e5e2e1",
+                      "secondary-container": "#e4e2e2",
+                      "on-secondary-fixed": "#1b1c1c",
+                      "dark-surface-elevated": "#1F1F1F",
+                      "on-secondary-fixed-variant": "#474747",
+                      "border": "#E4E4E1",
+                      "success": "#1E8E5A",
+                      "inverse-surface": "#2f3130",
+                      "info": "#2F6FED",
+                      "dark-background": "#0E0E0E",
+                      "surface-elevated": "#FFFFFF",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f9f9f7",
+                      "primary": "#000000",
+                      "on-background": "#1a1c1b"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "xl": "48px",
+                      "section-customer": "64px",
+                      "gutter-dashboard": "20px",
+                      "sm": "8px",
+                      "hero-v": "120px",
+                      "gutter-customer": "24px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "section-dashboard": "32px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "body": [
+                              "Inter"
+                      ],
+                      "h1": [
+                              "Inter"
+                      ],
+                      "body-lg": [
+                              "Inter"
+                      ],
+                      "h1-mobile": [
+                              "Inter"
+                      ],
+                      "caption": [
+                              "Inter"
+                      ],
+                      "h2": [
+                              "Inter"
+                      ],
+                      "label": [
+                              "Inter"
+                      ],
+                      "display": [
+                              "Inter"
+                      ],
+                      "h3": [
+                              "Inter"
+                      ],
+                      "display-mobile": [
+                              "Inter"
+                      ]
+              },
+              "fontSize": {
+                      "body": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h1-mobile": [
+                              "28px",
+                              {
+                                      "lineHeight": "1.15",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "caption": [
+                              "12px",
+                              {
+                                      "lineHeight": "1.35",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "h2": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label": [
+                              "13px",
+                              {
+                                      "lineHeight": "1.3",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display": [
+                              "64px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "h3": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.25",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "display-mobile": [
+                              "40px",
+                              {
+                                      "lineHeight": "1.05",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "700"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+        
+        /* Custom Scrollbar for modern look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f9f7;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c4c7c7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #9A9A9A;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body antialiased flex h-screen overflow-hidden">
+<!-- SideNavBar (Seller) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-0 h-full w-[260px] bg-surface dark:bg-dark-surface p-gutter-dashboard gap-y-sm z-40 border-r border-divider">
+<div class="flex items-center gap-sm mb-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Seller Storefront Logo" class="w-full h-full object-cover" data-alt="A minimalist logo for a premium fashion brand featuring clean, modern typography and a subtle geometric emblem. The design relies entirely on deep black ink on a bright white background, creating high contrast. The logo feels high-end, editorial, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXLqtIKb-86kN8mhxjcKb6Y-koxisSczAp2zLbM1OEkSU9u6z1pfthrcSnnon1BdYPHz-AD6o4eir0V_6KKhljTMl_vi2tzEbVnvQuJDhdGK24UMH3R91CFObTNVu22geGNgqhzunMDVEBBM-zD2NFsGCbWdGQ3BGeXlgW094bUWXPnDy_4qQ2jnPlYjjNzZBege3pF3ldvQxpZFUfWY5NXEjTFKMimEw2u9XHyDP39f_Wnk0FeUq3"/>
+</div>
+<div>
+<h2 class="font-h3 text-h3 text-primary dark:text-on-primary">Store Manager</h2>
+<p class="font-caption text-caption text-text-secondary">Premium Merchant</p>
+</div>
+</div>
+<button class="w-full bg-[#111111] text-white font-label text-label py-sm px-md rounded-full hover:bg-primary-container active:scale-98 transition-all duration-200 mb-md flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+            Add Product
+        </button>
+<div class="flex-1 flex flex-col gap-y-xs">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="dashboard">dashboard</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Overview</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg bg-primary text-on-primary group" href="#">
+<span class="material-symbols-outlined text-[20px]" data-icon="inventory_2" data-weight="fill">inventory_2</span>
+<span class="font-label text-label">Inventory</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="shopping_cart">shopping_cart</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Orders</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="bar_chart">bar_chart</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Analytics</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="payments">payments</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Payments</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group mt-auto" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="settings">settings</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Settings</span>
+</a>
+</div>
+<div class="mt-md border-t border-divider pt-sm flex flex-col gap-y-xs">
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="help_outline">help_outline</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Support</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm rounded-lg text-text-secondary dark:text-text-muted hover:bg-surface-container-highest transition-all duration-200 group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary transition-colors" data-icon="logout">logout</span>
+<span class="font-label text-label group-hover:text-primary transition-colors">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-[260px] h-full overflow-y-auto bg-surface-bright flex flex-col">
+<!-- Header -->
+<header class="px-section-dashboard py-md bg-background sticky top-0 z-30 border-b border-divider flex items-center justify-between">
+<h1 class="font-h2 text-h2 text-primary">Products</h1>
+<div class="flex items-center gap-md">
+<!-- Search -->
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-text-muted text-[20px]" data-icon="search">search</span>
+<input class="pl-[36px] pr-sm py-sm rounded-[10px] border border-[#E4E4E1] bg-surface-bright font-body text-body w-[280px] focus:outline-none focus:border-info focus:ring-1 focus:ring-info transition-colors" placeholder="Search inventory..." type="text"/>
+</div>
+<button class="bg-[#111111] text-white font-label text-label py-sm px-md rounded-full hover:bg-primary-container active:scale-98 transition-all duration-200 flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span class="hidden sm:inline">Add Product</span>
+</button>
+</div>
+</header>
+<!-- Content Body -->
+<div class="p-section-dashboard flex-1 flex flex-col max-w-[1280px] mx-auto w-full">
+<!-- Filters Bar -->
+<div class="flex flex-wrap items-center justify-between gap-md mb-lg">
+<div class="flex items-center gap-sm">
+<div class="relative">
+<select class="appearance-none bg-background border border-border rounded-[10px] pl-md pr-[32px] py-xs font-label text-label text-primary focus:outline-none focus:border-info focus:ring-1 focus:ring-info cursor-pointer h-10">
+<option>All Categories</option>
+<option>Apparel</option>
+<option>Footwear</option>
+<option>Accessories</option>
+<option>Home</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-[18px]">expand_more</span>
+</div>
+<div class="relative">
+<select class="appearance-none bg-background border border-border rounded-[10px] pl-md pr-[32px] py-xs font-label text-label text-primary focus:outline-none focus:border-info focus:ring-1 focus:ring-info cursor-pointer h-10">
+<option>Status: All</option>
+<option>Active</option>
+<option>Draft</option>
+<option>Out of Stock</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-text-muted pointer-events-none text-[18px]">expand_more</span>
+</div>
+</div>
+<div class="flex items-center gap-sm text-text-secondary font-caption text-caption">
+<span>Showing 1-10 of 142 products</span>
+</div>
+</div>
+<!-- Data Table Container -->
+<div class="bg-background rounded-[16px] border border-border overflow-hidden flex-1 flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface font-label text-label text-text-secondary border-b border-divider">
+<th class="py-sm px-md font-semibold w-12 text-center">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</th>
+<th class="py-sm px-md font-semibold">Product</th>
+<th class="py-sm px-md font-semibold">SKU</th>
+<th class="py-sm px-md font-semibold">Price</th>
+<th class="py-sm px-md font-semibold">Inventory</th>
+<th class="py-sm px-md font-semibold">Status</th>
+<th class="py-sm px-md font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body text-body divide-y divide-divider">
+<!-- Row 1 -->
+<tr class="hover:bg-[#fafaf9] transition-colors group">
+<td class="py-sm px-md text-center">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="py-sm px-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-[8px] overflow-hidden bg-surface-container-lowest border border-border flex-shrink-0">
+<img alt="Product Image" class="w-full h-full object-cover" data-alt="A minimalist flat lay photograph of a premium, structured black leather tote bag resting on a clean white studio surface. The lighting is bright and high-key, casting very soft shadows to emphasize the high-quality texture and clean lines of the leather. The mood is highly editorial and luxurious." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAY2UWUIcJYdO4vyxJlqYA8ky54ffejA7fEzjY609tZRKoQ6f83qpRcflTN2gJcQnBSuQqP9gY-wmWynZbJ637QWMMhmzGzHnTHLT1X0n_Epiz4oEioTp21XM8kXsPyiJEPhNFHtHKiWD1UOfgV1S51WPidBA-pJqYGEzPETStoJjKjzQM2kj8NQ2KTKNMPEY_CtH_jZ6ayuSYwDguHaGy0KZoXL_E_1gkRc4vocCWrrkjwKTB3Z1N2"/>
+</div>
+<div>
+<span class="font-semibold text-primary block">Structured Leather Tote</span>
+<span class="font-caption text-caption text-text-muted">Accessories</span>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-text-secondary font-mono text-[14px]">ACC-LT-001</td>
+<td class="py-sm px-md font-semibold">$345.00</td>
+<td class="py-sm px-md">
+<span class="text-primary">42 in stock</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E8F5E9] text-[#1B5E20] font-label text-[11px] border border-[#C8E6C9]">
+                                        Active
+                                    </span>
+</td>
+<td class="py-sm px-md text-right">
+<button class="text-text-secondary hover:text-primary p-xs rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-[#fafaf9] transition-colors group">
+<td class="py-sm px-md text-center">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="py-sm px-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-[8px] overflow-hidden bg-surface-container-lowest border border-border flex-shrink-0">
+<img alt="Product Image" class="w-full h-full object-cover" data-alt="A high-end editorial shot of a crisp, white oversized cotton button-down shirt. The shirt is hung against a stark, pure white background using invisible wire, appearing as if floating. The high-contrast, even lighting highlights the fine weave of the fabric and the sharp collar. Minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9XhvYrnIjs3FbCNdPbJ4Xv2X3amvGtuQYwD9hNkIexs2DASQxLiW1ycgm4j0GyWivwaJD6cZJBz7Z327FhwWbfqQtmf6gBQxp1SSMhfaVKDYvcXlBk62DaOJpXmzWD7m8yKF-dEzrlGRruiyGRcx3wsEl7DvC2aZRE2G6jvPJc3AUjbfBIXCADDKlYOl4w5zCU5yKuIlJ5ZEHGYflbgu_3cPjjQYDS6IWeJM2WQr_jsSNweIOxxt2"/>
+</div>
+<div>
+<span class="font-semibold text-primary block">Oversized Cotton Shirt</span>
+<span class="font-caption text-caption text-text-muted">Apparel</span>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-text-secondary font-mono text-[14px]">APP-SH-042</td>
+<td class="py-sm px-md font-semibold">$120.00</td>
+<td class="py-sm px-md">
+<span class="text-primary">18 in stock</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#E8F5E9] text-[#1B5E20] font-label text-[11px] border border-[#C8E6C9]">
+                                        Active
+                                    </span>
+</td>
+<td class="py-sm px-md text-right">
+<button class="text-text-secondary hover:text-primary p-xs rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-[#fafaf9] transition-colors group">
+<td class="py-sm px-md text-center">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="py-sm px-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-[8px] overflow-hidden bg-surface-container-lowest border border-border flex-shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-text-muted text-[24px]">image</span>
+</div>
+<div>
+<span class="font-semibold text-primary block">Minimalist Ceramic Vase</span>
+<span class="font-caption text-caption text-text-muted">Home</span>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-text-secondary font-mono text-[14px]">HOM-VS-009</td>
+<td class="py-sm px-md font-semibold">$85.00</td>
+<td class="py-sm px-md">
+<span class="text-text-muted">-</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#F5F5F5] text-[#616161] font-label text-[11px] border border-[#E0E0E0]">
+                                        Draft
+                                    </span>
+</td>
+<td class="py-sm px-md text-right">
+<button class="text-text-secondary hover:text-primary p-xs rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-[#fafaf9] transition-colors group">
+<td class="py-sm px-md text-center">
+<input class="rounded-[4px] border-border text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+</td>
+<td class="py-sm px-md">
+<div class="flex items-center gap-md">
+<div class="w-12 h-12 rounded-[8px] overflow-hidden bg-surface-container-lowest border border-border flex-shrink-0 opacity-60">
+<img alt="Product Image" class="w-full h-full object-cover" data-alt="A detailed close-up shot of a pair of sleek, modern black leather loafers. The image is taken in a brightly lit studio with a stark white background. The intense lighting creates sharp highlights on the polished leather surface, emphasizing its premium quality and minimal design. The aesthetic is sophisticated and austere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCTFllJb4XAShir7iEqiuAjqmRwz5RbZqWD1VA12RAFkeBBshT1yYNx8SbDwjfO3XKklIkwlGTEuUfnEy0Uc7vALiO6czfkOskwEjJdUPO_wshNAEvPE1LWQswjZQEBFXP9HNE2ITXxl60vhi0IZN9d0N2KrgoPrXevwpnEvYWya9VrWroDMmSxPyQhGbO78bY2mIgMXppmOl09QkhkL5ljoD2m16olw4-gvHKCjEHJP0GCBReWsIy"/>
+</div>
+<div>
+<span class="font-semibold text-text-secondary block">Classic Leather Loafers</span>
+<span class="font-caption text-caption text-text-muted">Footwear</span>
+</div>
+</div>
+</td>
+<td class="py-sm px-md text-text-secondary font-mono text-[14px]">FTW-LF-112</td>
+<td class="py-sm px-md font-semibold text-text-secondary">$220.00</td>
+<td class="py-sm px-md">
+<span class="text-error font-medium">0 in stock</span>
+</td>
+<td class="py-sm px-md">
+<span class="inline-flex items-center px-2 py-0.5 rounded-full bg-[#FFEBEE] text-[#C62828] font-label text-[11px] border border-[#FFCDD2]">
+                                        Out of Stock
+                                    </span>
+</td>
+<td class="py-sm px-md text-right">
+<button class="text-text-secondary hover:text-primary p-xs rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="mt-auto border-t border-divider p-sm flex items-center justify-between bg-surface-bright">
+<button class="border border-border rounded-full px-md py-xs font-label text-label text-primary hover:bg-surface-variant transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-xs" disabled="">
+<span class="material-symbols-outlined text-[16px]">chevron_left</span>
+                        Previous
+                    </button>
+<div class="flex items-center gap-xs font-label text-label">
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">1</button>
+<button class="w-8 h-8 rounded-full text-text-secondary hover:bg-surface-variant flex items-center justify-center transition-colors">2</button>
+<button class="w-8 h-8 rounded-full text-text-secondary hover:bg-surface-variant flex items-center justify-center transition-colors">3</button>
+<span class="text-text-muted px-xs">...</span>
+<button class="w-8 h-8 rounded-full text-text-secondary hover:bg-surface-variant flex items-center justify-center transition-colors">15</button>
+</div>
+<button class="border border-border rounded-full px-md py-xs font-label text-label text-primary hover:bg-surface-variant transition-colors flex items-center gap-xs">
+                        Next
+                        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</body></html>

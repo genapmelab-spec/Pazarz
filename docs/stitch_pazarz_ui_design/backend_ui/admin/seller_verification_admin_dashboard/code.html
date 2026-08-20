@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Admin Seller Verification Queue</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "error": "#D8362B",
+                    "tertiary-container": "#001847",
+                    "dark-background": "#0E0E0E",
+                    "background": "#FFFFFF",
+                    "dark-surface": "#171717",
+                    "surface-bright": "#f9f9f7",
+                    "surface": "#f9f9f7",
+                    "text-muted": "#9A9A9A",
+                    "tertiary-fixed": "#dae2ff",
+                    "outline-variant": "#c4c7c7",
+                    "primary-container": "#1c1b1b",
+                    "secondary": "#5e5e5e",
+                    "tertiary": "#000000",
+                    "on-surface-variant": "#444748",
+                    "surface-elevated": "#FFFFFF",
+                    "divider": "#EDEDEA",
+                    "surface-variant": "#e2e3e1",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-container": "#646464",
+                    "outline": "#747878",
+                    "inverse-surface": "#2f3130",
+                    "on-tertiary": "#ffffff",
+                    "border": "#E4E4E1",
+                    "secondary-fixed": "#e4e2e2",
+                    "surface-container-highest": "#e2e3e1",
+                    "on-background": "#1a1c1b",
+                    "on-primary-fixed": "#1c1b1b",
+                    "primary": "#000000",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#474747",
+                    "surface-tint": "#5f5e5e",
+                    "error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c8c6c6",
+                    "on-surface": "#1a1c1b",
+                    "surface-container-high": "#e8e8e6",
+                    "inverse-primary": "#c8c6c5",
+                    "info": "#2F6FED",
+                    "on-tertiary-fixed-variant": "#0040a0",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e4e2e2",
+                    "on-tertiary-container": "#427dfc",
+                    "surface-container-low": "#f4f4f2",
+                    "inverse-on-surface": "#f1f1ef",
+                    "on-primary-fixed-variant": "#474646",
+                    "surface-container": "#eeeeec",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "success": "#1E8E5A",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "warning": "#B98900",
+                    "on-error-container": "#93000a",
+                    "surface-dim": "#dadad8",
+                    "primary-fixed": "#e5e2e1",
+                    "text-primary": "#111111",
+                    "tertiary-fixed-dim": "#b1c5ff",
+                    "text-secondary": "#5E5E5E",
+                    "on-primary-container": "#858383",
+                    "dark-surface-elevated": "#1F1F1F",
+                    "on-tertiary-fixed": "#001847"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "section-dashboard": "32px",
+                    "md": "16px",
+                    "xs": "4px",
+                    "gutter-dashboard": "20px",
+                    "xl": "48px",
+                    "gutter-customer": "24px",
+                    "lg": "24px",
+                    "sm": "8px",
+                    "hero-v": "120px",
+                    "section-customer": "64px",
+                    "base": "4px"
+            },
+            "fontFamily": {
+                    "display-mobile": ["Inter"],
+                    "h2": ["Inter"],
+                    "label": ["Inter"],
+                    "body": ["Inter"],
+                    "h1": ["Inter"],
+                    "h1-mobile": ["Inter"],
+                    "display": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "h3": ["Inter"],
+                    "caption": ["Inter"]
+            },
+            "fontSize": {
+                    "display-mobile": ["40px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "h2": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label": ["13px", {"lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                    "body": ["16px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h1": ["40px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "h1-mobile": ["28px", {"lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "display": ["64px", {"lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                    "h3": ["24px", {"lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600"}],
+                    "caption": ["12px", {"lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill-1 {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Custom Scrollbar for side panel */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #E4E4E1;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body class="bg-background text-text-primary font-body text-body antialiased selection:bg-primary selection:text-on-primary">
+<!-- Top Navigation (Admin Variant) -->
+<header class="w-full sticky top-0 z-40 bg-background border-b border-divider h-20 flex items-center justify-between px-lg max-w-[1280px] mx-auto hidden md:flex">
+<div class="flex items-center gap-sm">
+<span class="font-display text-h3 tracking-tight text-primary">Pazarz</span>
+<span class="font-label text-label text-text-muted ml-2">Admin</span>
+</div>
+<div class="flex items-center gap-md">
+<div class="relative">
+<input class="pl-10 pr-4 py-2 rounded-[10px] border border-border bg-surface-bright focus:outline-none focus:ring-2 focus:ring-info focus:border-info font-body text-body w-64 transition-all" placeholder="Search applications..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted">search</span>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined text-text-secondary">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full bg-surface-container-high overflow-hidden cursor-pointer">
+<img class="w-full h-full object-cover" data-alt="A close up, professional headshot of a person looking directly at the camera. The lighting is studio quality, soft and even, highlighting their features against a plain, light grey background. The mood is confident and approachable, fitting for a corporate or admin profile picture. The overall aesthetic is clean, sharp, and high-resolution." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbKJaUlZNQ5m-6IBwYBivcXLc34CsOCWFhDbc9x8fjZtBdanY5cSVI4TERnY9nCWlzMCOL3IW5ga9DKYGNkUUathN9gXIEiLhiMd5gyjkzmMB4U-BQpXyg6FGuh6xTdSrwlZczvCdf01LmiO6lZEipvxl-fZRHyJTwkPZONDBDZKwnvs_O9BPvbrhV7h6YcWSR3l6egQkH9eM9oVv9eKpKwMV93nwYAMy51OCU4IsGpx3xZYBCvlZo"/>
+</div>
+</div>
+</header>
+<div class="flex max-w-[1280px] mx-auto w-full relative min-h-[calc(100vh-80px)]">
+<!-- Side Navigation (Shared Component) -->
+<nav class="hidden md:flex flex-col w-[260px] bg-surface fixed left-0 top-20 h-[calc(100vh-80px)] p-gutter-dashboard gap-y-sm z-30 border-r border-divider">
+<div class="mb-section-dashboard px-2">
+<p class="font-label text-label text-text-muted uppercase tracking-wider mb-sm">Dashboard</p>
+<div class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label text-label">Overview</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg bg-primary text-on-primary" href="#">
+<span class="material-symbols-outlined">verified_user</span>
+<span class="font-label text-label">Verification Queue</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<span class="font-label text-label">Sellers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">report</span>
+<span class="font-label text-label">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label text-label">Settings</span>
+</a>
+</div>
+</div>
+<div class="mt-auto pt-section-dashboard px-2 border-t border-divider">
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+<span class="font-label text-label">Support</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 rounded-lg text-text-secondary hover:bg-surface-container-highest transition-all duration-200" href="#">
+<span class="material-symbols-outlined">logout</span>
+<span class="font-label text-label">Sign Out</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-[260px] p-gutter-dashboard md:p-section-dashboard bg-background w-full">
+<!-- Page Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h1 class="font-h1-mobile md:font-h1 text-h1-mobile md:text-h1 text-text-primary mb-2">Verification Queue</h1>
+<p class="font-body text-body text-text-secondary">Review and manage pending seller applications.</p>
+</div>
+<!-- Status Tabs -->
+<div class="flex items-center p-1 bg-surface-container rounded-lg self-start">
+<button class="px-4 py-2 rounded-md bg-background text-primary font-label text-label shadow-sm">Pending (12)</button>
+<button class="px-4 py-2 rounded-md text-text-secondary font-label text-label hover:text-primary transition-colors">Verified</button>
+<button class="px-4 py-2 rounded-md text-text-secondary font-label text-label hover:text-primary transition-colors">Rejected</button>
+</div>
+</div>
+<!-- Data Table -->
+<div class="bg-surface-elevated rounded-xl border border-border overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface border-b border-divider">
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium">Store Name</th>
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium">Owner Name</th>
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium">Category</th>
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium">Application Date</th>
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium">Status</th>
+<th class="py-4 px-6 font-label text-label text-text-secondary font-medium text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-divider">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors duration-150 cursor-pointer" onclick="toggleSidePanel()">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border overflow-hidden">
+<span class="material-symbols-outlined text-text-muted">storefront</span>
+</div>
+<div>
+<p class="font-label text-label text-text-primary">Vanguard Studios</p>
+<p class="font-caption text-caption text-text-muted">ID: #VS-8921</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Elena Rostova</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Art &amp; Collectibles</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Oct 24, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label text-[11px] bg-warning/10 text-warning">Pending</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label text-label text-text-primary hover:text-info transition-colors">Review Application</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors duration-150">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A stylized logo for a store called Loom &amp; Thread. The logo is minimalist, featuring interwoven geometric lines in a stark black and white palette. It conveys a sense of modern craftsmanship and premium textiles. The background is a very light, almost white grey to provide subtle contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABZZzhS9HuHD83JSCFuXABJr4d-kpLxK2kOZoVydeXYTaOu9CUl0DeHxwKehSqEcR0Oz11nuipAeWoNkm5gZec-QP7lTcRuhC2Wegg5jh6CxQitrCHmRsLyQgt9ZZgJgOdvYk2whtm0E09VnLswatoAsM4Xuy-74NRClCT2oDiv4avb6880uAgAf_8S4VrOWhtBwLh1m19CWu0k42R8LA6frmsjUs-bcq_5I0SP5oTpds9lqkGBHwI"/>
+</div>
+<div>
+<p class="font-label text-label text-text-primary">Loom &amp; Thread</p>
+<p class="font-caption text-caption text-text-muted">ID: #LT-4432</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Marcus Chen</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Apparel</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Oct 23, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label text-[11px] bg-warning/10 text-warning">Pending</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label text-label text-text-primary hover:text-info transition-colors">Review Application</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors duration-150">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center border border-border overflow-hidden">
+<span class="material-symbols-outlined text-text-muted">chair</span>
+</div>
+<div>
+<p class="font-label text-label text-text-primary">Minimalist Home</p>
+<p class="font-caption text-caption text-text-muted">ID: #MH-1092</p>
+</div>
+</div>
+</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Sarah Jenkins</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Home Goods</td>
+<td class="py-4 px-6 font-body text-body text-text-secondary">Oct 21, 2023</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full font-label text-[11px] bg-warning/10 text-warning">Pending</span>
+</td>
+<td class="py-4 px-6 text-right">
+<button class="font-label text-label text-text-primary hover:text-info transition-colors">Review Application</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface border-t border-divider px-6 py-4 flex items-center justify-between">
+<p class="font-caption text-caption text-text-muted">Showing 1 to 3 of 12 entries</p>
+<div class="flex items-center gap-2">
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-muted hover:bg-surface-bright disabled:opacity-50" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded border border-border flex items-center justify-center text-text-secondary hover:bg-surface-bright">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Slide-over Panel for Reviewing Application -->
+<div class="fixed inset-0 bg-primary/40 backdrop-blur-sm z-50 hidden opacity-0 transition-opacity duration-300" id="reviewPanelOverlay" onclick="toggleSidePanel()"></div>
+<div class="fixed inset-y-0 right-0 w-full md:w-[600px] bg-background shadow-2xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col border-l border-border" id="reviewPanel">
+<!-- Panel Header -->
+<div class="px-6 py-5 border-b border-divider flex items-center justify-between bg-surface sticky top-0 z-10">
+<div>
+<h2 class="font-h3 text-h3 text-text-primary">Review Application</h2>
+<p class="font-caption text-caption text-text-muted mt-1">Application ID: #VS-8921</p>
+</div>
+<button class="w-10 h-10 rounded-full hover:bg-surface-container-highest flex items-center justify-center transition-colors" onclick="toggleSidePanel()">
+<span class="material-symbols-outlined text-text-secondary">close</span>
+</button>
+</div>
+<!-- Panel Content -->
+<div class="flex-1 overflow-y-auto custom-scrollbar p-6 bg-background space-y-8">
+<!-- Store Info Summary -->
+<div class="flex items-start gap-4">
+<div class="w-16 h-16 rounded-xl bg-surface-container flex items-center justify-center border border-border shrink-0">
+<span class="material-symbols-outlined text-[32px] text-text-muted">storefront</span>
+</div>
+<div>
+<h3 class="font-h2 text-h2 text-text-primary">Vanguard Studios</h3>
+<p class="font-body text-body text-text-secondary mt-1">Art &amp; Collectibles • Applied Oct 24, 2023</p>
+<a class="inline-flex items-center gap-1 font-label text-label text-info hover:underline mt-2" href="#">
+<span>vanguardstudios.pazarz.com</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</div>
+</div>
+<hr class="border-divider"/>
+<!-- Applicant Details -->
+<section>
+<h4 class="font-label text-label text-text-primary uppercase tracking-wider mb-4">Applicant Information</h4>
+<div class="grid grid-cols-2 gap-y-4 gap-x-6">
+<div>
+<p class="font-caption text-caption text-text-muted mb-1">Full Name</p>
+<p class="font-body text-body text-text-primary">Elena Rostova</p>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted mb-1">Email Address</p>
+<p class="font-body text-body text-text-primary">elena@vanguardstudios.com</p>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted mb-1">Phone Number</p>
+<p class="font-body text-body text-text-primary">+1 (555) 123-4567</p>
+</div>
+<div>
+<p class="font-caption text-caption text-text-muted mb-1">Location</p>
+<p class="font-body text-body text-text-primary">Brooklyn, NY</p>
+</div>
+</div>
+</section>
+<!-- Business Documents Preview -->
+<section>
+<h4 class="font-label text-label text-text-primary uppercase tracking-wider mb-4">Business Documents</h4>
+<div class="space-y-4">
+<!-- Document 1 -->
+<div class="border border-border rounded-xl p-4 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined">picture_as_pdf</span>
+</div>
+<div>
+<p class="font-label text-label text-text-primary group-hover:text-info transition-colors">Business_License_2023.pdf</p>
+<p class="font-caption text-caption text-text-muted">2.4 MB • Uploaded Oct 24</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted group-hover:text-info transition-colors">visibility</span>
+</div>
+<!-- Document 2 -->
+<div class="border border-border rounded-xl p-4 flex items-center justify-between hover:bg-surface transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-info/10 flex items-center justify-center text-info">
+<span class="material-symbols-outlined">image</span>
+</div>
+<div>
+<p class="font-label text-label text-text-primary group-hover:text-info transition-colors">Tax_ID_Certificate.jpg</p>
+<p class="font-caption text-caption text-text-muted">1.1 MB • Uploaded Oct 24</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-text-muted group-hover:text-info transition-colors">visibility</span>
+</div>
+</div>
+</section>
+<!-- Notes/Reviewer Comments -->
+<section>
+<h4 class="font-label text-label text-text-primary uppercase tracking-wider mb-4">Internal Notes</h4>
+<textarea class="w-full rounded-[10px] border border-border bg-surface-bright focus:outline-none focus:ring-2 focus:ring-info focus:border-info font-body text-body p-3 min-h-[100px] resize-none" placeholder="Add optional notes before approving or rejecting..."></textarea>
+</section>
+</div>
+<!-- Panel Actions Footer -->
+<div class="p-6 border-t border-divider bg-background flex gap-4 mt-auto sticky bottom-0 z-10">
+<button class="flex-1 px-6 py-3 rounded-full border border-border font-label text-label text-text-primary hover:bg-surface-container transition-colors">
+                Reject Application
+            </button>
+<button class="flex-1 px-6 py-3 rounded-full bg-primary text-on-primary font-label text-label hover:bg-primary/90 transition-colors active:scale-98">
+                Approve Seller
+            </button>
+</div>
+</div>
+<script>
+        function toggleSidePanel() {
+            const panel = document.getElementById('reviewPanel');
+            const overlay = document.getElementById('reviewPanelOverlay');
+            
+            if (panel.classList.contains('translate-x-full')) {
+                // Open panel
+                panel.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                // Small delay for transition to take effect
+                setTimeout(() => {
+                    overlay.classList.remove('opacity-0');
+                    overlay.classList.add('opacity-100');
+                }, 10);
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                // Close panel
+                panel.classList.add('translate-x-full');
+                overlay.classList.remove('opacity-100');
+                overlay.classList.add('opacity-0');
+                setTimeout(() => {
+                    overlay.classList.add('hidden');
+                }, 300); // Wait for transition to finish
+                document.body.style.overflow = '';
+            }
+        }
+    </script>
+</body></html>

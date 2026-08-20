@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Pazarz - Profile &amp; Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#e4e2e2",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "on-tertiary-container": "#427dfc",
+                        "text-primary": "#111111",
+                        "surface-container-high": "#e8e8e6",
+                        "text-muted": "#9A9A9A",
+                        "surface-bright": "#f9f9f7",
+                        "on-surface-variant": "#444748",
+                        "surface-container-lowest": "#ffffff",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "inverse-on-surface": "#f1f1ef",
+                        "surface-container": "#eeeeec",
+                        "on-tertiary-fixed": "#001847",
+                        "surface-container-low": "#f4f4f2",
+                        "divider": "#EDEDEA",
+                        "surface-elevated": "#FFFFFF",
+                        "on-secondary-container": "#646464",
+                        "on-primary": "#ffffff",
+                        "error": "#D8362B",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "surface-container-highest": "#e2e3e1",
+                        "outline": "#747878",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#c8c6c5",
+                        "success": "#1E8E5A",
+                        "dark-surface": "#171717",
+                        "tertiary-fixed": "#dae2ff",
+                        "surface": "#f9f9f7",
+                        "on-primary-fixed-variant": "#474646",
+                        "tertiary-container": "#001847",
+                        "border": "#E4E4E1",
+                        "secondary": "#5e5e5e",
+                        "primary-container": "#1c1b1b",
+                        "primary": "#000000",
+                        "on-primary-container": "#858383",
+                        "surface-dim": "#dadad8",
+                        "outline-variant": "#c4c7c7",
+                        "dark-background": "#0E0E0E",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "warning": "#B98900",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "secondary-fixed": "#e4e2e2",
+                        "inverse-surface": "#2f3130",
+                        "on-tertiary": "#ffffff",
+                        "info": "#2F6FED",
+                        "text-secondary": "#5E5E5E",
+                        "background": "#FFFFFF",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "on-background": "#1a1c1b",
+                        "error-container": "#ffdad6",
+                        "surface-variant": "#e2e3e1",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-tint": "#5f5e5e",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "tertiary": "#000000",
+                        "primary-fixed": "#e5e2e1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "xs": "4px",
+                        "base": "4px",
+                        "section-customer": "64px",
+                        "hero-v": "120px",
+                        "section-dashboard": "32px",
+                        "gutter-dashboard": "20px",
+                        "lg": "24px",
+                        "xl": "48px",
+                        "gutter-customer": "24px",
+                        "md": "16px",
+                        "sm": "8px"
+                    },
+                    "fontFamily": {
+                        "body": ["Inter"],
+                        "display": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "h2": ["Inter"],
+                        "caption": ["Inter"],
+                        "h3": ["Inter"],
+                        "h1": ["Inter"],
+                        "label": ["Inter"],
+                        "h1-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }],
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-text-primary font-body text-body antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="w-full sticky top-0 z-50 bg-background dark:bg-dark-background bg-background dark:bg-dark-background border-b border-divider md:border-none">
+<div class="max-w-[1280px] mx-auto px-lg flex items-center justify-between h-20">
+<!-- Search / Left -->
+<div class="flex-1 flex items-center">
+<button class="md:hidden mr-md text-primary dark:text-on-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<div class="hidden md:flex items-center text-primary dark:text-on-primary bg-surface-container-low px-md py-sm rounded-full">
+<span class="material-symbols-outlined text-text-muted mr-sm" data-icon="search" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="bg-transparent border-none focus:ring-0 p-0 text-body font-body placeholder:text-text-muted w-48 focus:outline-none" placeholder="Search..." type="text"/>
+</div>
+</div>
+<!-- Brand -->
+<div class="flex-1 flex justify-center">
+<a class="font-display text-h3 tracking-tight text-primary dark:text-on-primary" href="#">Pazarz</a>
+</div>
+<!-- Navigation Links (Desktop) & Trailing Actions -->
+<div class="flex-1 flex items-center justify-end gap-lg">
+<div class="hidden md:flex items-center gap-lg">
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Shop</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Categories</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">New Arrivals</a>
+<a class="text-secondary dark:text-text-muted hover:text-primary transition-colors duration-200" href="#">Archive</a>
+</div>
+<div class="flex items-center gap-md">
+<button class="text-primary dark:text-on-primary scale-95 duration-150 active:scale-98 hover:text-primary transition-colors duration-200 flex flex-col items-center group relative">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 0;">shopping_bag</span>
+<span class="sr-only">Cart</span>
+</button>
+<!-- Profile is active based on context -->
+<button class="text-primary font-bold border-b-2 border-primary pb-1 flex flex-col items-center">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="sr-only">Profile</span>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-[1280px] w-full mx-auto px-lg py-section-customer flex flex-col md:flex-row gap-xl">
+<!-- Settings Sidebar (Sub-nav for customer) -->
+<aside class="w-full md:w-[240px] flex-shrink-0">
+<div class="sticky top-section-dashboard">
+<h1 class="font-h2 text-h2 mb-xl">Settings</h1>
+<nav class="flex flex-col gap-sm">
+<a class="flex items-center gap-md py-md px-md rounded-lg bg-surface-container-high text-primary font-label text-label transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 0;">person</span>
+                        Account Info
+                    </a>
+<a class="flex items-center gap-md py-md px-md rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-primary font-label text-label transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 0;">location_on</span>
+                        Addresses
+                    </a>
+<a class="flex items-center gap-md py-md px-md rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-primary font-label text-label transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="security" style="font-variation-settings: 'FILL' 0;">security</span>
+                        Security
+                    </a>
+<a class="flex items-center gap-md py-md px-md rounded-lg text-text-secondary hover:bg-surface-container-low hover:text-primary font-label text-label transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications" style="font-variation-settings: 'FILL' 0;">notifications</span>
+                        Notifications
+                    </a>
+<div class="mt-xl pt-lg border-t border-divider">
+<a class="flex items-center gap-md py-md px-md rounded-lg text-error hover:bg-error-container font-label text-label transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="logout" style="font-variation-settings: 'FILL' 0;">logout</span>
+                            Sign Out
+                        </a>
+</div>
+</nav>
+</div>
+</aside>
+<!-- Main Settings Area -->
+<div class="flex-1 max-w-3xl">
+<!-- Section: Personal Info -->
+<section class="mb-section-customer">
+<div class="flex justify-between items-center mb-lg border-b border-divider pb-md">
+<h2 class="font-h3 text-h3">Personal Information</h2>
+<button class="font-label text-label text-text-secondary hover:text-primary transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="edit" style="font-variation-settings: 'FILL' 0;">edit</span>
+                        Edit
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<!-- Read-only states mimicking an elegant editorial form -->
+<div class="flex flex-col gap-xs">
+<span class="font-caption text-caption text-text-muted uppercase tracking-wider">First Name</span>
+<span class="font-body-lg text-body-lg text-primary">Eleanor</span>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-caption text-caption text-text-muted uppercase tracking-wider">Last Name</span>
+<span class="font-body-lg text-body-lg text-primary">Vance</span>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-caption text-caption text-text-muted uppercase tracking-wider">Email Address</span>
+<span class="font-body-lg text-body-lg text-primary">eleanor.vance@example.com</span>
+</div>
+<div class="flex flex-col gap-xs">
+<span class="font-caption text-caption text-text-muted uppercase tracking-wider">Phone Number</span>
+<span class="font-body-lg text-body-lg text-primary">+1 (555) 019-2834</span>
+</div>
+</div>
+</section>
+<!-- Section: Addresses (Bento-style layout) -->
+<section class="mb-section-customer">
+<div class="flex justify-between items-center mb-lg border-b border-divider pb-md">
+<h2 class="font-h3 text-h3">Saved Addresses</h2>
+<button class="font-label text-label text-primary bg-surface-container-high hover:bg-surface-container-highest px-md py-sm rounded-full transition-colors flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="add" style="font-variation-settings: 'FILL' 0;">add</span>
+                        Add New
+                    </button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-md">
+<!-- Default Address Card -->
+<div class="bg-surface border border-border p-lg rounded-xl relative group hover:scale-[1.02] hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-300">
+<div class="absolute top-md right-md flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-muted hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="text-text-muted hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+<span class="inline-block bg-primary text-on-primary font-caption text-caption px-sm py-xs rounded-full mb-md">Default Billing &amp; Shipping</span>
+<h3 class="font-label text-label text-primary mb-xs">Home</h3>
+<p class="font-body text-body text-text-secondary leading-relaxed">
+                            Eleanor Vance<br/>
+                            123 Hill House Lane, Apt 4B<br/>
+                            Arkham, MA 01970<br/>
+                            United States
+                        </p>
+</div>
+<!-- Secondary Address Card -->
+<div class="bg-surface border border-border p-lg rounded-xl relative group hover:scale-[1.02] hover:shadow-[0_4px_12px_rgba(0,0,0,0.05)] transition-all duration-300">
+<div class="absolute top-md right-md flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-text-muted hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="edit">edit</span></button>
+<button class="text-text-muted hover:text-error transition-colors"><span class="material-symbols-outlined text-[20px]" data-icon="delete">delete</span></button>
+</div>
+<div class="h-[26px] mb-md"></div> <!-- Spacer to match default badge height -->
+<h3 class="font-label text-label text-primary mb-xs">Office</h3>
+<p class="font-body text-body text-text-secondary leading-relaxed">
+                            Eleanor Vance<br/>
+                            456 Miskatonic Ave, Suite 200<br/>
+                            Arkham, MA 01970<br/>
+                            United States
+                        </p>
+</div>
+</div>
+</section>
+<!-- Section: Preferences (Minimal form example) -->
+<section>
+<div class="flex justify-between items-center mb-lg border-b border-divider pb-md">
+<h2 class="font-h3 text-h3">Preferences</h2>
+</div>
+<div class="flex flex-col gap-lg max-w-md">
+<div class="flex justify-between items-center">
+<div>
+<h4 class="font-label text-label text-primary">Editorial Newsletter</h4>
+<p class="font-caption text-caption text-text-secondary">Weekly curations and designer interviews.</p>
+</div>
+<!-- Custom Toggle Switch -->
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+<div class="flex justify-between items-center">
+<div>
+<h4 class="font-label text-label text-primary">Order Updates via SMS</h4>
+<p class="font-caption text-caption text-text-secondary">Real-time shipping notifications.</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-container-highest peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-border after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+</label>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-customer border-t border-divider dark:border-outline-variant bg-background dark:bg-dark-background">
+<div class="max-w-[1280px] mx-auto px-lg py-xl flex flex-col md:flex-row justify-between items-center gap-lg">
+<div class="font-display text-h2 text-primary dark:text-on-primary">
+                Pazarz
+            </div>
+<div class="flex flex-wrap justify-center gap-md md:gap-lg">
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Privacy Policy</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Terms of Service</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Shipping &amp; Returns</a>
+<a class="font-caption text-caption text-text-muted hover:text-primary transition-opacity duration-200" href="#">Contact Us</a>
+</div>
+<div class="font-caption text-caption text-text-secondary dark:text-text-muted">
+                © 2024 Pazarz Editorial Marketplace. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

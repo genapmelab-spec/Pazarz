@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Order Status - Pazarz</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-background": "#1a1c1b",
+                        "tertiary-container": "#001847",
+                        "secondary-fixed-dim": "#c8c6c6",
+                        "divider": "#EDEDEA",
+                        "secondary": "#5e5e5e",
+                        "primary-container": "#1c1b1b",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "outline": "#747878",
+                        "surface": "#f9f9f7",
+                        "surface-bright": "#f9f9f7",
+                        "secondary-container": "#e4e2e2",
+                        "surface-container-high": "#e8e8e6",
+                        "surface-dim": "#dadad8",
+                        "inverse-surface": "#2f3130",
+                        "surface-container-low": "#f4f4f2",
+                        "on-primary-fixed-variant": "#474646",
+                        "success": "#1E8E5A",
+                        "tertiary-fixed": "#dae2ff",
+                        "surface-container": "#eeeeec",
+                        "primary": "#000000",
+                        "on-error": "#ffffff",
+                        "on-primary-container": "#858383",
+                        "surface-elevated": "#FFFFFF",
+                        "on-tertiary-fixed": "#001847",
+                        "tertiary-fixed-dim": "#b1c5ff",
+                        "on-surface": "#1a1c1b",
+                        "on-secondary": "#ffffff",
+                        "background": "#FFFFFF",
+                        "on-tertiary-fixed-variant": "#0040a0",
+                        "error-container": "#ffdad6",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-error-container": "#93000a",
+                        "inverse-primary": "#c8c6c5",
+                        "dark-background": "#0E0E0E",
+                        "error": "#D8362B",
+                        "outline-variant": "#c4c7c7",
+                        "text-primary": "#111111",
+                        "warning": "#B98900",
+                        "primary-fixed": "#e5e2e1",
+                        "dark-surface": "#171717",
+                        "inverse-on-surface": "#f1f1ef",
+                        "secondary-fixed": "#e4e2e2",
+                        "text-secondary": "#5E5E5E",
+                        "on-surface-variant": "#444748",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474747",
+                        "surface-tint": "#5f5e5e",
+                        "text-muted": "#9A9A9A",
+                        "tertiary": "#000000",
+                        "info": "#2F6FED",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-secondary-container": "#646464",
+                        "on-tertiary-container": "#427dfc",
+                        "surface-container-highest": "#e2e3e1",
+                        "dark-surface-elevated": "#1F1F1F",
+                        "on-primary-fixed": "#1c1b1b",
+                        "surface-variant": "#e2e3e1",
+                        "border": "#E4E4E1"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "section-customer": "64px",
+                        "xs": "4px",
+                        "hero-v": "120px",
+                        "sm": "8px",
+                        "gutter-dashboard": "20px",
+                        "lg": "24px",
+                        "md": "16px",
+                        "base": "4px",
+                        "gutter-customer": "24px",
+                        "section-dashboard": "32px",
+                        "xl": "48px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Inter"],
+                        "h2": ["Inter"],
+                        "display": ["Inter"],
+                        "h1-mobile": ["Inter"],
+                        "caption": ["Inter"],
+                        "body": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "display-mobile": ["Inter"],
+                        "label": ["Inter"],
+                        "h3": ["Inter"]
+                    },
+                    "fontSize": {
+                        "h1": ["40px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "h2": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display": ["64px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "h1-mobile": ["28px", { "lineHeight": "1.15", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "caption": ["12px", { "lineHeight": "1.35", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body": ["16px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "display-mobile": ["40px", { "lineHeight": "1.05", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label": ["13px", { "lineHeight": "1.3", "letterSpacing": "0.02em", "fontWeight": "600" }],
+                        "h3": ["24px", { "lineHeight": "1.25", "letterSpacing": "0", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #FFFFFF; color: #111111; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-text-primary antialiased">
+<!-- TopNavBar component logic suppressed: Top-level navigational shell is not relevant for focused transactional screens like Order Tracking. -->
+<main class="max-w-[1280px] mx-auto px-gutter-customer py-section-customer min-h-screen">
+<!-- Header -->
+<header class="mb-xl text-center md:text-left border-b border-divider pb-lg">
+<a class="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors font-label text-label mb-lg group" href="#">
+<span class="material-symbols-outlined text-[18px] group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                Back to Orders
+            </a>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-md">
+<div>
+<h1 class="font-h1 text-h1-mobile md:text-h1 md:font-h1 mb-sm">Order #PZ-8924-VL</h1>
+<p class="font-body text-body text-text-secondary">Placed on October 24, 2024</p>
+</div>
+<div class="flex gap-sm">
+<button class="px-lg py-sm rounded-full border border-border font-label text-label hover:bg-surface transition-colors">Download Invoice</button>
+<button class="px-lg py-sm rounded-full bg-primary text-on-primary font-label text-label hover:bg-opacity-90 transition-colors">Contact Support</button>
+</div>
+</div>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-customer">
+<!-- Left Column: Tracking & Items -->
+<div class="lg:col-span-8 flex flex-col gap-section-customer">
+<!-- Tracking Stepper -->
+<section class="bg-surface p-xl rounded-[24px]">
+<div class="flex justify-between items-center mb-xl">
+<h2 class="font-h2 text-h2">Shipment Status</h2>
+<span class="inline-flex items-center gap-2 px-md py-sm rounded-full bg-[#E5F4EC] text-success font-label text-label">
+<span class="w-2 h-2 rounded-full bg-success animate-pulse"></span>
+                            In Transit
+                        </span>
+</div>
+<div class="relative">
+<!-- Progress Line -->
+<div class="absolute top-[20px] left-[32px] right-[32px] h-[2px] bg-divider hidden md:block z-0">
+<div class="h-full bg-primary w-[50%] transition-all duration-1000"></div>
+</div>
+<div class="flex flex-col md:flex-row justify-between relative z-10 gap-lg md:gap-0">
+<!-- Step 1: Confirmed -->
+<div class="flex md:flex-col items-center gap-md md:gap-sm md:w-1/4 text-center">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-surface z-10 shrink-0">
+<span class="material-symbols-outlined text-[20px]">check</span>
+</div>
+<div class="text-left md:text-center">
+<p class="font-label text-label">Order Confirmed</p>
+<p class="font-caption text-caption text-text-secondary mt-xs">Oct 24, 09:41 AM</p>
+</div>
+</div>
+<!-- Step 2: Processing -->
+<div class="flex md:flex-col items-center gap-md md:gap-sm md:w-1/4 text-center">
+<div class="w-10 h-10 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-surface z-10 shrink-0">
+<span class="material-symbols-outlined text-[20px]">inventory_2</span>
+</div>
+<div class="text-left md:text-center">
+<p class="font-label text-label">Processing</p>
+<p class="font-caption text-caption text-text-secondary mt-xs">Oct 25, 02:15 PM</p>
+</div>
+</div>
+<!-- Step 3: Shipped -->
+<div class="flex md:flex-col items-center gap-md md:gap-sm md:w-1/4 text-center">
+<div class="w-10 h-10 rounded-full bg-surface border-2 border-primary text-primary flex items-center justify-center z-10 shrink-0 shadow-[0_0_0_4px_var(--surface)]">
+<span class="material-symbols-outlined text-[20px]">local_shipping</span>
+</div>
+<div class="text-left md:text-center">
+<p class="font-label text-label">In Transit</p>
+<p class="font-caption text-caption text-text-secondary mt-xs">Expected: Oct 28</p>
+</div>
+</div>
+<!-- Step 4: Delivered -->
+<div class="flex md:flex-col items-center gap-md md:gap-sm md:w-1/4 text-center opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface border-2 border-divider text-text-muted flex items-center justify-center z-10 shrink-0">
+<span class="material-symbols-outlined text-[20px]">home</span>
+</div>
+<div class="text-left md:text-center">
+<p class="font-label text-label">Delivered</p>
+<p class="font-caption text-caption text-text-secondary mt-xs">Pending</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Order Items List -->
+<section>
+<h3 class="font-h3 text-h3 mb-lg border-b border-divider pb-sm">Items in this shipment</h3>
+<div class="flex flex-col gap-lg">
+<!-- Item 1 -->
+<div class="flex gap-lg group cursor-pointer">
+<div class="w-[120px] h-[160px] rounded-lg overflow-hidden shrink-0 bg-surface">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end editorial product shot of a minimalist black leather tote bag resting on a white marble plinth. Soft, diffused studio lighting highlights the texture of the leather. The overall aesthetic is monochrome, clean, and luxurious, matching a premium fashion marketplace vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ1YQGrtQ_IW-fZDqdWnjyBxxEdl3nZR2P_HCULQo_UuiA-QyFe3VHRqmNveqwEkhrTR0Um8N8cgRLHU2iw5qsAqk4RJdqWtvz7d2iCuPius7vwtGX58h_D3sut7b7LRzkVW68eiYBPS7tW5vp0AWe4wSwPdSOgSvVl97gKhTNupHzAC7jjXw07u991KqlYeZGEXeDtxfqGB3CV54TkG6kKsvHUENz0n_o0ujdJ1ssodqc0q_9S7va"/>
+</div>
+<div class="flex flex-col justify-between py-xs flex-grow">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg text-body-lg font-bold">Noir Structure Tote</h4>
+<p class="font-body-lg text-body-lg font-bold">$450.00</p>
+</div>
+<p class="font-body text-body text-text-secondary mt-xs">Color: Onyx Black</p>
+<p class="font-body text-body text-text-secondary">Size: OS</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label text-label text-text-secondary">Qty: 1</span>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="flex gap-lg group cursor-pointer border-t border-divider pt-lg">
+<div class="w-[120px] h-[160px] rounded-lg overflow-hidden shrink-0 bg-surface">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A high-end editorial product shot of a sleek, minimalist ceramic vase in matte white, styled on a dark gray concrete surface. Dramatic, directional lighting casts sharp shadows, emphasizing the vase's geometric form. The scene exudes a quiet, sophisticated, monochrome aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuABjnc21-rA4lGOECco0Vc9MXXlCQBHLhg4FW014SkFwpFtxIbKnoLbYHTODgXh10y8BZz0CVg9zkppi0uLzGsLEyd2CPO9A1UsC8gUiZnZnprGDu6VQ2ygKvHcCtYcRmtoDwCI1y0ODXWT55hJZTVoE6KuzqfABMKqiUV8UZshqhibt3gcaCeNwP_KwrQy_tcGrLP0cfjFQKn4vrwvBd4tE454bDHcQWqQZk17-DmUyM2PadLXh6eM"/>
+</div>
+<div class="flex flex-col justify-between py-xs flex-grow">
+<div>
+<div class="flex justify-between items-start">
+<h4 class="font-body-lg text-body-lg font-bold">Geometric Ceramic Vase</h4>
+<p class="font-body-lg text-body-lg font-bold">$125.00</p>
+</div>
+<p class="font-body text-body text-text-secondary mt-xs">Color: Matte Bone</p>
+<p class="font-body text-body text-text-secondary">Size: Large</p>
+</div>
+<div class="flex items-center gap-sm">
+<span class="font-label text-label text-text-secondary">Qty: 2</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary & Info -->
+<div class="lg:col-span-4 flex flex-col gap-lg">
+<!-- Order Summary -->
+<div class="bg-surface rounded-xl p-lg">
+<h3 class="font-h3 text-h3 mb-md">Order Summary</h3>
+<div class="flex flex-col gap-sm font-body text-body text-text-secondary border-b border-divider pb-md mb-md">
+<div class="flex justify-between">
+<span>Subtotal (3 items)</span>
+<span class="text-text-primary">$700.00</span>
+</div>
+<div class="flex justify-between">
+<span>Shipping</span>
+<span class="text-text-primary">$25.00</span>
+</div>
+<div class="flex justify-between">
+<span>Taxes</span>
+<span class="text-text-primary">$62.50</span>
+</div>
+</div>
+<div class="flex justify-between font-h3 text-h3 mb-lg">
+<span>Total</span>
+<span>$787.50</span>
+</div>
+<button class="w-full py-md rounded-full border border-primary font-label text-label hover:bg-primary hover:text-on-primary transition-colors">Buy Again</button>
+</div>
+<!-- Shipping Details -->
+<div class="border border-divider rounded-xl p-lg">
+<h3 class="font-label text-label text-text-secondary mb-sm uppercase tracking-widest">Shipping Address</h3>
+<p class="font-body text-body">
+                        Eleanor Vance<br/>
+                        1042 Hill House Lane<br/>
+                        Apt 4B<br/>
+                        New York, NY 10012<br/>
+                        United States
+                    </p>
+</div>
+<!-- Payment Details -->
+<div class="border border-divider rounded-xl p-lg">
+<h3 class="font-label text-label text-text-secondary mb-sm uppercase tracking-widest">Payment Method</h3>
+<div class="flex items-center gap-md font-body text-body">
+<span class="material-symbols-outlined text-text-secondary text-[24px]">credit_card</span>
+<span>Visa ending in **** 4242</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer component logic suppressed: Footer is typically not included on focused transactional or tracking screens to maintain user focus on the task/status. -->
+</body></html>
