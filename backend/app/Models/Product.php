@@ -44,7 +44,12 @@ class Product extends Model
     }
 
     public function images(): HasMany
-{
-    return $this->hasMany(ProductImage::class);
-}
+    {
+        return $this->hasMany(ProductImage::class);
+    }
+
+    public function variants(): HasMany
+    {
+        return $this->hasMany(ProductVariant::class);
+    }
 }

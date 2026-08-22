@@ -6,31 +6,30 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('label');
+            // Polymorphic owner: User or Store
+            $table->unsignedBigInteger('addressable_id');
+            $table->string('addressable_type');
+            $table->string('label')->nullable(); // e.g. "Rumah", "Kantor"
             $table->string('recipient_name');
-            $table->string('phone', 20);
-            $table->text('address');
-            $table->string('city');
+            $table->string('phone');
             $table->string('province');
-            $table->string('postal_code', 10);
+            $table->string('city');
+            $table->string('district');
+            $table->string('postal_code');
+            $table->text('full_address');
             $table->decimal('latitude', 10, 7)->nullable();
             $table->decimal('longitude', 10, 7)->nullable();
             $table->boolean('is_default')->default(false);
             $table->timestamps();
+
+            $table->index(['addressable_id', 'addressable_type'], 'addresses_addressable_index');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('addresses');

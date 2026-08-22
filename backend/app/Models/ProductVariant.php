@@ -2,27 +2,30 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class ProductImage extends Model
+class ProductVariant extends Model
 {
      use HasFactory;
 
     protected $fillable = [
         'product_id',
-        'image_url',
-        'alt_text',
-        'sort_order',
-        'is_primary',
+        'sku',
+        'name',
+        'price',
+        'compare_at_price',
+        'weight',
+        'is_active',
     ];
 
     protected function casts(): array
     {
         return [
-            'sort_order' => 'integer',
-            'is_primary' => 'boolean',
+            'price' => 'decimal:2',
+            'compare_at_price' => 'decimal:2',
+            'weight' => 'decimal:2',
+            'is_active' => 'boolean',
         ];
     }
 
