@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Truck, Shield, RefreshCw } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import api from '@/lib/api'
 import { ProductCard } from '@/components/shared/ProductCard'
 import { ProductGridSkeleton } from '@/components/ui/Skeleton'
-
+import { formatPrice } from '@/lib/utils'
 
 interface Category {
   id: number
@@ -19,10 +19,11 @@ interface Product {
   name: string
   slug: string
   base_price: number
+  primary_image?: { url: string } | null
   images?: Array<{ url: string; is_primary: boolean }>
   store?: { name: string; slug: string }
-  reviews_avg_rating?: number
-  reviews_count?: number
+  rating_avg?: number
+  rating_count?: number
 }
 
 export function HomePage() {
@@ -51,110 +52,188 @@ export function HomePage() {
     fetchData()
   }, [])
 
+  // Get hero image from first featured product or use a fallback
+  const heroImage = featuredProducts[0]?.primary_image?.url ||
+    featuredProducts[0]?.images?.find(i => i.is_primary)?.url ||
+    featuredProducts[0]?.images?.[0]?.url
+
   return (
     <div>
-      {/* Hero Section */}
-      <section className="relative bg-primary text-primary-inverse overflow-hidden">
-        <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-16 lg:py-24 relative z-10">
-          <div className="max-w-[640px]">
-            <h1 className="text-4xl md:text-[64px] font-bold leading-[1.05] tracking-tight mb-6">
-              TEMUKAN<br />
-              GAYAMU
-            </h1>
-            <p className="text-lg md:text-xl text-white/70 mb-8 max-w-[480px]">
-              Marketplace multi-vendor premium. Produk pilihan dari seller terpercaya.
-            </p>
-            <Link
-              to="/products"
-              className="inline-flex items-center gap-2 bg-white text-primary px-8 h-[52px] rounded-full text-base font-medium hover:bg-white/90 active:scale-[0.98] transition-all"
-            >
-              Belanja Sekarang
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/90 to-primary/70" />
-      </section>
+      {/* Hero Section — Full-bleed with photo background */}
+      <section className="relative min-h-[600px] lg:min-h-[720px] flex items-end overflow-hidden">
+        {/* Background image */}
+        {heroImage ? (
+          <img
+            src={heroImage}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        ) : (
+          <div className="absolute inset-0 bg-primary" />
+        )}
+        {/* Gradient scrim at bottom for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-      {/* Value Propositions */}
-      <section className="border-b border-divider">
-        <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-6 flex items-center justify-between overflow-x-auto gap-8">
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Truck className="w-5 h-5 text-text-secondary" />
-            <span className="text-sm text-text-secondary whitespace-nowrap">Pengiriman Cepat</span>
-          </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <Shield className="w-5 h-5 text-text-secondary" />
-            <span className="text-sm text-text-secondary whitespace-nowrap">Garansi Produk</span>
-          </div>
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <RefreshCw className="w-5 h-5 text-text-secondary" />
-            <span className="text-sm text-text-secondary whitespace-nowrap">Mudah Dikembalikan</span>
-          </div>
+        {/* Content */}
+        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 lg:px-16 pb-16 lg:pb-24">
+          <h1 className="text-[40px] md:text-[64px] font-bold leading-[1.05] tracking-[-0.02em] text-white mb-6 max-w-[640px]">
+            TEMUKAN
+            <br />
+            GAYAMU
+          </h1>
+          <p className="text-lg md:text-xl text-white/70 mb-8 max-w-[480px] leading-relaxed">
+            Marketplace multi-vendor premium. Produk pilihan dari seller terpercaya.
+          </p>
+          <Link
+            to="/products"
+            className="inline-flex items-center gap-2 bg-white text-primary px-8 h-[52px] rounded-full text-base font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
+          >
+            Belanja Sekarang
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 
-      {/* Categories Strip */}
+      {/* Category Strip — horizontal chips */}
       {categories.length > 0 && (
-        <section className="max-w-[1280px] mx-auto px-5 lg:px-16 py-10 lg:py-14">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold tracking-tight">Kategori</h2>
+        <section className="border-b border-divider">
+          <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-8 lg:py-10">
+            <div className="flex items-center justify-between mb-5">
+              <h2 className="text-lg font-semibold tracking-tight">Kategori</h2>
+              <Link
+                to="/categories"
+                className="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1"
+              >
+                Lihat Semua
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            <div className="flex gap-3 overflow-x-auto pb-2 scrollbar-hide">
+              {categories.slice(0, 8).map((category) => (
+                <Link
+                  key={category.id}
+                  to={`/categories/${category.slug}`}
+                  className="flex-shrink-0 inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full border border-border bg-white text-sm font-medium text-text-primary hover:bg-surface hover:border-text-muted transition-all"
+                >
+                  <span className="w-7 h-7 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                    {category.name[0]}
+                  </span>
+                  {category.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* Trending Section — overlay cards with text at bottom */}
+      {featuredProducts.length > 0 && (
+        <section className="max-w-[1280px] mx-auto px-5 lg:px-16 py-12 lg:py-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-[24px] md:text-[32px] font-semibold tracking-[-0.01em]">
+              Trending Sekarang
+            </h2>
             <Link
-              to="/categories"
-              className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+              to="/products?sort=best_selling"
+              className="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1"
             >
               Lihat Semua
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-          <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {categories.slice(0, 6).map((category) => (
-              <Link
-                key={category.id}
-                to={`/categories/${category.slug}`}
-                className="group flex flex-col items-center gap-3 p-4 rounded-[16px] bg-surface hover:bg-surface/80 transition-colors"
-              >
-                <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                  <span className="text-lg font-bold text-primary">{category.name[0]}</span>
-                </div>
-                <span className="text-sm font-medium text-text-primary text-center">{category.name}</span>
-              </Link>
-            ))}
-          </div>
+          {isLoading ? (
+            <ProductGridSkeleton count={4} />
+          ) : (
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+              {featuredProducts.slice(0, 4).map((product) => {
+                const img = product.primary_image?.url ||
+                  product.images?.find(i => i.is_primary)?.url ||
+                  product.images?.[0]?.url
+                return (
+                  <Link
+                    key={product.id}
+                    to={`/products/${product.slug}`}
+                    className="group relative aspect-[3/4] rounded-[16px] overflow-hidden bg-surface"
+                  >
+                    {img ? (
+                      <img
+                        src={img}
+                        alt={product.name}
+                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center text-text-muted">
+                        <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                      </div>
+                    )}
+                    {/* Gradient scrim at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                    {/* Text overlay at bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 lg:p-5">
+                      <h4 className="text-white text-sm lg:text-base font-semibold line-clamp-2 mb-1">
+                        {product.name}
+                      </h4>
+                      <p className="text-white/80 text-sm font-medium">
+                        {formatPrice(product.base_price)}
+                      </p>
+                    </div>
+                    {/* Arrow badge at top-right */}
+                    <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowUpRight className="w-4 h-4 text-primary" />
+                    </div>
+                  </Link>
+                )
+              })}
+            </div>
+          )}
         </section>
       )}
 
-      {/* Featured Products */}
-      <section className="max-w-[1280px] mx-auto px-5 lg:px-16 py-10 lg:py-14">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-semibold tracking-tight">Produk Unggulan</h2>
-          <Link
-            to="/products?sort=best_selling"
-            className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
-          >
-            Lihat Semua
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
-        {isLoading ? (
-          <ProductGridSkeleton count={8} />
-        ) : (
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+      {/* Value Propositions — editorial text section */}
+      <section className="bg-surface">
+        <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-16 lg:py-20">
+          <div className="max-w-[800px]">
+            <p className="text-xs font-semibold uppercase tracking-[0.1em] text-text-muted mb-4">
+              Kenapa Pazarz
+            </p>
+            <h2 className="text-[24px] md:text-[32px] font-semibold tracking-[-0.01em] leading-[1.2] mb-5">
+              Belanja dengan percaya diri. Setiap produk terkurasi, setiap seller terverifikasi.
+            </h2>
+            <p className="text-base text-text-secondary leading-relaxed max-w-[560px]">
+              Pazarz menghubungkan kamu dengan seller premium pilihan. Kualitas terjamin,
+              pengiriman cepat, dan pengalaman belanja yang tenang.
+            </p>
           </div>
-        )}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+            <div>
+              <p className="text-sm font-semibold text-text-primary mb-1">Kurasi Produk</p>
+              <p className="text-sm text-text-secondary">Setiap produk melewati proses kurasi ketat sebelum ditampilkan.</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-text-primary mb-1">Seller Terpercaya</p>
+              <p className="text-sm text-text-secondary">Seller diverifikasi oleh tim kami sebelum dapat berjualan.</p>
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-text-primary mb-1">Pengiriman Aman</p>
+              <p className="text-sm text-text-secondary">Packing profesional dan asuransi pengiriman untuk setiap pesanan.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* New Arrivals */}
-      <section className="bg-surface">
-        <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-10 lg:py-14">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-semibold tracking-tight">Produk Terbaru</h2>
+      {/* Featured Products — product card grid */}
+      {featuredProducts.length > 0 && (
+        <section className="max-w-[1280px] mx-auto px-5 lg:px-16 py-12 lg:py-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-[24px] md:text-[32px] font-semibold tracking-[-0.01em]">
+              Produk Pilihan
+            </h2>
             <Link
-              to="/products?sort=newest"
-              className="text-sm text-text-secondary hover:text-accent transition-colors flex items-center gap-1"
+              to="/products"
+              className="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1"
             >
               Lihat Semua
               <ArrowRight className="w-4 h-4" />
@@ -163,12 +242,60 @@ export function HomePage() {
           {isLoading ? (
             <ProductGridSkeleton count={8} />
           ) : (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6">
-              {newProducts.map((product) => (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
+              {featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
           )}
+        </section>
+      )}
+
+      {/* New Arrivals */}
+      {newProducts.length > 0 && (
+        <section className="bg-surface">
+          <div className="max-w-[1280px] mx-auto px-5 lg:px-16 py-12 lg:py-16">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-[24px] md:text-[32px] font-semibold tracking-[-0.01em]">
+                Baru Saja Tiba
+              </h2>
+              <Link
+                to="/products?sort=newest"
+                className="text-sm text-text-secondary hover:text-primary transition-colors flex items-center gap-1"
+              >
+                Lihat Semua
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+            {isLoading ? (
+              <ProductGridSkeleton count={8} />
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
+                {newProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* CTA Banner */}
+      <section className="max-w-[1280px] mx-auto px-5 lg:px-16 py-16 lg:py-20">
+        <div className="bg-primary rounded-[24px] px-8 lg:px-16 py-12 lg:py-16 text-center">
+          <h2 className="text-[28px] md:text-[40px] font-bold text-white tracking-[-0.01em] leading-[1.15] mb-4">
+            Punya Produk Premium?
+          </h2>
+          <p className="text-white/60 text-base md:text-lg mb-8 max-w-[480px] mx-auto">
+            Bergabung sebagai seller di Pazarz dan jangkau ribuan pembeli yang menghargai kualitas.
+          </p>
+          <Link
+            to="/register"
+            className="inline-flex items-center gap-2 bg-white text-primary px-8 h-[52px] rounded-full text-base font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
+          >
+            Mulai Berjualan
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
     </div>

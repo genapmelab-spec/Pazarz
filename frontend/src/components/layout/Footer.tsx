@@ -7,16 +7,18 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
-            <span className="text-xl font-bold tracking-tight">PAZARZ</span>
-            <p className="mt-3 text-sm text-white/60 max-w-[240px]">
+            <span className="text-xl font-bold tracking-[-0.02em]">PAZARZ</span>
+            <p className="mt-3 text-sm text-white/50 max-w-[240px] leading-relaxed">
               Marketplace multi-vendor premium. Temukan produk terbaik dari seller terpercaya.
             </p>
           </div>
 
           {/* Belanja */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">Belanja</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.06em] mb-4 text-white/40">
+              Belanja
+            </h4>
+            <ul className="space-y-3">
               <li>
                 <Link to="/products" className="text-sm text-white/60 hover:text-white transition-colors">
                   Semua Produk
@@ -32,8 +34,10 @@ export function Footer() {
 
           {/* Akun */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">Akun</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.06em] mb-4 text-white/40">
+              Akun
+            </h4>
+            <ul className="space-y-3">
               <li>
                 <Link to="/account/orders" className="text-sm text-white/60 hover:text-white transition-colors">
                   Pesanan Saya
@@ -54,8 +58,10 @@ export function Footer() {
 
           {/* Bantuan */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wider mb-4 text-white/80">Bantuan</h4>
-            <ul className="space-y-2.5">
+            <h4 className="text-[13px] font-semibold uppercase tracking-[0.06em] mb-4 text-white/40">
+              Bantuan
+            </h4>
+            <ul className="space-y-3">
               <li>
                 <span className="text-sm text-white/60">Hubungi Kami</span>
               </li>
@@ -69,11 +75,12 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Bottom bar */}
         <div className="border-t border-white/10 mt-10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/30">
             &copy; {new Date().getFullYear()} Pazarz. All rights reserved.
           </p>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/30">
             Marketplace Multi-Vendor Premium
           </p>
         </div>

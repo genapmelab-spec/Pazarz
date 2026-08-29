@@ -34,13 +34,13 @@ export function Header() {
     <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-divider">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-16">
         <div className="flex items-center justify-between h-[72px]">
-          {/* Logo */}
+          {/* Logo — text wordmark */}
           <Link to="/" className="flex-shrink-0">
-            <span className="text-2xl font-bold tracking-tight text-primary">PAZARZ</span>
+            <span className="text-[22px] font-bold tracking-[-0.02em] text-primary">PAZARZ</span>
           </Link>
 
-          {/* Search - Desktop */}
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[480px] mx-8">
+          {/* Search — pill style */}
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[400px] mx-10">
             <div className="relative w-full">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
               <input
@@ -48,17 +48,17 @@ export function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Cari produk..."
-                className="w-full h-10 pl-11 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-accent focus:bg-white transition-colors"
+                className="w-full h-10 pl-11 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
               />
             </div>
           </form>
 
-          {/* Navigation - Desktop */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Navigation — minimal, label style */}
+          <nav className="hidden md:flex items-center gap-8">
             <Link
               to="/products"
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
+                'text-[13px] font-semibold uppercase tracking-[0.02em] transition-colors hover:text-primary',
                 isActive('/products') ? 'text-primary' : 'text-text-secondary'
               )}
             >
@@ -67,7 +67,7 @@ export function Header() {
             <Link
               to="/categories"
               className={cn(
-                'text-sm font-medium transition-colors hover:text-primary',
+                'text-[13px] font-semibold uppercase tracking-[0.02em] transition-colors hover:text-primary',
                 isActive('/categories') ? 'text-primary' : 'text-text-secondary'
               )}
             >
@@ -75,9 +75,9 @@ export function Header() {
             </Link>
           </nav>
 
-          {/* Right Actions */}
-          <div className="flex items-center gap-2">
-            {/* Cart */}
+          {/* Right Actions — icon buttons */}
+          <div className="flex items-center gap-1">
+            {/* Cart — icon button */}
             <Link
               to="/cart"
               className="relative p-2.5 rounded-full hover:bg-surface transition-colors"
@@ -91,7 +91,7 @@ export function Header() {
               )}
             </Link>
 
-            {/* Profile / Auth */}
+            {/* Profile / Auth — icon button */}
             {isAuthenticated ? (
               <div className="relative">
                 <button
@@ -106,7 +106,7 @@ export function Header() {
                   <>
                     <div className="fixed inset-0 z-40" onClick={() => setProfileMenuOpen(false)} />
                     <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-[16px] shadow-elevation-3 border border-divider py-2 z-50">
-                      <div className="px-4 py-2 border-b border-divider">
+                      <div className="px-4 py-2.5 border-b border-divider">
                         <p className="text-sm font-medium text-text-primary truncate">{user?.name}</p>
                         <p className="text-xs text-text-muted truncate">{user?.email}</p>
                       </div>
@@ -154,7 +154,7 @@ export function Header() {
             ) : (
               <Link
                 to="/login"
-                className="text-sm font-medium text-text-primary hover:text-accent transition-colors px-3 py-2"
+                className="text-sm font-medium text-text-primary hover:text-primary transition-colors px-3 py-2"
               >
                 Masuk
               </Link>
@@ -184,7 +184,7 @@ export function Header() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari produk..."
-              className="w-full h-10 pl-10 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-accent focus:bg-white transition-colors"
+              className="w-full h-10 pl-10 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
             />
           </div>
         </form>
@@ -193,34 +193,35 @@ export function Header() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden border-t border-divider bg-white">
-          <nav className="max-w-[1280px] mx-auto px-5 py-4 flex flex-col gap-2">
+          <nav className="max-w-[1280px] mx-auto px-5 py-4 flex flex-col gap-1">
             <Link
               to="/products"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-sm font-medium text-text-primary hover:text-accent"
+              className="py-2.5 text-sm font-medium text-text-primary hover:text-primary"
             >
               Produk
             </Link>
             <Link
               to="/categories"
               onClick={() => setMobileMenuOpen(false)}
-              className="py-2 text-sm font-medium text-text-primary hover:text-accent"
+              className="py-2.5 text-sm font-medium text-text-primary hover:text-primary"
             >
               Kategori
             </Link>
             {!isAuthenticated && (
               <>
+                <div className="border-t border-divider my-2" />
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-sm font-medium text-text-primary hover:text-accent"
+                  className="py-2.5 text-sm font-medium text-text-primary hover:text-primary"
                 >
                   Masuk
                 </Link>
                 <Link
                   to="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="py-2 text-sm font-medium text-text-primary hover:text-accent"
+                  className="py-2.5 text-sm font-medium text-text-primary hover:text-primary"
                 >
                   Daftar
                 </Link>
