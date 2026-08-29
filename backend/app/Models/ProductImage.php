@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ProductImage extends Model
 {
-     use HasFactory;
+    use HasFactory;
 
     protected $fillable = [
         'product_id',
-        'image_url',
-        'alt_text',
+        'url',
         'sort_order',
         'is_primary',
     ];

@@ -4,21 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Address extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'addressable_id',
+        'addressable_type',
         'label',
         'recipient_name',
         'phone',
-        'address',
-        'city',
         'province',
+        'city',
+        'district',
         'postal_code',
+        'full_address',
         'latitude',
         'longitude',
         'is_default',
@@ -33,8 +35,13 @@ class Address extends Model
         ];
     }
 
-    public function user(): BelongsTo
+    public function addressable(): MorphTo
     {
-        return $this->belongsTo(User::class);
+        return $this->morphTo();
+    }
+
+    public function getFormattedAddressAttribute(): string
+    {
+        return "{$this->full_address}, {$this->district}, {$this->city}, {$this->province} {$this->postal_code}";
     }
 }

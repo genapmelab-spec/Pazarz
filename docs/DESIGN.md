@@ -1,23 +1,24 @@
 # DESIGN.md — Pazarz Design System Specification
-**Untuk penggunaan sebagai reference Stitch. Ditulis dalam bentuk design token & spesifikasi konkret, bukan deskripsi abstrak.**
+
+Dokumen ini menjelaskan **design rules** (design system, brand direction, typography, color, spacing, component principles). Untuk **actual visual target** (layout, hierarchy, component placement per halaman), lihat folder `design/` (screenshot) dan `ROUTES.md` (spesifikasi per halaman). Jika `DESIGN.md` berbeda dengan gambar desain di `design/`, gambar desain adalah visual target final — lihat `DECISIONS.md` §Conflict Rule.
 
 ---
 
-## 0. Reference Analysis (dari gambar yang diberikan — "DripDrop")
+## 0. Reference Analysis — Arah "Editorial Monochrome Commerce"
 
-Analisis visual language dari reference untuk memperkaya arah desain Pazarz:
+Analisis visual language yang menjadi dasar arah desain Pazarz:
 
 1. **Design language:** Editorial, minimal, high-contrast monochrome + foto sebagai satu-satunya sumber warna. Terasa premium bukan karena warna ramai, tapi karena tipografi besar & whitespace lega.
-2. **Typography:** Sans-serif grotesk tegas (mirip Helvetica Now / Neue Haas / Inter Tight), headline besar all-caps dengan tracking rapat, line-height ketat pada display text.
+2. **Typography:** Sans-serif grotesk tegas (Inter), headline besar all-caps dengan tracking rapat, line-height ketat pada display text.
 3. **Color direction:** Palet nyaris monokrom — hitam pekat, putih bersih, abu netral untuk secondary text — warna hanya muncul dari foto produk/model.
-4. **Spacing:** Sangat lega di section besar (hero), namun rapat & efisien pada card grid (trend cards) — kontras spacing dipakai untuk membedakan hierarki "hero" vs "utility content".
-5. **Layout:** Grid asimetris — hero besar di kiri, panel konten sekunder (trending, kategori) di kanan dengan card vertikal. Nomor/elemen grafis besar (angka "8") dipakai sebagai elemen dekoratif skala besar.
-6. **Component pattern:** Card dengan **rounded corners besar** (radius terlihat ~16–24px), overlay teks di pojok bawah gambar dengan sedikit gradient/scrim, badge lingkaran kecil (ikon panah/play) di pojok card sebagai affordance interaktif.
+4. **Spacing:** Sangat lega di section besar (hero), namun rapat & efisien pada card grid — kontras spacing dipakai untuk membedakan hierarki "hero" vs "utility content".
+5. **Layout:** Grid asimetris pada storefront — hero besar, panel konten sekunder dengan card vertikal.
+6. **Component pattern:** Card dengan **rounded corners besar** (radius ~16–24px), overlay teks di pojok bawah gambar dengan sedikit gradient/scrim, badge lingkaran kecil sebagai affordance interaktif.
 7. **Navigation pattern:** Nav minimal — logo teks kiri, 2–3 link teks kecil kanan, satu icon-button bulat (profil/menu).
-8. **Dashboard pattern:** Tidak tersedia di reference (reference adalah storefront), sehingga pola dashboard (Seller/Admin) diturunkan dari prinsip yang sama (clean, monokrom, whitespace lega) namun diadaptasi ke kebutuhan data-density lebih tinggi — dijelaskan di §11–12.
-9. **Responsive behavior:** Struktur 2-kolom pada desktop kemungkinan collapse menjadi stack vertikal di mobile — pola ini diadopsi sebagai default Pazarz.
+8. **Dashboard pattern:** Pola dashboard (Seller/Admin) diturunkan dari prinsip yang sama (clean, monokrom, whitespace lega) namun diadaptasi ke kebutuhan data-density lebih tinggi — dijelaskan di §7–8.
+9. **Responsive behavior:** Struktur 2-kolom pada desktop collapse menjadi stack vertikal di mobile — pola default Pazarz.
 
-**Keputusan:** Pazarz mengadopsi arah **"Editorial Monochrome Commerce"** — bukan tiruan langsung, namun prinsip yang sama diterapkan lintas 3 permukaan (Customer/Seller/Admin), dengan aksen warna brand yang lebih hidup dipakai secara sangat selektif (CTA utama, status indicator) agar tetap fungsional untuk marketplace (bukan portfolio fashion semata).
+**Keputusan:** Pazarz mengadopsi arah **"Editorial Monochrome Commerce"** — prinsip yang sama diterapkan lintas 3 permukaan (Customer/Seller/Admin), dengan aksen warna brand yang lebih hidup dipakai secara sangat selektif (CTA utama, status indicator) agar tetap fungsional untuk marketplace (bukan portfolio fashion semata). Lihat `DECISIONS.md`.
 
 ---
 
@@ -33,13 +34,13 @@ Analisis visual language dari reference untuk memperkaya arah desain Pazarz:
 3. **Restraint in color** — warna aksen dipakai sesedikit mungkin agar bermakna saat dipakai (CTA, status).
 4. **Consistency over novelty** — komponen yang sama berperilaku identik di ketiga surface.
 
-**UX principles:** Progressive disclosure (jangan tampilkan semua sekaligus), predictable navigation, feedback instan untuk setiap aksi (loading/success/error selalu ada state-nya — lihat §26 UI-SPEC).
+**UX principles:** Progressive disclosure (jangan tampilkan semua sekaligus), predictable navigation, feedback instan untuk setiap aksi (loading/success/error selalu ada state-nya — lihat §12).
 
 **Emotional direction:** Tenang, percaya diri, "sudah beres" — bukan urgent/FOMO-driven seperti marketplace diskon generik.
 
 **Visual hierarchy:** Display/H1 untuk momen "hero" per halaman → satu per halaman. Card & grid untuk discovery. Table/list untuk data-dense area (dashboard).
 
-**Hindari:** gradient neon, drop-shadow tebal ala neumorphism, warna-warni ceria generic SaaS, badge diskon besar-besar bergaya "flash sale", font playful/rounded, ikon 3D/gaming.
+**Hindari:** gradient neon, drop-shadow tebal ala neumorphism, warna-warni ceria generic SaaS, badge diskon besar-besar bergaya "flash sale", font playful/rounded, ikon 3D/gaming — sesuai visual direction di `README.md`/`PRD.md` (Pazarz tidak ingin terlihat seperti flash-sale/discount/crypto/gaming marketplace).
 
 ---
 
@@ -77,13 +78,13 @@ Analisis visual language dari reference untuk memperkaya arah desain Pazarz:
 | `color-text-secondary` (dark) | `#B0B0B0` |
 | `color-border` (dark) | `#2A2A2A` |
 
-> Dark mode dark-elevation memakai peningkatan brightness `surface`, bukan shadow (shadow tidak terlihat jelas di background gelap).
+> Dark mode memakai peningkatan brightness `surface` untuk elevasi, bukan shadow (shadow tidak terlihat jelas di background gelap). Digunakan terutama pada Seller/Admin untuk mengurangi kelelahan mata saat kerja operasional jangka panjang.
 
 ---
 
 ## 3. Typography
 
-**Font family:** `Inter` (fallback: `-apple-system, "Helvetica Neue", Arial, sans-serif`) — grotesk modern yang dekat dengan karakter reference (netral, tegas, sangat legible di semua ukuran).
+**Font family:** `Inter` (fallback: `-apple-system, "Helvetica Neue", Arial, sans-serif`) — grotesk modern, netral, tegas, sangat legible di semua ukuran.
 
 | Style | Size (desktop) | Size (mobile) | Weight | Line-height | Letter-spacing | Usage |
 |---|---|---|---|---|---|---|
@@ -132,7 +133,7 @@ Skala 4px-based (`--space-*`):
 | Seller Dashboard | Fluid (100%, sidebar fixed) | 12 | 20px | 32px | 16px |
 | Admin Dashboard | Fluid (100%, sidebar fixed) | 12 | 20px | 32px | 16px |
 
-**Customer Layout:** Hero section full-bleed dimungkinkan (gambar edge-to-edge seperti reference), konten di bawahnya mengikuti container max-width. Grid produk: 4 kolom desktop / 3 tablet / 2 mobile.
+**Customer Layout:** Hero section full-bleed dimungkinkan (gambar edge-to-edge), konten di bawahnya mengikuti container max-width. Grid produk: 4 kolom desktop / 3 tablet / 2 mobile.
 
 **Seller Dashboard Layout:** Sidebar tetap 260px (collapsible ke 72px icon-only), topbar 64px height, area konten scroll independen.
 
@@ -142,14 +143,14 @@ Skala 4px-based (`--space-*`):
 
 ## 6. Component System
 
-Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spesifikasi visual detail per halaman ada di `UI-SPEC.md`.)
+Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. Spesifikasi per halaman (komponen mana dipakai di mana) ada di `ROUTES.md`.
 
 ### 6.1 Foundation
 
 **Button**
-- Variants: `primary` (fill hitam `color-primary`, teks putih, radius 999px/pill — mengikuti reference), `secondary` (outline 1px `color-border`, teks `color-text-primary`), `ghost` (tanpa border, teks saja), `destructive` (fill `color-error`).
+- Variants: `primary` (fill hitam `color-primary`, teks putih, radius 999px/pill), `secondary` (outline 1px `color-border`, teks `color-text-primary`), `ghost` (tanpa border, teks saja), `destructive` (fill `color-error`).
 - Sizes: `sm` (36px height), `md` (44px height), `lg` (52px height).
-- States: default, hover (darken 8%), active (darken 12%), focus (ring 2px `color-accent` offset 2px), disabled (opacity 40%, no pointer), loading (spinner inline, label tetap terlihat/opacity 70%).
+- States: default, hover (darken 8%), active (darken 12% + `scale(0.98)`), focus (ring 2px `color-accent` offset 2px), disabled (opacity 40%, no pointer), loading (spinner inline, label tetap terlihat/opacity 70%).
 
 **Input / Select / Checkbox / Radio / Toggle**
 - Height default 44px (md), border 1px `color-border`, radius 10px.
@@ -166,11 +167,11 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 - Sizes: 24 / 32 / 40 / 64px. Radius full (circle) untuk user, radius 12px untuk logo toko (square-ish, membedakan identitas personal vs brand).
 
 **Icon**
-- Grid dasar 24x24px (stroke icon, 1.5–2px stroke width, mengikuti gaya line-icon minimal — bukan filled/3D).
+- Grid dasar 24x24px (stroke icon, 1.5–2px stroke width, gaya line-icon minimal — bukan filled/3D).
 
 ### 6.2 Navigation
 
-**Header (Customer)** — height 72px desktop / 60px mobile. Logo kiri (teks wordmark, mengikuti reference "DripDrop"-style logotype), nav link tengah/kanan (Label style, 3–5 item), icon-button bulat kanan (cart, profile).
+**Header (Customer)** — height 72px desktop / 60px mobile. Logo kiri (teks wordmark), nav link tengah/kanan (Label style, 3–5 item), icon-button bulat kanan (cart, profile).
 
 **Sidebar (Seller/Admin)** — width 260px, item nav height 44px, radius 8px on hover/active (background `color-surface`), ikon 20px + label. Collapsible ke icon-only 72px.
 
@@ -182,7 +183,7 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 
 ### 6.3 Commerce
 
-**Product Card** — radius 16px (mengikuti reference: rounded besar), image ratio 3:4 atau 1:1, padding konten 12px, judul H4 truncate 2 baris, harga Body bold, rating kecil di bawah harga. Hover: scale image subtle 1.02 + shadow `elevation-1`.
+**Product Card** — radius 16px, image ratio 3:4 atau 1:1, padding konten 12px, judul H4 truncate 2 baris, harga Body bold, rating kecil di bawah harga. Hover: scale image subtle 1.02 + shadow `elevation-1`.
 
 **Product Gallery** — thumbnail vertikal (desktop) / horizontal scroll (mobile), main image radius 16px.
 
@@ -228,19 +229,19 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 
 **Activity Feed** — list item dengan timestamp Caption kiri/kanan, ikon event kecil, divider tipis antar item.
 
-**Accessibility catatan lintas komponen:** seluruh komponen interaktif memiliki visible focus state (§6.1), target sentuh minimum 44x44px pada mobile, kontras teks minimum sesuai §25.
+**Accessibility catatan lintas komponen:** seluruh komponen interaktif memiliki visible focus state (§6.1), target sentuh minimum 44x44px pada mobile, kontras teks minimum sesuai §11.
 
 ---
 
 ## 7. Customer UI Design Direction
 
-- **Landing:** Hero full-bleed (foto lifestyle besar, mirip reference), headline Display besar, CTA pill primary. Diikuti strip logo brand/kategori unggulan (jika relevan untuk marketplace: bisa diganti "kategori unggulan" alih-alih logo brand eksternal). Section "Today's trend"-style: card grid dengan overlay teks bawah, badge panah bulat di pojok (afforadance "lihat lebih").
+- **Landing:** Hero full-bleed (foto lifestyle besar), headline Display besar, CTA pill primary. Diikuti strip kategori unggulan, section "Today's trend"-style: card grid dengan overlay teks bawah, badge panah bulat di pojok.
 - **Product Discovery/Search/Category:** Grid produk 4 kolom, filter sidebar kiri (desktop) / drawer bottom (mobile), sort dropdown kanan atas grid.
 - **Product Detail:** Gallery kiri, info & CTA kanan (sticky saat scroll di desktop), varian sebagai chip/swatch, tab deskripsi/spesifikasi/review di bawah.
 - **Seller Detail:** Banner toko + info ringkas di atas, grid produk toko di bawah, tab "Produk / Tentang / Review".
 - **Cart:** List item + summary card kanan (desktop) / summary sticky bottom (mobile).
 - **Checkout:** Step terstruktur (Alamat → Pengiriman → Pembayaran → Review) dalam satu halaman dengan section collapsible, summary tetap terlihat di kanan/bottom.
-- **Orders:** List card per order (status badge menonjol), klik → detail dengan timeline shipment (state diagram §FLOW.md divisualisasikan sebagai stepper horizontal/vertikal).
+- **Orders:** List card per order (status badge menonjol), klik → detail dengan timeline shipment (stepper horizontal/vertikal, lihat `USER-FLOW.md`).
 - **Profile:** Sidebar sub-nav (Profil/Alamat/Pengaturan) + konten kanan, pola mirip dashboard ringan.
 
 **Visual hierarchy:** Setiap halaman customer punya **1 fokus utama** (hero/product/CTA checkout) yang mendapat ukuran & whitespace terbesar; elemen sekunder (rekomendasi, filter) selalu lebih kecil skalanya.
@@ -255,7 +256,7 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 - **Product management:** data table dengan thumbnail, filter status, bulk action (aktifkan/nonaktifkan), tombol "Tambah Produk" primary di kanan atas.
 - **Forms (create/edit product):** multi-section form (Info dasar → Varian → Gambar → Harga & Stok → Pengiriman), disimpan sebagai draft otomatis.
 - **Inventory:** table stok per varian dengan inline-edit quantity + indikator low-stock (badge warning).
-- **Orders:** table sub-order dengan status badge, klik → detail order dengan aksi kontekstual (Konfirmasi/Input Resi/dst sesuai status).
+- **Orders:** table sub-order dengan status badge, klik → detail order dengan aksi kontekstual (Konfirmasi/Input Resi/dst. sesuai status).
 - **Analytics:** kombinasi chart (line untuk trend, bar untuk perbandingan produk) + tabel ringkas.
 
 **Tone:** operational & efficient — data table & form mendominasi, whitespace tetap terjaga namun density lebih tinggi dibanding Customer surface.
@@ -283,7 +284,7 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 - Grid produk → 2 kolom.
 - Filter → drawer bottom, bukan sidebar.
 - Checkout summary → sticky bottom bar (ringkas: total + tombol lanjut), detail breakdown via expand.
-- Dashboard (Seller/Admin) → sidebar jadi off-canvas drawer, table → beralih ke stacked card per baris (bukan scroll horizontal, untuk data yang tidak terlalu lebar) atau horizontal-scroll dengan kolom kunci sticky (untuk table lebar seperti order list).
+- Dashboard (Seller/Admin) → sidebar jadi off-canvas drawer, table → beralih ke stacked card per baris (untuk data yang tidak terlalu lebar) atau horizontal-scroll dengan kolom kunci sticky (untuk table lebar seperti order list).
 
 ### Tablet (768–1023px)
 - Grid produk → 3 kolom.
@@ -331,13 +332,13 @@ Untuk setiap komponen: purpose, variants, sizes, states, behavior singkat. (Spes
 
 ---
 
-## 13. Stitch Readiness Checklist
+## 13. Design Readiness Checklist
 
 - [x] Design tokens konkret (warna hex, ukuran px, spacing scale) — bukan deskripsi abstrak.
 - [x] Typography scale lengkap dengan ukuran desktop & mobile.
 - [x] Component spec per elemen (variant/size/state).
 - [x] Layout & grid spec per surface (Customer/Seller/Admin).
 - [x] Responsive behavior per breakpoint dijelaskan per komponen, bukan generik.
-- [x] Page inventory lengkap ada di `UI-SPEC.md` (saling silang referensi).
+- [x] Page inventory lengkap ada di `ROUTES.md` (saling silang referensi) dan screenshot final di `design/`.
 - [x] Visual hierarchy & interaction pattern dijelaskan per grup halaman.
 - [x] Reference design telah dianalisis (§0) dan diturunkan menjadi prinsip, bukan disalin mentah.

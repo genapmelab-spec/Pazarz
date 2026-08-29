@@ -9,7 +9,7 @@
 - **Base URL:** `https://api.pazarz.com/api/v1`
 - **Format:** JSON request & response (`Content-Type: application/json`).
 - **Versioning:** path-based, `/api/v1/...`. Breaking change → naikkan ke `/api/v2/`.
-- **Auth:** Bearer token di header `Authorization: Bearer {token}` (lihat `AUTH.md`).
+- **Auth:** Bearer token di header `Authorization: Bearer {token}` (lihat `ARCHITECTURE.md` §7).
 
 ## 2. Response Format
 
@@ -51,7 +51,7 @@
 
 ## 4. Pagination
 
-Cursor atau page-based (page-based dipilih untuk simplicity di katalog):
+Page-based (dipilih untuk simplicity di katalog):
 ```text
 GET /products?page=2&per_page=24
 ```
@@ -86,6 +86,8 @@ GET /products?q=hoodie
 /api/v1/profile
 /api/v1/addresses
 ```
+
+Pemetaan endpoint group ke route React ada di `ROUTES.md`.
 
 ---
 
@@ -141,7 +143,7 @@ GET /products?q=hoodie
 - **Body:** `{ shipping_address_id, shipping_method_per_store, coupon_code? }`
 - **Response 201:** `{ order, payment_instructions }`
 - **Errors:** 409 (stok berubah sejak cart diisi), 422 (kupon tidak valid/kadaluarsa).
-- **Side effects:** reservasi stok sementara, kalkulasi ongkir & diskon final, snapshot harga ke `order_items`.
+- **Side effects:** reservasi stok sementara, kalkulasi ongkir & diskon final, snapshot harga ke `order_items` (lihat `DATABASE.md` §2.21).
 
 ### 7.9 `POST /checkout/payment-callback` *(internal, dipanggil oleh Payment Gateway webhook)*
 - **Purpose:** Update status pembayaran berdasarkan callback provider.
@@ -178,6 +180,6 @@ GET /products?q=hoodie
 
 ## 8. Catatan Konsistensi
 
-- Seluruh endpoint yang butuh ownership check merujuk pada aturan di `ROLES.md` § Resource Ownership Rules.
-- Struktur response `product`, `order`, dst harus konsisten dengan struktur entity di `ERD.md` — API Resource (transformer) tidak boleh menciptakan field yang tidak berdasar dari model.
+- Seluruh endpoint yang butuh ownership check merujuk pada aturan di `ARCHITECTURE.md` §7.6 (Resource Ownership Rules).
+- Struktur response `product`, `order`, dst. harus konsisten dengan struktur entity di `DATABASE.md` — API Resource (transformer) tidak boleh menciptakan field yang tidak berdasar dari model.
 - Endpoint checkout & payment callback adalah titik paling kritikal — wajib idempotent (webhook yang terpanggil dua kali tidak boleh memproses pembayaran dua kali), didokumentasikan lebih detail saat implementasi.
