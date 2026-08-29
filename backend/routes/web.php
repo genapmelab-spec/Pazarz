@@ -33,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 Route::get('/', function () {
-    return view('spa');
+    return redirect()->route('login');
 });
 
 // Admin/Seller Auth Routes (Session-based, Blade)
@@ -140,11 +140,4 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin', 'verified']
     Route::put('/settings', [AdminSettingController::class, 'update'])->name('settings.update');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Customer SPA — catch-all for React routes (must be last)
-|--------------------------------------------------------------------------
-*/
-Route::get('/{any}', function () {
-    return view('spa');
-})->where('any', '.*');
+
