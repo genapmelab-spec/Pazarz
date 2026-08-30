@@ -33,7 +33,7 @@
      (Laravel Blade)                  (Laravel Blade)
 ```
 
-Pazarz menggunakan **hybrid architecture**: React + Vite murni untuk Customer (dikonsumsi lewat REST API), dan Laravel Blade untuk Seller & Admin (server-rendered, langsung terhubung ke business logic). Laravel menjadi **single source of truth** — tidak ada logic yang diduplikasi antar surface. Pembagian ini bersifat final dan tidak boleh diubah tanpa instruksi eksplisit (lihat `AI-CODING-RULES.md`).
+Pazarz menggunakan **hybrid architecture**: React + Vite murni untuk Customer (dikonsumsi lewat REST API), dan Laravel Blade untuk Seller & Admin (server-rendered, langsung terhubung ke business logic). Laravel menjadi **single source of truth** — tidak ada logic yang diduplikasi antar surface. Pembagian ini bersifat final dan tidak boleh diubah tanpa instruksi eksplisit.
 
 ---
 

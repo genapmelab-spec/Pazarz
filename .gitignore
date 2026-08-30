@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build outputs
+dist/
+frontend/dist/
+backend/public/build/
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Temp files
+*.tmp
+*.bak
+*.cache
+
+# Laravel
+backend/storage/framework/cache/*
+backend/storage/logs/*
+backend/bootstrap/cache/*.key
+backend/.phpunit.result.cache
+
+# Freebuff (preview tool)
+.freebuff/
+
+# Testing
+.phpunit.cache/
+.phpunit.result.cache

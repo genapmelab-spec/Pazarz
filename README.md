@@ -161,7 +161,6 @@ Pazarz/
 │   ├── DESIGN.md                     # Design system (tokens, components)
 │   ├── ROUTES.md                     # Route list + page specs
 │   ├── IMPLEMENTATION-PLAN.md        # Phased development plan
-│   ├── AI-CODING-RULES.md            # Rules for AI coding agents
 │   └── DECISIONS.md                  # Architectural decisions
 │
 ├── design/                           # Design reference images
@@ -599,7 +598,6 @@ php artisan test --coverage
 | [DESIGN.md](docs/DESIGN.md) | Design system — colors, typography, spacing, components |
 | [ROUTES.md](docs/ROUTES.md) | Route list — per surface + page specs + design references |
 | [IMPLEMENTATION-PLAN.md](docs/IMPLEMENTATION-PLAN.md) | Development plan — phased implementation |
-| [AI-CODING-RULES.md](docs/AI-CODING-RULES.md) | Coding rules — mandatory rules for all developers |
 | [DECISIONS.md](docs/DECISIONS.md) | Architectural decisions — key choices & open assumptions |
 
 ### Reading Order (for new contributors)

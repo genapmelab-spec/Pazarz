@@ -9,7 +9,7 @@ Dokumen ini mencatat keputusan arsitektur & desain penting untuk Pazarz, beserta
 - **Keputusan:** Customer-facing web wajib React + Vite; Seller & Admin dashboard wajib Laravel Blade.
 - **Alasan:** Customer butuh UX interaktif tingkat SPA (filter real-time, cart, checkout dinamis) yang cocok dengan React. Seller/Admin adalah tooling operasional data-dense yang cukup dilayani server-rendered Blade tanpa kompleksitas SPA tambahan, dan lebih cepat dikembangkan untuk kebutuhan CRUD/dashboard.
 - **Trade-off:** Dua paradigma frontend berjalan paralel (butuh disiplin agar business logic tidak terduplikasi) — dimitigasi dengan menempatkan seluruh logic di Service/Action layer Laravel (`ARCHITECTURE.md` §2).
-- **Status:** Final. Tidak boleh diubah tanpa instruksi eksplisit (lihat `AI-CODING-RULES.md` #2–3).
+- **Status:** Final. Tidak boleh diubah tanpa instruksi eksplisit.
 
 ## 2. Laravel sebagai API + Web Application Sekaligus
 
@@ -45,7 +45,7 @@ Dokumen ini mencatat keputusan arsitektur & desain penting untuk Pazarz, beserta
   2. `DESIGN.md` dipakai untuk memahami aturan yang tidak terlihat jelas dari gambar (mis. hex warna persis, perilaku hover/focus/loading).
   3. **Business logic tetap lebih tinggi** — design image tidak boleh mengubah business rules, authentication, authorization, database rules, API contract, security, user ownership, atau seller ownership. Jika ada konflik antara design dengan business/technical requirement, konflik tersebut **dilaporkan**, bukan diputuskan sepihak oleh AI.
   4. Jangan redesign: jangan mengganti layout, component hierarchy, visual style, atau UX flow yang sudah ada di gambar, kecuali diminta secara eksplisit.
-- **Referensi:** `DESIGN.md` intro; `ROUTES.md` intro; `AI-CODING-RULES.md` #11–12, #16.
+- **Referensi:** `DESIGN.md` intro; `ROUTES.md` intro.
 
 ## 7. Arah Visual "Editorial Monochrome Commerce"
 

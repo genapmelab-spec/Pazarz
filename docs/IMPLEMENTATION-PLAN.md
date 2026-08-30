@@ -7,7 +7,7 @@ Dokumen ini adalah rencana fase implementasi untuk fase development (setelah fas
 ## Phase 0 — Documentation
 
 - **Objective:** Menyusun seluruh dokumentasi arsitektur, database, API, design system, dan UI spec sebagai acuan tunggal sebelum coding dimulai.
-- **Tasks:** Menulis `PRD.md`, `FEATURES.md`, `USER-FLOW.md`, `ARCHITECTURE.md`, `DATABASE.md`, `API.md`, `DESIGN.md`, `ROUTES.md`, `AI-CODING-RULES.md`, `DECISIONS.md`; mengumpulkan & mengorganisir design image ke `design/`.
+- **Tasks:** Menulis `PRD.md`, `FEATURES.md`, `USER-FLOW.md`, `ARCHITECTURE.md`, `DATABASE.md`, `API.md`, `DESIGN.md`, `ROUTES.md`, `DECISIONS.md`; mengumpulkan & mengorganisir design image ke `design/`.
 - **Dependencies:** Tidak ada (fase pertama).
 - **Definition of Done:** Seluruh dokumen di `docs/` konsisten satu sama lain (lihat `README.md` §Final Validation), design image tersedia dan ter-mapping ke `ROUTES.md`, tidak ada requirement kontradiktif antar dokumen.
 
@@ -86,4 +86,4 @@ Dokumen ini adalah rencana fase implementasi untuk fase development (setelah fas
 - **Objective:** Placeholder untuk fitur di luar MVP.
 - **Tasks:** Lihat daftar lengkap Future Scope di `FEATURES.md` (🔵) — mis. promosi lanjutan, dispute mediation berjenjang, multi-currency, rekomendasi produk, seller follower/konten toko.
 - **Dependencies:** MVP (Phase 0–10) rilis dan stabil.
-- **Definition of Done:** Tidak berlaku pada fase ini — fase ini hanya placeholder terencana, tidak dikerjakan sebelum ada instruksi eksplisit (lihat `AI-CODING-RULES.md`).
+- **Definition of Done:** Tidak berlaku pada fase ini — fase ini hanya placeholder terencana, tidak dikerjakan sebelum ada instruksi eksplisit.
