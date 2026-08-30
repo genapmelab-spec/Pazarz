@@ -52,44 +52,34 @@ export function HomePage() {
     fetchData()
   }, [])
 
-  // Get hero image from first featured product or use a fallback
-  const heroImage = featuredProducts[0]?.primary_image?.url ||
-    featuredProducts[0]?.images?.find(i => i.is_primary)?.url ||
-    featuredProducts[0]?.images?.[0]?.url
-
   return (
     <div>
-      {/* Hero Section — Full-bleed with photo background */}
-      <section className="relative min-h-[600px] lg:min-h-[720px] flex items-end overflow-hidden">
-        {/* Background image */}
-        {heroImage ? (
-          <img
-            src={heroImage}
-            alt=""
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        ) : (
-          <div className="absolute inset-0 bg-primary" />
-        )}
+      {/* Hero Section — Full image, no crop */}
+      <section className="relative w-full overflow-hidden">
+        <img
+          src="/images/hero-314.png"
+          alt="Pazarz Hero"
+          className="w-full h-auto block"
+        />
         {/* Gradient scrim at bottom for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
 
-        {/* Content */}
-        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 lg:px-16 pb-16 lg:pb-24">
-          <h1 className="text-[40px] md:text-[64px] font-bold leading-[1.05] tracking-[-0.02em] text-white mb-6 max-w-[640px]">
+        {/* Content overlay at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 w-full max-w-[1280px] mx-auto px-5 lg:px-16 pb-10 lg:pb-16">
+          <h1 className="text-[40px] md:text-[64px] font-bold leading-[1.05] tracking-[-0.02em] text-white mb-4 max-w-[640px]">
             TEMUKAN
             <br />
             GAYAMU
           </h1>
-          <p className="text-lg md:text-xl text-white/70 mb-8 max-w-[480px] leading-relaxed">
+          <p className="text-lg md:text-xl text-white/70 mb-6 max-w-[480px] leading-relaxed">
             Marketplace multi-vendor premium. Produk pilihan dari seller terpercaya.
           </p>
           <Link
             to="/products"
-            className="inline-flex items-center gap-2 bg-white text-primary px-8 h-[52px] rounded-full text-base font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
+            className="inline-flex items-center gap-2 bg-white text-primary px-8 h-[48px] rounded-full text-sm font-semibold hover:bg-white/90 active:scale-[0.98] transition-all"
           >
             Belanja Sekarang
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </section>
