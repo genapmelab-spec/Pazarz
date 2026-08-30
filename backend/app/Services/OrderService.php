@@ -69,6 +69,9 @@ class OrderService
 
         $subOrder->update(['status' => 'confirmed']);
 
+        // Sync parent order status
+        $this->syncOrderStatus($subOrder->order);
+
         // Notify customer
         \App\Models\Notification::createForUser(
             $subOrder->order->user,
@@ -99,6 +102,9 @@ class OrderService
             'status' => 'in_transit',
             'shipped_at' => now(),
         ]);
+
+        // Sync parent order status
+        $this->syncOrderStatus($subOrder->order);
 
         // Notify customer
         \App\Models\Notification::createForUser(
@@ -150,7 +156,7 @@ class OrderService
      */
     public function completeOrder(Order $order): Order
     {
-        if ($order->status !== 'paid' && $order->status !== 'processing') {
+        if (!in_array($order->status, ['paid', 'processing', 'shipped'])) {
             throw new \Exception('Cannot complete this order from current status.');
         }
 
@@ -178,6 +184,29 @@ class OrderService
         });
 
         return $order;
+    }
+
+    /**
+     * Sync parent Order status based on all sub-orders
+     */
+    protected function syncOrderStatus(\App\Models\Order $order): void
+    {
+        $order->load('subOrders');
+        $statuses = $order->subOrders->pluck('status')->unique()->values();
+
+        // Determine the most advanced status across all sub-orders
+        $orderStatus = match(true) {
+            $statuses->every(fn($s) => $s === 'completed') => 'completed',
+            $statuses->every(fn($s) => in_array($s, ['shipped', 'completed'])) => 'shipped',
+            $statuses->contains('shipped') || $statuses->contains('processing') => 'processing',
+            $statuses->every(fn($s) => in_array($s, ['confirmed', 'processing', 'shipped', 'completed'])) => 'processing',
+            $statuses->contains('confirmed') => 'paid',
+            default => $order->status, // keep current
+        };
+
+        if ($order->status !== $orderStatus) {
+            $order->update(['status' => $orderStatus]);
+        }
     }
 
     protected function updateStoreRating(\App\Models\Store $store): void

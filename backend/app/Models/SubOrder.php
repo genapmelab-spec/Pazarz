@@ -91,7 +91,7 @@ class SubOrder extends Model
     {
         return match($this->status) {
             'pending' => in_array($newStatus, ['confirmed', 'cancelled']),
-            'confirmed' => in_array($newStatus, ['processing', 'cancelled']),
+            'confirmed' => in_array($newStatus, ['processing', 'shipped', 'cancelled']),
             'processing' => in_array($newStatus, ['shipped', 'cancelled']),
             'shipped' => in_array($newStatus, ['completed']),
             default => false,

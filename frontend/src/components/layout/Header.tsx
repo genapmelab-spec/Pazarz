@@ -40,15 +40,15 @@ export function Header() {
           </Link>
 
           {/* Search — pill style */}
-          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[400px] mx-10">
+          <form onSubmit={handleSearch} className="hidden md:flex flex-1 max-w-[280px] mx-8">
             <div className="relative w-full">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari produk..."
-                className="w-full h-10 pl-11 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
+                placeholder="Cari..."
+                className="w-full h-8 pl-9 pr-3 rounded-full bg-surface border border-transparent text-[13px] placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
               />
             </div>
           </form>
@@ -178,13 +178,13 @@ export function Header() {
         {/* Mobile Search */}
         <form onSubmit={handleSearch} className="md:hidden pb-3">
           <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-text-muted" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari produk..."
-              className="w-full h-10 pl-10 pr-4 rounded-full bg-surface border border-transparent text-sm placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
+              placeholder="Cari..."
+              className="w-full h-8 pl-9 pr-3 rounded-full bg-surface border border-transparent text-[13px] placeholder:text-text-muted focus:outline-none focus:border-text-muted focus:bg-white transition-colors"
             />
           </div>
         </form>

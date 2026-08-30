@@ -54,7 +54,7 @@ interface OrderDetail {
   }>
 }
 
-const TIMELINE_STEPS = ['pending_payment', 'paid', 'processing', 'shipped', 'delivered', 'completed']
+const TIMELINE_STEPS = ['pending_payment', 'paid', 'processing', 'shipped', 'completed']
 
 export function OrderDetailPage() {
   const { id } = useParams<{ id: string }>()
@@ -82,7 +82,9 @@ export function OrderDetailPage() {
     if (!order) return
     try {
       await api.post(`/orders/${order.order_number}/complete`)
-      setOrder({ ...order, status: 'completed' })
+      // Re-fetch to get updated status
+      const res = await api.get(`/orders/${order.id}`)
+      setOrder(res.data.data)
     } catch (err) {
       console.error('Failed to complete order:', err)
     }
@@ -148,8 +150,7 @@ export function OrderDetailPage() {
                     {step === 'pending_payment' ? 'Bayar' :
                      step === 'paid' ? 'Dibayar' :
                      step === 'processing' ? 'Diproses' :
-                     step === 'shipped' ? 'Dikirim' :
-                     step === 'delivered' ? 'Diterima' : 'Selesai'}
+                     step === 'shipped' ? 'Dikirim' : 'Selesai'}
                   </span>
                 </div>
                 {i < TIMELINE_STEPS.length - 1 && (
@@ -220,7 +221,7 @@ export function OrderDetailPage() {
 
               {/* Sub-Order Actions */}
               <div className="mt-4 pt-4 border-t border-divider flex gap-2">
-                {subOrder.status === 'delivered' && (
+                {subOrder.status === 'shipped' && (
                   <Button size="sm" onClick={handleCompleteOrder}>
                     <CheckCircle className="w-4 h-4" /> Konfirmasi Diterima
                   </Button>
