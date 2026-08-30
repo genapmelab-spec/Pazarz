@@ -1,6 +1,6 @@
 # ROUTES.md — Route & Page Specification
 
-Dokumen ini memetakan **route** per surface ke **spesifikasi halaman** (purpose, main sections, CTA, key components, data, actions, states, responsive behavior) dan ke **design image** acuan di `design/`. Token visual & komponen yang disebut di bawah merujuk pada `DESIGN.md`. Jika suatu route memiliki gambar desain final di `design/`, gambar tersebut adalah **visual target** — spesifikasi teks di sini adalah pelengkap (lihat `DECISIONS.md` §Conflict Rule).
+Dokumen ini memetakan **route** per surface ke **spesifikasi halaman** (purpose, main sections, CTA, key components, data, actions, states, responsive behavior) dan ke **design image** acuan di `docs/stitch_pazarz_ui_design/`. Token visual & komponen yang disebut di bawah merujuk pada `DESIGN.md`. Jika suatu route memiliki gambar desain final di `docs/stitch_pazarz_ui_design/`, gambar tersebut adalah **visual target** — spesifikasi teks di sini adalah pelengkap (lihat `DECISIONS.md` §Conflict Rule).
 
 Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · Secondary CTA · Key Components · Data Required · Actions · States · Responsive Behavior · Design Reference.**
 
@@ -26,7 +26,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 ```
 
 ### A1. `/` — Landing
-- **Design reference:** `design/customer/landing_page_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/landing_page_pazarz/screen.png`
 - **Purpose:** Entry point utama, membangun kepercayaan & mendorong discovery.
 - **Main sections:** Hero full-bleed (Display headline + CTA), strip kategori unggulan, "Trending" card grid, section brand/value proposition, featured products grid, footer.
 - **Primary CTA:** "Belanja Sekarang" → Browse.
@@ -38,7 +38,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Responsive:** Hero height menyesuaikan (`DESIGN.md` §10), grid 4→3→2 kolom.
 
 ### A2. `/products`, `/categories/:slug` — Browse / Category
-- **Design reference:** `design/customer/browse_products_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/browse_products_pazarz/screen.png`
 - **Purpose:** Discovery produk berdasarkan kategori/listing umum.
 - **Main sections:** Breadcrumb, filter sidebar (kategori, harga, rating, brand/toko), grid produk, sort control, pagination.
 - **Primary CTA:** "Tambah ke Keranjang" (quick-add di card, opsional) / klik card → detail.
@@ -50,11 +50,11 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Responsive:** Filter → drawer bottom di mobile; grid 4→3→2.
 
 ### A3. `/search` — Search Results
-- **Design reference:** sama pola dengan A2 (`design/customer/browse_products_pazarz.png`).
+- **Design reference:** sama pola dengan A2 (`docs/stitch_pazarz_ui_design/frontend_ui/browse_products_pazarz/screen.png`).
 - Sama struktur dengan A2, ditambah: search bar aktif dengan query terlihat, suggestion "Mungkin maksud Anda" jika hasil tipis, empty state khusus ("Tidak ada hasil untuk '{query}'").
 
 ### A4. `/products/:slug` — Product Detail
-- **Design reference:** `design/customer/product_detail_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/product_detail_pazarz/screen.png`
 - **Purpose:** Konversi — memberi info cukup untuk keputusan beli.
 - **Main sections:** Gallery, info produk (nama, harga, rating, seller mini-card), pemilih varian (chip warna/ukuran), quantity selector, CTA area, tab (Deskripsi/Spesifikasi/Review), produk terkait.
 - **Primary CTA:** "Tambah ke Keranjang" (sticky di mobile).
@@ -75,7 +75,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Responsive:** banner height menyesuaikan, grid produk 4→2.
 
 ### A6. `/cart` — Cart
-- **Design reference:** `design/customer/shopping_cart_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/shopping_cart_pazarz/screen.png`
 - **Purpose:** Review & edit item sebelum checkout, dikelompokkan per seller.
 - **Main sections:** List item per-toko (grouped), checkbox pilih item, summary card (subtotal, estimasi, tombol checkout).
 - **Primary CTA:** "Checkout" (item terpilih).
@@ -87,7 +87,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Responsive:** summary → sticky bottom bar mobile.
 
 ### A7. `/checkout` — Checkout
-- **Design reference:** `design/customer/checkout_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/checkout_pazarz/screen.png`
 - **Purpose:** Menyelesaikan transaksi dengan minim friksi.
 - **Main sections:** Alamat pengiriman (pilih/tambah), metode pengiriman per toko, kupon/promo, ringkasan pembayaran, metode pembayaran.
 - **Primary CTA:** "Bayar Sekarang".
@@ -98,14 +98,14 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Responsive:** step tetap 1 kolom di semua breakpoint, summary sticky bottom di mobile.
 
 ### A8. Payment Status
-- **Design reference:** `design/customer/order_status_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/order_status_pazarz/screen.png`
 - **Purpose:** Konfirmasi hasil pembayaran / instruksi pembayaran tertunda (mis. VA number).
 - **Main sections:** status icon besar, detail instruksi (jika pending), ringkasan order.
 - **Primary CTA:** "Lihat Pesanan" (jika sukses) / "Cek Status" (jika pending, polling ringan).
 - **States:** Pending, Success, Failed (dengan CTA "Coba Lagi").
 
 ### A9. `/account/orders` — Orders (List)
-- **Design reference:** `design/customer/your_orders_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/your_orders_pazarz/screen.png`
 - **Purpose:** Riwayat & tracking seluruh pesanan.
 - **Main sections:** Tab filter status (Semua/Diproses/Dikirim/Selesai/Dibatalkan), list order card.
 - **Key components:** Order Card dengan status badge.
@@ -125,7 +125,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **States:** Empty ("Wishlist kosong").
 
 ### A12. `/account/profile`, `/account/addresses` — Profile & Settings
-- **Design reference:** `design/customer/account_settings_pazarz.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/frontend_ui/account_settings_pazarz/screen.png`
 - **Main sections:** Sub-nav (Info Akun, Alamat, Keamanan, Notifikasi), form per section.
 - **Primary CTA:** "Simpan Perubahan".
 - **Data:** profil user, daftar alamat.
@@ -151,20 +151,20 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 ```
 
 ### B1. `/seller` — Dashboard (Home)
-- **Design reference:** `design/seller/seller_overview_pazarz_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/seller_overview_pazarz_dashboard/screen.png`
 - **Main sections:** Metric card (Revenue hari ini/bulan ini, Order baru, Produk low-stock, Rating toko), chart penjualan (line, filter periode), activity feed order terbaru.
 - **Data:** agregat penjualan, daftar order terbaru.
 - **States:** Empty (toko baru, belum ada data → tampilkan panduan onboarding singkat), Loading skeleton chart+card.
 
 ### B2. `/seller/products` — Products (List)
-- **Design reference:** `design/seller/products_pazarz_seller_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/products_pazarz_seller_dashboard/screen.png`
 - **Main sections:** Filter bar (status, kategori), data table (thumbnail, nama, harga, stok, status, aksi).
 - **Primary CTA:** "Tambah Produk".
 - **Secondary CTA:** bulk action (aktif/nonaktifkan terpilih).
 - **States:** Empty ("Belum ada produk" + CTA tambah), Loading skeleton table.
 
 ### B3. `/seller/products/create`, `/seller/products/{product}/edit` — Create/Edit Product
-- **Design reference:** `design/seller/add_product_pazarz_seller_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/add_product_pazarz_seller_dashboard/screen.png`
 - **Main sections:** Form multi-section (Info Dasar, Kategori & Atribut, Varian & Harga, Gambar, Stok, Pengiriman/Berat).
 - **Primary CTA:** "Simpan & Publikasikan".
 - **Secondary CTA:** "Simpan sebagai Draft".
@@ -172,19 +172,19 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **States:** validasi inline per section, Success (redirect ke list + toast). Lihat alur lengkap di `USER-FLOW.md` §4.
 
 ### B4. `/seller/inventory` — Inventory
-- **Design reference:** `design/seller/inventory_pazarz_seller_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/inventory_pazarz_seller_dashboard/screen.png`
 - **Main sections:** Table stok per varian across produk, filter low-stock.
 - **Primary CTA:** inline edit quantity (Save per baris atau bulk save).
 - **States:** highlight baris dengan stok di bawah `low_stock_threshold` (`DATABASE.md` §2.14).
 
 ### B5. `/seller/orders` — Orders (Sub-Orders List)
-- **Design reference:** `design/seller/manage_orders_seller_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/manage_orders_seller_dashboard/screen.png`
 - **Main sections:** Tab status, table sub-order (order#, customer, item count, total, status, aksi).
 - **Primary CTA:** kontekstual per baris ("Konfirmasi", "Input Resi").
 - **States:** Empty per tab, badge status warna semantic.
 
 ### B6. `/seller/orders/{order}` — Order Detail
-- **Design reference:** `design/seller/order_details_seller_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/seller/order_details_seller_dashboard/screen.png`
 - **Main sections:** Info customer & alamat kirim, item list, area aksi (konfirmasi/batalkan/input resi), riwayat status.
 - **Primary CTA:** kontekstual sesuai status (lihat `USER-FLOW.md` §5 Seller Flow).
 
@@ -222,18 +222,18 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 ```
 
 ### C1. `/admin` — Dashboard (Home)
-- **Design reference:** `design/admin/platform_overview_pazarz_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/platform_overview_pazarz_admin_dashboard/screen.png`
 - **Main sections:** Metric platform-wide (GMV, order hari ini, seller pending, dispute terbuka, laporan baru), chart tren, shortcut ke antrian aksi (verifikasi seller, moderasi).
 - **States:** Loading skeleton, badge angka pada shortcut jika ada item pending.
 
 ### C2. `/admin/users` — Users
-- **Design reference:** `design/admin/user_management_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/user_management_admin_dashboard/screen.png`
 - **Main sections:** Table user (nama, email, role, status, tanggal daftar), filter & search.
 - **Primary CTA:** aksi per baris ("Suspend", "Aktifkan").
 - **States:** konfirmasi modal sebelum suspend (aksi sensitif → tercatat di `audit_logs`).
 
 ### C3. `/admin/sellers` — Sellers / Seller Verification
-- **Design reference:** `design/admin/seller_verification_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/seller_verification_admin_dashboard/screen.png`
 - **Main sections:** Tab (Pending/Verified/Rejected), card/table aplikasi seller dengan preview dokumen.
 - **Primary CTA:** "Approve" / "Reject" (dengan field alasan wajib untuk reject).
 - **States:** Empty tab, Loading dokumen preview.
@@ -246,7 +246,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Primary CTA:** "Nonaktifkan Produk" (dengan alasan).
 
 ### C6. `/admin/categories` — Categories & Attributes
-- **Design reference:** `design/admin/categories_attributes_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/categories_attributes_admin_dashboard/screen.png`
 - **Main sections:** Tree kategori (drag reorder opsional), form tambah/edit kategori & atribut global.
 - **Primary CTA:** "Tambah Kategori".
 
@@ -263,7 +263,7 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Main sections:** Queue laporan dari user terhadap produk/toko/review, detail & aksi tindak lanjut.
 
 ### C11. Disputes
-- **Design reference:** `design/admin/dispute_resolution_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/dispute_resolution_admin_dashboard/screen.png`
 - **Main sections:** List dispute (kiri) + thread percakapan (kanan) — pola inbox.
 - **Primary CTA:** "Selesaikan — Refund Customer" / "Selesaikan — Tolak Klaim".
 - **States:** filter status dispute, badge urgensi (mis. sudah lewat SLA).
@@ -275,11 +275,11 @@ Konvensi spesifikasi per halaman: **Purpose · Main Sections · Primary CTA · S
 - **Main sections:** Dashboard analitik lanjutan (GMV trend, top category, top seller, retention ringkas), filter tanggal custom, export.
 
 ### C14. Audit Logs
-- **Design reference:** `design/admin/audit_logs_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/audit_logs_admin_dashboard/screen.png`
 - **Main sections:** Table log aksi admin (actor, aksi, subjek, waktu), filter per actor/tanggal/tipe aksi, detail expand (before/after JSON — lihat `DATABASE.md` §2.36).
 
 ### C15. Platform Settings
-- **Design reference:** `design/admin/platform_settings_admin_dashboard.png`
+- **Design reference:** `docs/stitch_pazarz_ui_design/backend_ui/admin/platform_settings_admin_dashboard/screen.png`
 - **Main sections:** Pengaturan umum (komisi default, kebijakan dispute window, konfigurasi notifikasi), role & permission management (`ARCHITECTURE.md` §7).
 - **Primary CTA:** "Simpan Perubahan" (aksi ini tercatat di `audit_logs`).
 

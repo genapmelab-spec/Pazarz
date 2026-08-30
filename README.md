@@ -163,11 +163,6 @@ Pazarz/
 │   ├── IMPLEMENTATION-PLAN.md        # Phased development plan
 │   └── DECISIONS.md                  # Architectural decisions
 │
-├── design/                           # Design reference images
-│   ├── customer/                     # Customer UI designs
-│   ├── seller/                       # Seller UI designs
-│   └── admin/                        # Admin UI designs
-│
 └── README.md                         # This file
 ```
 

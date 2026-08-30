@@ -45,6 +45,11 @@ backend/.phpunit.result.cache
 # Freebuff (preview tool)
 .freebuff/
 
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
 # Testing
 .phpunit.cache/
 .phpunit.result.cache

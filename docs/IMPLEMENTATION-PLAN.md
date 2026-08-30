@@ -37,21 +37,21 @@ Dokumen ini adalah rencana fase implementasi untuk fase development (setelah fas
 - **Objective:** Membangun Seller Dashboard sesuai `ROUTES.md` §B dan `DESIGN.md` §8.
 - **Tasks:** Layout dasar Blade (sidebar/topbar), halaman Dashboard/Products/Create-Edit Product/Inventory/Orders/Order Detail/Store Settings, implementasi Service layer terkait (ProductService, InventoryService).
 - **Dependencies:** Phase 3.
-- **Definition of Done:** Seluruh halaman B1–B10 di `ROUTES.md` berfungsi sesuai spesifikasi (states, CTA, data), visual sesuai design image di `design/seller/`.
+- **Definition of Done:** Seluruh halaman B1–B10 di `ROUTES.md` berfungsi sesuai spesifikasi (states, CTA, data), visual sesuai design image di `docs/stitch_pazarz_ui_design/backend_ui/seller/`.
 
 ## Phase 5 — Admin Blade
 
 - **Objective:** Membangun Admin Dashboard sesuai `ROUTES.md` §C dan `DESIGN.md` §9.
 - **Tasks:** Layout dasar Blade (shared dengan Seller layout shell), halaman Dashboard/Users/Sellers/Categories/Products Moderation/Orders Monitoring/Disputes/Audit Logs/Platform Settings.
 - **Dependencies:** Phase 3 (dapat paralel dengan Phase 4).
-- **Definition of Done:** Seluruh halaman C1–C15 di `ROUTES.md` berfungsi sesuai spesifikasi, aksi sensitif tercatat di `audit_logs`, visual sesuai design image di `design/admin/`.
+- **Definition of Done:** Seluruh halaman C1–C15 di `ROUTES.md` berfungsi sesuai spesifikasi, aksi sensitif tercatat di `audit_logs`, visual sesuai design image di `docs/stitch_pazarz_ui_design/backend_ui/admin/`.
 
 ## Phase 6 — Customer React
 
 - **Objective:** Membangun Customer frontend sesuai `ROUTES.md` §A dan `DESIGN.md` §7.
 - **Tasks:** Setup routing React, layout Header/Footer, halaman Landing/Browse/Search/Product Detail/Store Detail/Profile, integrasi API client (`API.md` §1–5).
 - **Dependencies:** Phase 3, endpoint API produk/kategori dari Phase 3–4 (Products & Categories API).
-- **Definition of Done:** Halaman A1–A5, A11–A13 di `ROUTES.md` berfungsi dengan data real dari API, visual sesuai design image di `design/customer/`.
+- **Definition of Done:** Halaman A1–A5, A11–A13 di `ROUTES.md` berfungsi dengan data real dari API, visual sesuai design image di `docs/stitch_pazarz_ui_design/frontend_ui/`.
 
 ## Phase 7 — Cart
 
