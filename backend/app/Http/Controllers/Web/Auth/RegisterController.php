@@ -53,7 +53,7 @@ class RegisterController extends Controller
 
         Auth()->login($user);
 
-        return redirect()->route('seller.dashboard')
-            ->with('success', 'Your seller account has been created. Please wait for verification.');
+        return redirect()->route('seller.pending')
+            ->with('success', 'Your seller account has been created. Please wait for admin verification.');
     }
 }

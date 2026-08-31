@@ -5,6 +5,12 @@
 @endsection
 @section('header', 'Sellers')
 @section('content')
+<div class="flex gap-2 mb-4">
+    <a href="{{ route('admin.sellers.index') }}" class="px-3 py-1.5 rounded-full text-sm {{ !request('status') ? 'bg-black text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">All</a>
+    <a href="{{ route('admin.sellers.index', ['status' => 'pending']) }}" class="px-3 py-1.5 rounded-full text-sm {{ request('status') === 'pending' ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">Pending</a>
+    <a href="{{ route('admin.sellers.index', ['status' => 'verified']) }}" class="px-3 py-1.5 rounded-full text-sm {{ request('status') === 'verified' ? 'bg-green-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">Verified</a>
+    <a href="{{ route('admin.sellers.index', ['status' => 'rejected']) }}" class="px-3 py-1.5 rounded-full text-sm {{ request('status') === 'rejected' ? 'bg-red-500 text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200' }}">Rejected</a>
+</div>
 <div class="bg-white rounded-2xl border border-gray-100">
     <div class="overflow-x-auto">
         <table class="w-full">

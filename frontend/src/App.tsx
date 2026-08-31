@@ -22,6 +22,7 @@ import { OrderDetailPage } from '@/features/orders/OrderDetailPage'
 import { ProfilePage } from '@/features/profile/ProfilePage'
 import { AddressesPage } from '@/features/profile/AddressesPage'
 import { WishlistPage } from '@/features/profile/WishlistPage'
+import { BecomeSellerPage } from '@/features/seller/BecomeSellerPage'
 
 function App() {
   const { fetchUser, isAuthenticated } = useAuthStore()
@@ -57,6 +58,9 @@ function App() {
           {/* Protected Routes */}
           <Route path="/checkout" element={<CheckoutPage />} />
           <Route path="/payment-status" element={<PaymentStatusPage />} />
+
+          {/* Seller */}
+          <Route path="/become-seller" element={<BecomeSellerPage />} />
 
           {/* Account Routes */}
           <Route path="/account/profile" element={<ProfilePage />} />

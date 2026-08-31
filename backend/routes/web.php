@@ -50,12 +50,21 @@ Route::post('/dashboard/logout', [LoginController::class, 'logout'])->middleware
 Route::get('/forgot-password', [LoginController::class, 'showForgotPasswordForm'])->name('password.request');
 Route::post('/forgot-password', [LoginController::class, 'sendResetLinkEmail'])->name('password.email');
 
+// Seller Pending/Rejected pages (accessible even if not fully approved)
+Route::get('/seller/pending', function () {
+    return view('auth.seller-pending');
+})->middleware('auth')->name('seller.pending');
+
+Route::get('/seller/rejected', function () {
+    return view('auth.seller-rejected');
+})->middleware('auth')->name('seller.rejected');
+
 /*
 |--------------------------------------------------------------------------
 | Seller Dashboard Routes (/seller/*)
 |--------------------------------------------------------------------------
 */
-Route::prefix('seller')->name('seller.')->middleware(['auth', 'seller', 'verified'])->group(function () {
+Route::prefix('seller')->name('seller.')->middleware(['auth', 'seller', 'seller.approved'])->group(function () {
     Route::get('/', [SellerDashboardController::class, 'index'])->name('dashboard');
 
     // Products

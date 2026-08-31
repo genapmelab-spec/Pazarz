@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Seller;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 
@@ -147,8 +150,6 @@ class AuthController extends Controller
             'password' => ['required', 'confirmed', Password::min(8)],
         ]);
 
-        // In production, validate token
-        // For now, just reset the password
         $user = User::where('email', $request->email)->first();
 
         if ($user) {
@@ -158,6 +159,85 @@ class AuthController extends Controller
         return response()->json([
             'success' => true,
             'data' => ['message' => 'Password has been reset.'],
+        ]);
+    }
+
+    /**
+     * Apply to become a seller
+     */
+    public function becomeSeller(Request $request): JsonResponse
+    {
+        $user = $request->user();
+
+        // Already a seller
+        if ($user->seller) {
+            return response()->json([
+                'success' => false,
+                'error' => ['code' => 'ALREADY_SELLER', 'message' => 'You already have a seller account.'],
+            ], 422);
+        }
+
+        $validated = $request->validate([
+            'business_name' => 'required|string|max:255',
+            'business_type' => 'nullable|string|max:255',
+            'tax_id' => 'nullable|string|max:50',
+        ]);
+
+        // Upgrade user role to seller
+        $user->update(['role_id' => 'seller']);
+        $user->syncRoles(['seller']);
+
+        // Create seller record with pending status
+        $seller = Seller::create([
+            'user_id' => $user->id,
+            'business_name' => $validated['business_name'],
+            'business_type' => $validated['business_type'] ?? null,
+            'tax_id' => $validated['tax_id'] ?? null,
+            'verification_status' => 'pending',
+        ]);
+
+        // Create store
+        Store::create([
+            'seller_id' => $seller->id,
+            'name' => $validated['business_name'],
+            'slug' => Str::slug($validated['business_name']) . '-' . Str::random(5),
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'message' => 'Your seller application has been submitted. Please wait for admin approval.',
+                'seller' => [
+                    'id' => $seller->id,
+                    'verification_status' => $seller->verification_status,
+                ],
+            ],
+        ], 201);
+    }
+
+    /**
+     * Get seller application status
+     */
+    public function sellerStatus(Request $request): JsonResponse
+    {
+        $user = $request->user();
+        $seller = $user->seller;
+
+        if (!$seller) {
+            return response()->json([
+                'success' => true,
+                'data' => ['is_seller' => false, 'status' => null],
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'is_seller' => true,
+                'status' => $seller->verification_status,
+                'business_name' => $seller->business_name,
+                'verified_at' => $seller->verified_at,
+            ],
         ]);
     }
 }

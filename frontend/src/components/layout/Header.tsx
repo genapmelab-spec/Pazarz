@@ -138,6 +138,15 @@ export function Header() {
                       >
                         Pengaturan
                       </Link>
+                      <div className="border-t border-divider my-1 pt-1">
+                        <Link
+                          to="/become-seller"
+                          onClick={() => setProfileMenuOpen(false)}
+                          className="block px-4 py-2.5 text-sm font-medium text-accent hover:bg-surface transition-colors"
+                        >
+                          🏪 Jadi Seller
+                        </Link>
+                      </div>
                       <div className="border-t border-divider mt-1 pt-1">
                         <button
                           onClick={handleLogout}
@@ -208,6 +217,15 @@ export function Header() {
             >
               Kategori
             </Link>
+            {isAuthenticated && (
+              <Link
+                to="/become-seller"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 text-sm font-medium text-accent hover:underline"
+              >
+                🏪 Jadi Seller
+              </Link>
+            )}
             {!isAuthenticated && (
               <>
                 <div className="border-t border-divider my-2" />

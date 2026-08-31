@@ -85,6 +85,10 @@ Route::prefix('v1')->group(function () {
         Route::get('/notifications', [NotificationController::class, 'index']);
         Route::patch('/notifications/{notification}/read', [NotificationController::class, 'markAsRead']);
         Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead']);
+
+        // Become a Seller
+        Route::post('/become-seller', [AuthController::class, 'becomeSeller']);
+        Route::get('/seller-status', [AuthController::class, 'sellerStatus']);
     });
 
     // Payment callback (webhook - no user auth, uses signature verification)
