@@ -34,6 +34,8 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role_id' => 'seller',
+            'status' => 'active',
+            'email_verified_at' => now(),
         ]);
 
         $seller = Seller::create([
@@ -50,6 +52,9 @@ class RegisterController extends Controller
             'name' => $validated['business_name'],
             'slug' => Str::slug($validated['business_name']) . '-' . Str::random(5),
         ]);
+
+        // NOTE: the 'seller' role is granted only when an admin approves the application
+        // (see Admin\SellerController@approve). Until then the seller stays pending.
 
         Auth()->login($user);
 

@@ -47,7 +47,7 @@ class OrderService
      */
     public function getSellerSubOrders(User $user, ?string $status = null)
     {
-        $query = SubOrder::with(['order.user', 'items.variant.product', 'store'])
+        $query = SubOrder::with(['order.user', 'items.variant.product', 'store', 'shipment'])
             ->whereHas('store', fn($q) => $q->where('seller_id', $user->seller?->id))
             ->orderBy('created_at', 'desc');
 
@@ -59,7 +59,8 @@ class OrderService
     }
 
     /**
-     * Confirm a sub-order (seller action)
+     * Confirm a sub-order (seller action). The seller controller immediately
+     * ships it afterwards, so confirmation and shipping are one step.
      */
     public function confirmSubOrder(SubOrder $subOrder): SubOrder
     {
@@ -85,40 +86,6 @@ class OrderService
     }
 
     /**
-     * Ship a sub-order (seller action)
-     */
-    public function shipSubOrder(SubOrder $subOrder, string $courier, string $trackingNumber): SubOrder
-    {
-        if (!$subOrder->canTransitionTo('shipped')) {
-            throw new \Exception('Cannot ship this sub-order from current status.');
-        }
-
-        $subOrder->update(['status' => 'shipped']);
-
-        // Create shipment
-        $shipment = $subOrder->shipment()->create([
-            'courier' => $courier,
-            'tracking_number' => $trackingNumber,
-            'status' => 'in_transit',
-            'shipped_at' => now(),
-        ]);
-
-        // Sync parent order status
-        $this->syncOrderStatus($subOrder->order);
-
-        // Notify customer
-        \App\Models\Notification::createForUser(
-            $subOrder->order->user,
-            'order_shipped',
-            'Order Shipped',
-            "Your order #{$subOrder->order->order_number} from {$subOrder->store->name} has been shipped. Tracking: {$trackingNumber}",
-            ['order_id' => $subOrder->order_id, 'sub_order_id' => $subOrder->id, 'tracking_number' => $trackingNumber]
-        );
-
-        return $subOrder;
-    }
-
-    /**
      * Cancel a sub-order (seller action)
      */
     public function cancelSubOrder(SubOrder $subOrder, string $reason): SubOrder
@@ -133,9 +100,23 @@ class OrderService
                 'cancelled_reason' => $reason,
             ]);
 
-            // Release reserved stock
+            // Restore stock. After payment success the stock was DEDUCTED from
+            // quantity (MidtransService::markOrderPaid); before that it was only
+            // RESERVED. Restore through the right path so stock is never lost or
+            // double-counted.
+            $stockWasDeducted = in_array($subOrder->order->status, ['paid', 'processing', 'shipped']);
+
             foreach ($subOrder->items as $item) {
-                $item->variant->inventory->release($item->quantity);
+                $inventory = $item->variant->inventory;
+
+                if ($stockWasDeducted) {
+                    $inventory->increment('quantity', $item->quantity);
+                } else {
+                    $inventory->release($item->quantity);
+                }
+
+                // Roll back the sold counter that was incremented at checkout
+                $item->variant->product->decrement('sold_count', $item->quantity);
             }
 
             // Notify customer
@@ -148,54 +129,33 @@ class OrderService
             );
         });
 
+        // Sync parent order status (all cancelled => order cancelled)
+        $this->syncOrderStatus($subOrder->order->refresh());
+
         return $subOrder;
     }
 
     /**
-     * Customer confirms receipt of order
+     * Hook fired when a sub-order reaches 'completed' (via the automatic
+     * delivery simulation): updates store rating and syncs the parent order.
      */
-    public function completeOrder(Order $order): Order
+    public function onSubOrderCompleted(SubOrder $subOrder): void
     {
-        if (!in_array($order->status, ['paid', 'processing', 'shipped'])) {
-            throw new \Exception('Cannot complete this order from current status.');
-        }
-
-        // Check if all sub-orders are shipped or completed
-        $allCompleted = $order->subOrders->every(fn($so) => $so->status === 'shipped' || $so->status === 'completed');
-
-        if (!$allCompleted) {
-            throw new \Exception('All sub-orders must be shipped before completing the order.');
-        }
-
-        DB::transaction(function () use ($order) {
-            foreach ($order->subOrders as $subOrder) {
-                if ($subOrder->status === 'shipped') {
-                    $subOrder->update(['status' => 'completed']);
-
-                    // Update store rating
-                    $this->updateStoreRating($subOrder->store);
-
-                    // Calculate and record commission
-                    // Commission is calculated when sub-order is completed
-                }
-            }
-
-            $order->update(['status' => 'completed']);
-        });
-
-        return $order;
+        $this->updateStoreRating($subOrder->store);
+        $this->syncOrderStatus($subOrder->order);
     }
 
     /**
      * Sync parent Order status based on all sub-orders
      */
-    protected function syncOrderStatus(\App\Models\Order $order): void
+    public function syncOrderStatus(Order $order): void
     {
         $order->load('subOrders');
         $statuses = $order->subOrders->pluck('status')->unique()->values();
 
         // Determine the most advanced status across all sub-orders
         $orderStatus = match(true) {
+            $statuses->every(fn($s) => $s === 'cancelled') => 'cancelled',
             $statuses->every(fn($s) => $s === 'completed') => 'completed',
             $statuses->every(fn($s) => in_array($s, ['shipped', 'completed'])) => 'shipped',
             $statuses->contains('shipped') || $statuses->contains('processing') => 'processing',
@@ -220,7 +180,7 @@ class OrderService
             ->count();
 
         $store->update([
-            'rating_avg' => round($rating, 2),
+            'rating_avg' => round($rating ?? 0, 2),
             'rating_count' => $count,
         ]);
     }

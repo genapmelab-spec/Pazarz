@@ -32,6 +32,8 @@ class AuthController extends Controller
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role_id' => 'customer',
+            'status' => 'active',
+            'email_verified_at' => now(),
         ]);
 
         $token = $user->createToken('auth-token')->plainTextToken;
@@ -183,9 +185,8 @@ class AuthController extends Controller
             'tax_id' => 'nullable|string|max:50',
         ]);
 
-        // Upgrade user role to seller
-        $user->update(['role_id' => 'seller']);
-        $user->syncRoles(['seller']);
+        // NOTE: the user keeps their current role until an admin approves the application.
+        // On approval, the 'seller' role is granted (see Admin\SellerController@approve).
 
         // Create seller record with pending status
         $seller = Seller::create([

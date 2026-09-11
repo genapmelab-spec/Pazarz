@@ -30,8 +30,9 @@
                         <td class="px-6 py-4 text-sm font-medium">{{ $seller->user->name }}</td>
                         <td class="px-6 py-4 text-sm text-gray-500">{{ $seller->store->name ?? '—' }}</td>
                         <td class="px-6 py-4">
-                            @php$statusColors = ['verified' => 'bg-green-100 text-green-800', 'pending' => 'bg-yellow-100 text-yellow-800', 'rejected' => 'bg-red-100 text-red-800'];
-            @endphp
+                            @php
+                                $statusColors = ['verified' => 'bg-green-100 text-green-800', 'pending' => 'bg-yellow-100 text-yellow-800', 'rejected' => 'bg-red-100 text-red-800'];
+                            @endphp
             <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium {{ $statusColors[$seller->verification_status] ?? 'bg-gray-100 text-gray-800' }}">{{ ucfirst($seller->verification_status) }}</span>
                         </td>
                         <td class="px-6 py-4 text-sm">{{ $seller->store?->products_count ?? $seller->store?->products?->count() ?? 0 }}</td>

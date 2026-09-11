@@ -45,29 +45,4 @@ class OrderController extends Controller
         ]);
     }
 
-    public function complete(Request $request, string $orderNumber): JsonResponse
-    {
-        $order = $this->orderService->getOrderByNumber($orderNumber, $request->user());
-
-        if (!$order) {
-            return response()->json([
-                'success' => false,
-                'error' => ['code' => 'NOT_FOUND', 'message' => 'Order not found.'],
-            ], 404);
-        }
-
-        try {
-            $order = $this->orderService->completeOrder($order);
-
-            return response()->json([
-                'success' => true,
-                'data' => $order,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'error' => ['code' => 'CANNOT_COMPLETE', 'message' => $e->getMessage()],
-            ], 422);
-        }
-    }
 }

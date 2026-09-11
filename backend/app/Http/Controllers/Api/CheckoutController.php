@@ -47,27 +47,4 @@ class CheckoutController extends Controller
         }
     }
 
-    public function paymentCallback(Request $request): JsonResponse
-    {
-        // In production, verify webhook signature from payment gateway
-        $this->checkoutService->handlePaymentCallback(
-            $request->input('provider_reference'),
-            $request->input('status'),
-            $request->all()
-        );
-
-        return response()->json(['success' => true]);
-    }
-
-    public function webhook(Request $request): JsonResponse
-    {
-        // Idempotent webhook handler
-        $this->checkoutService->handlePaymentCallback(
-            $request->input('provider_reference'),
-            $request->input('status'),
-            $request->all()
-        );
-
-        return response()->json(['success' => true]);
-    }
 }

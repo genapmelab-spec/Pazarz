@@ -97,6 +97,34 @@ class User extends Authenticatable
         return $this->status === 'active';
     }
 
+    /**
+     * Where a logged-in user should land after login / when hitting the root.
+     * Sellers and admins go to their dashboards; everyone else goes to the storefront.
+     */
+    public function dashboardUrl(): string
+    {
+        if ($this->isAdmin()) {
+            return route('admin.dashboard');
+        }
+
+        if ($this->isSeller()) {
+            $seller = $this->seller;
+
+            // Not approved yet — show the pending/rejected page instead of a 403
+            if ($seller?->isPending()) {
+                return route('seller.pending');
+            }
+
+            if ($seller && $seller->verification_status === 'rejected') {
+                return route('seller.rejected');
+            }
+
+            return route('seller.dashboard');
+        }
+
+        return config('app.frontend_url', 'http://localhost:5173');
+    }
+
     protected static function booted(): void
     {
         static::created(function (User $user) {

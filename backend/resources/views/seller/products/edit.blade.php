@@ -8,11 +8,23 @@
     <a href="{{ route('seller.products.index') }}" class="text-sm text-gray-600 hover:text-black">← Back to Products</a>
 @endsection
 @section('content')
-<form method="POST" action="{{ route('seller.products.update', $product) }}" class="max-w-3xl">
+<form method="POST" action="{{ route('seller.products.update', $product) }}" class="max-w-3xl" enctype="multipart/form-data" novalidate>
     @csrf
     @method('PUT')
 
     <div class="space-y-8">
+        {{-- Validation Banner --}}
+        <div id="formBanner" class="hidden bg-red-50 border border-red-200 rounded-xl p-4">
+            <div class="flex items-start gap-3">
+                <svg class="w-5 h-5 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 9v4m0 4h.01M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" />
+                </svg>
+                <div>
+                    <p class="text-sm font-semibold text-red-700">Belum bisa dipublikasikan</p>
+                    <ul id="bannerList" class="text-sm text-red-600 mt-1 list-disc list-inside space-y-0.5"></ul>
+                </div>
+            </div>
+        </div>
         <!-- Basic Info -->
         <div class="bg-white rounded-2xl border border-gray-100 p-6">
             <h3 class="text-base font-semibold mb-4">Basic Information</h3>
@@ -85,17 +97,31 @@
         <!-- Product Images -->
         <div class="bg-white rounded-2xl border border-gray-100 p-6">
             <h3 class="text-base font-semibold mb-4">Product Images</h3>
-            <p class="text-sm text-gray-500 mb-3">Enter image URLs (comma-separated for multiple)</p>
-            <div id="images-container">
-                @if($product->images->count())
-                    @foreach($product->images as $image)
-                        <input type="text" name="images[]" value="{{ $image->url }}"
-                            class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none mb-2">
-                    @endforeach
-                @else
-                    <input type="text" name="images[]" placeholder="https://example.com/image.jpg"
-                        class="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none mb-2">
-                @endif
+            <p class="text-sm text-gray-500 mb-3">Upload images from your device or paste image URLs. The first image is the main image.</p>
+            <div id="images-container" class="space-y-3">
+                @forelse($product->images as $image)
+                    <div class="image-row flex flex-col sm:flex-row gap-2">
+                        <label class="flex-1 flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 cursor-pointer transition text-sm text-gray-500 overflow-hidden">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            <span class="file-label truncate">Ganti dari perangkat</span>
+                            <input type="file" accept="image/*" name="images[{{ $loop->index }}][file]" class="hidden file-input" onchange="previewImageFile(this)">
+                        </label>
+                        <input type="text" name="images[{{ $loop->index }}][url]" value="{{ $image->url }}"
+                            class="image-input flex-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                            oninput="previewImage(this)">
+                    </div>
+                @empty
+                    <div class="image-row flex flex-col sm:flex-row gap-2">
+                        <label class="flex-1 flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 cursor-pointer transition text-sm text-gray-500 overflow-hidden">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                            <span class="file-label truncate">Upload dari perangkat</span>
+                            <input type="file" accept="image/*" name="images[0][file]" class="hidden file-input" onchange="previewImageFile(this)">
+                        </label>
+                        <input type="text" name="images[0][url]" placeholder="atau tempel URL gambar https://..."
+                            class="image-input flex-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+                            oninput="previewImage(this)">
+                    </div>
+                @endforelse
             </div>
             <button type="button" onclick="addImageField()" class="text-sm text-gray-600 hover:text-black mt-2">+ Add another image</button>
         </div>
@@ -144,13 +170,75 @@
 <script>
 function addImageField() {
     const container = document.getElementById('images-container');
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.name = 'images[]';
-    input.placeholder = 'https://example.com/image.jpg';
-    input.className = 'w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none mb-2';
-    container.appendChild(input);
+    const index = container.querySelectorAll('.image-row').length;
+    const row = document.createElement('div');
+    row.className = 'image-row flex flex-col sm:flex-row gap-2';
+    row.innerHTML = `
+        <label class="flex-1 flex items-center gap-2 px-4 py-2.5 border border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 cursor-pointer transition text-sm text-gray-500 overflow-hidden">
+            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            <span class="file-label truncate">Upload dari perangkat</span>
+            <input type="file" accept="image/*" name="images[${index}][file]" class="hidden file-input" onchange="previewImageFile(this)">
+        </label>
+        <input type="text" name="images[${index}][url]" placeholder="atau tempel URL gambar https://..."
+            class="image-input flex-1 w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:border-transparent outline-none"
+            oninput="previewImage(this)">
+    `;
+    container.appendChild(row);
 }
+
+function previewImage(input) {
+    const preview = input.closest('.image-row').querySelector('.file-label');
+    if (preview && !input.value.trim()) {
+        preview.textContent = 'Ganti dari perangkat';
+    }
+}
+
+function previewImageFile(input) {
+    const label = input.closest('.image-row').querySelector('.file-label');
+    if (label) label.textContent = input.files && input.files[0] ? input.files[0].name : 'Ganti dari perangkat';
+}
+
+// =================== Submit Validation ===================
+function showBanner(missingItems) {
+    const banner = document.getElementById('formBanner');
+    const list = document.getElementById('bannerList');
+    list.innerHTML = '';
+    missingItems.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+    });
+    banner.classList.remove('hidden');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelector('form[action*="products/"]').addEventListener('submit', function (e) {
+    const status = document.getElementById('status').value;
+    const missing = [];
+
+    if (!document.getElementById('name').value.trim()) missing.push('Nama produk wajib diisi.');
+    if (!document.getElementById('category_id').value) missing.push('Pilih kategori produk.');
+
+    if (status === 'active') {
+        const price = document.getElementById('base_price').value;
+        const weight = document.getElementById('weight_grams').value;
+        if (!price || parseFloat(price) <= 0) missing.push('Harga produk wajib diisi dan harus lebih dari 0.');
+        if (!weight || parseInt(weight) <= 0) missing.push('Berat produk wajib diisi dan harus lebih dari 0.');
+
+        let hasImage = false;
+        document.querySelectorAll('.image-row').forEach(row => {
+            const file = row.querySelector('.file-input');
+            const url = row.querySelector('.image-input');
+            if ((file && file.files && file.files[0]) || (url && url.value.trim())) hasImage = true;
+        });
+        if (!hasImage) missing.push('Minimal satu gambar produk wajib diisi (upload file atau tempel URL).');
+    }
+
+    if (missing.length) {
+        e.preventDefault();
+        showBanner(missing);
+    }
+});
 </script>
 @endpush
 @endsection

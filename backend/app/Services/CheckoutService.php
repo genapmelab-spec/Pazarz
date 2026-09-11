@@ -140,10 +140,12 @@ class CheckoutService
                 ]);
             }
 
-            // Create payment record
+            // Create the payment record. The provider is Midtrans Sandbox; the
+            // real method/type and status are filled in by its notification.
             $payment = Payment::create([
                 'order_id' => $order->id,
-                'method' => 'va', // Default, will be updated by payment gateway
+                'method' => 'midtrans',
+                'provider' => 'midtrans',
                 'amount' => $grandTotal,
                 'status' => 'pending',
             ]);
@@ -167,63 +169,13 @@ class CheckoutService
 
             return [
                 'order' => $order->load(['subOrders.store', 'subOrders.items.variant', 'payment', 'shippingAddress']),
-                'payment_instructions' => [
-                    'method' => 'va',
+                'payment' => [
+                    'method' => 'midtrans',
+                    'provider' => 'midtrans',
                     'amount' => $grandTotal,
-                    'virtual_account_number' => 'VA' . strtoupper(uniqid()),
-                    'bank' => 'BCA',
-                    'expires_at' => now()->addHours(24)->toIso8601String(),
+                    'status' => 'pending',
                 ],
             ];
-        });
-    }
-
-    /**
-     * Handle payment callback from payment gateway
-     */
-    public function handlePaymentCallback(string $providerReference, string $status, array $metadata = []): void
-    {
-        DB::transaction(function () use ($providerReference, $status, $metadata) {
-            $payment = Payment::where('provider_reference', $providerReference)->firstOrFail();
-
-            if ($payment->status !== 'pending') {
-                return; // Idempotent - already processed
-            }
-
-            $payment->update([
-                'status' => $status,
-                'provider' => $metadata['provider'] ?? null,
-                'paid_at' => $status === 'success' ? now() : null,
-            ]);
-
-            if ($status === 'success') {
-                $payment->order->update(['status' => 'paid']);
-
-                // Deduct stock from reserved
-                foreach ($payment->order->subOrders as $subOrder) {
-                    foreach ($subOrder->items as $item) {
-                        $item->variant->inventory->deduct($item->quantity);
-                    }
-                }
-
-                // Notify customer
-                \App\Models\Notification::createForUser(
-                    $payment->order->user,
-                    'payment_success',
-                    'Payment Successful',
-                    "Your order #{$payment->order->order_number} has been paid.",
-                    ['order_id' => $payment->order->id]
-                );
-            } elseif ($status === 'failed') {
-                $payment->order->update(['status' => 'cancelled']);
-
-                // Release reserved stock
-                foreach ($payment->order->subOrders as $subOrder) {
-                    foreach ($subOrder->items as $item) {
-                        $item->variant->inventory->release($item->quantity);
-                    }
-                }
-            }
         });
     }
 }

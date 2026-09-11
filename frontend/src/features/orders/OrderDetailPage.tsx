@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useParams, Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Package, Truck, CheckCircle, Clock } from 'lucide-react'
+import { ArrowLeft, Package, Truck, Clock, RefreshCw } from 'lucide-react'
 import api from '@/lib/api'
-import { Button } from '@/components/ui/Button'
+import { openPayment } from '@/lib/midtrans'
 import { Badge } from '@/components/ui/Badge'
+import { Button } from '@/components/ui/Button'
 import { formatPrice, formatDate, cn } from '@/lib/utils'
 
 interface OrderDetail {
@@ -61,32 +62,53 @@ export function OrderDetailPage() {
   const navigate = useNavigate()
   const [order, setOrder] = useState<OrderDetail | null>(null)
   const [isLoading, setIsLoading] = useState(true)
+  const [isPaying, setIsPaying] = useState(false)
+  const [payError, setPayError] = useState('')
 
-  useEffect(() => {
-    const fetchOrder = async () => {
-      if (!id) return
-      setIsLoading(true)
-      try {
-        const res = await api.get(`/orders/${id}`)
-        setOrder(res.data.data)
-      } catch (err) {
-        console.error('Failed to fetch order:', err)
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    fetchOrder()
-  }, [id])
+  const fetchOrder = useCallback(async () => {
+    if (!id) return
 
-  const handleCompleteOrder = async () => {
-    if (!order) return
     try {
-      await api.post(`/orders/${order.order_number}/complete`)
-      // Re-fetch to get updated status
-      const res = await api.get(`/orders/${order.id}`)
+      const res = await api.get(`/orders/${id}`)
       setOrder(res.data.data)
     } catch (err) {
-      console.error('Failed to complete order:', err)
+      console.error('Failed to fetch order:', err)
+    }
+  }, [id])
+
+  useEffect(() => {
+    setIsLoading(true)
+    fetchOrder().finally(() => setIsLoading(false))
+  }, [fetchOrder])
+
+  // Keep the order fresh while it still awaits payment.
+  useEffect(() => {
+    if (order?.status !== 'pending_payment') return
+
+    const poll = setInterval(() => { fetchOrder().catch(() => {}) }, 4000)
+    return () => clearInterval(poll)
+  }, [order?.status, fetchOrder])
+
+  const handlePay = async () => {
+    if (!order) return
+    setIsPaying(true)
+    setPayError('')
+
+    try {
+      await openPayment(order.order_number, {
+        onSuccess: () => { fetchOrder().catch(() => {}) },
+        onPending: () => { fetchOrder().catch(() => {}) },
+        onError: () => { fetchOrder().catch(() => {}) },
+        onClose: () => { fetchOrder().catch(() => {}) },
+      })
+    } catch (err: any) {
+      setPayError(
+        err?.response?.data?.error?.message ||
+        err?.message ||
+        'Gagal membuka pembayaran Midtrans. Coba lagi.'
+      )
+    } finally {
+      setIsPaying(false)
     }
   }
 
@@ -219,14 +241,6 @@ export function OrderDetailPage() {
                 </div>
               )}
 
-              {/* Sub-Order Actions */}
-              <div className="mt-4 pt-4 border-t border-divider flex gap-2">
-                {subOrder.status === 'shipped' && (
-                  <Button size="sm" onClick={handleCompleteOrder}>
-                    <CheckCircle className="w-4 h-4" /> Konfirmasi Diterima
-                  </Button>
-                )}
-              </div>
             </div>
           ))}
         </div>
@@ -275,8 +289,17 @@ export function OrderDetailPage() {
           {order.payment && (
             <div className="rounded-[16px] border border-divider p-6">
               <h3 className="text-sm font-semibold mb-3">Metode Pembayaran</h3>
-              <p className="text-sm text-text-secondary">{order.payment.method || 'Transfer Bank'}</p>
+              <p className="text-sm text-text-secondary">{order.payment.method || 'Midtrans'}</p>
               <Badge status={order.payment.status} size="sm" className="mt-2" />
+
+              {order.status === 'pending_payment' && (
+                <div className="mt-4">
+                  <Button onClick={handlePay} isLoading={isPaying} className="w-full">
+                    <RefreshCw className="w-4 h-4" /> Bayar Sekarang
+                  </Button>
+                  {payError && <p className="text-sm text-error mt-2">{payError}</p>}
+                </div>
+              )}
             </div>
           )}
         </div>

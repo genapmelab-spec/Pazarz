@@ -52,4 +52,22 @@ class Payment extends Model
     {
         return $this->status === 'refunded';
     }
+
+    public function isExpired(): bool
+    {
+        return $this->status === 'expired';
+    }
+
+    public function isCancelled(): bool
+    {
+        return $this->status === 'cancelled';
+    }
+
+    /**
+     * Whether the payment can still be retried from the frontend.
+     */
+    public function isRetryable(): bool
+    {
+        return in_array($this->status, ['pending', 'failed', 'expired', 'cancelled'], true);
+    }
 }

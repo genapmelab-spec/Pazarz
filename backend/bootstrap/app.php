@@ -19,6 +19,12 @@ return Application::configure(basePath: dirname(__DIR__))
             'active' => \App\Http\Middleware\EnsureUserIsActive::class,
             'seller.approved' => \App\Http\Middleware\SellerApproved::class,
         ]);
+
+        // Logged-in users hitting guest pages must go to their dashboard,
+        // not back to "/" (which redirects to login) — that caused a redirect loop.
+        \Illuminate\Auth\Middleware\RedirectIfAuthenticated::redirectUsing(
+            fn (Request $request) => $request->user()?->dashboardUrl() ?? '/'
+        );
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

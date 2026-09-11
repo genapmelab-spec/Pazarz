@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -29,12 +30,22 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug',
             'parent_id' => 'nullable|exists:categories,id',
             'icon_url' => 'nullable|string|max:500',
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
         ]);
+
+        // Auto-generate slug from name
+        $validated['slug'] = Str::slug($validated['name']);
+
+        // Ensure slug is unique
+        $baseSlug = $validated['slug'];
+        $counter = 1;
+        while (Category::where('slug', $validated['slug'])->exists()) {
+            $validated['slug'] = $baseSlug . '-' . $counter;
+            $counter++;
+        }
 
         Category::create($validated);
 
@@ -56,12 +67,22 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $category->id,
             'parent_id' => 'nullable|exists:categories,id',
             'icon_url' => 'nullable|string|max:500',
             'is_active' => 'boolean',
             'sort_order' => 'integer|min:0',
         ]);
+
+        // Auto-generate slug from name
+        $validated['slug'] = Str::slug($validated['name']);
+
+        // Ensure slug is unique (exclude current category)
+        $baseSlug = $validated['slug'];
+        $counter = 1;
+        while (Category::where('slug', $validated['slug'])->where('id', '!=', $category->id)->exists()) {
+            $validated['slug'] = $baseSlug . '-' . $counter;
+            $counter++;
+        }
 
         $category->update($validated);
 

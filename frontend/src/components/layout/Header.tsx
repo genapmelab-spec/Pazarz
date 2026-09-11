@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Search, ShoppingBag, User, Menu, X, LogOut } from 'lucide-react'
+import { Search, ShoppingBag, User, Menu, X, LogOut, Store } from 'lucide-react'
 import { useAuthStore } from '@/store/authStore'
 import { useCartStore } from '@/store/cartStore'
 import { cn } from '@/lib/utils'
+import api from '@/lib/api'
 
 export function Header() {
   const [searchQuery, setSearchQuery] = useState('')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
+  const [sellerStatus, setSellerStatus] = useState<{ is_seller: boolean; status: string | null } | null>(null)
   const { user, isAuthenticated, logout } = useAuthStore()
   const { itemCount } = useCartStore()
   const navigate = useNavigate()
@@ -22,6 +24,21 @@ export function Header() {
     }
   }
 
+  // Fetch seller status for authenticated users
+  useEffect(() => {
+    if (isAuthenticated) {
+      api.get('/seller-status')
+        .then(res => setSellerStatus(res.data.data))
+        .catch(() => setSellerStatus(null))
+    } else {
+      setSellerStatus(null)
+    }
+  }, [isAuthenticated])
+
+
+
+  const BLADE_URL = 'http://127.0.0.1:8000'
+
   const handleLogout = async () => {
     await logout()
     setProfileMenuOpen(false)
@@ -31,7 +48,7 @@ export function Header() {
   const isActive = (path: string) => location.pathname === path
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-divider">
+    <header className="sticky top-0 z-40 glass border-b border-white/20">
       <div className="max-w-[1280px] mx-auto px-5 lg:px-16">
         <div className="flex items-center justify-between h-[72px]">
           {/* Logo — text wordmark */}
@@ -138,14 +155,47 @@ export function Header() {
                       >
                         Pengaturan
                       </Link>
+                      {/* Seller Status Link */}
                       <div className="border-t border-divider my-1 pt-1">
-                        <Link
-                          to="/become-seller"
-                          onClick={() => setProfileMenuOpen(false)}
-                          className="block px-4 py-2.5 text-sm font-medium text-accent hover:bg-surface transition-colors"
-                        >
-                          🏪 Jadi Seller
-                        </Link>
+                        {sellerStatus?.is_seller && sellerStatus?.status === 'verified' ? (
+                          <a
+                            href={`${BLADE_URL}/dashboard/login`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-accent hover:bg-surface transition-colors"
+                          >
+                            <Store className="w-4 h-4" />
+                            Dashboard Seller
+                          </a>
+                        ) : sellerStatus?.is_seller && sellerStatus?.status === 'pending' ? (
+                          <Link
+                            to="/become-seller"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm text-yellow-700 hover:bg-surface transition-colors"
+                          >
+                            <span className="w-2 h-2 bg-yellow-500 rounded-full inline-block" />
+                            Menunggu Persetujuan
+                          </Link>
+                        ) : sellerStatus?.is_seller && sellerStatus?.status === 'rejected' ? (
+                          <Link
+                            to="/become-seller"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm text-error hover:bg-error/5 transition-colors"
+                          >
+                            <span className="w-2 h-2 bg-error rounded-full inline-block" />
+                            Aplikasi Ditolak
+                          </Link>
+                        ) : (
+                          <Link
+                            to="/become-seller"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-2 px-4 py-2.5 text-sm font-medium text-accent hover:bg-surface transition-colors"
+                          >
+                            <Store className="w-4 h-4" />
+                            Jadi Seller
+                          </Link>
+                        )}
                       </div>
                       <div className="border-t border-divider mt-1 pt-1">
                         <button
@@ -217,7 +267,18 @@ export function Header() {
             >
               Kategori
             </Link>
-            {isAuthenticated && (
+            {isAuthenticated && sellerStatus?.is_seller && sellerStatus?.status === 'verified' && (
+              <a
+                href={`${BLADE_URL}/dashboard/login`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="py-2.5 text-sm font-medium text-accent hover:underline"
+              >
+                🏪 Dashboard Seller
+              </a>
+            )}
+            {isAuthenticated && (!sellerStatus?.is_seller || (sellerStatus?.status !== 'verified' && sellerStatus?.status !== 'pending' && sellerStatus?.status !== 'rejected')) && (
               <Link
                 to="/become-seller"
                 onClick={() => setMobileMenuOpen(false)}

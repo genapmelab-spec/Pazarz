@@ -32,7 +32,12 @@ use Illuminate\Support\Facades\Route;
 | Home Route — redirect to dashboard login
 |--------------------------------------------------------------------------
 */
-Route::get('/', function () {
+Route::get('/', function (Illuminate\Http\Request $request) {
+    // Logged-in users go to their dashboard (never back to the login page)
+    if ($user = $request->user()) {
+        return redirect($user->dashboardUrl());
+    }
+
     return redirect()->route('login');
 });
 
@@ -64,7 +69,7 @@ Route::get('/seller/rejected', function () {
 | Seller Dashboard Routes (/seller/*)
 |--------------------------------------------------------------------------
 */
-Route::prefix('seller')->name('seller.')->middleware(['auth', 'seller', 'seller.approved'])->group(function () {
+Route::prefix('seller')->name('seller.')->middleware(['auth', 'seller.approved', 'seller'])->group(function () {
     Route::get('/', [SellerDashboardController::class, 'index'])->name('dashboard');
 
     // Products
@@ -77,14 +82,13 @@ Route::prefix('seller')->name('seller.')->middleware(['auth', 'seller', 'seller.
 
     // Inventory
     Route::get('/inventory', [SellerInventoryController::class, 'index'])->name('inventory.index');
-    Route::patch('/inventory/{variant}', [SellerInventoryController::class, 'update'])->name('inventory.update');
+    Route::patch('/inventory/{inventory}', [SellerInventoryController::class, 'update'])->name('inventory.update');
     Route::post('/inventory/bulk-update', [SellerInventoryController::class, 'bulkUpdate'])->name('inventory.bulk-update');
 
     // Orders
     Route::get('/orders', [SellerOrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{subOrder}', [SellerOrderController::class, 'show'])->name('orders.show');
     Route::patch('/orders/{subOrder}/confirm', [SellerOrderController::class, 'confirm'])->name('orders.confirm');
-    Route::patch('/orders/{subOrder}/ship', [SellerOrderController::class, 'ship'])->name('orders.ship');
     Route::patch('/orders/{subOrder}/cancel', [SellerOrderController::class, 'cancel'])->name('orders.cancel');
 
     // Store Settings

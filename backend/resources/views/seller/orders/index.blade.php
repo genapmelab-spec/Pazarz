@@ -38,15 +38,36 @@
                         <td class="px-6 py-4 text-sm">{{ $subOrder->items->count() }}</td>
                         <td class="px-6 py-4 text-sm font-medium">Rp {{ number_format($subOrder->subtotal, 0, ',', '.') }}</td>
                         <td class="px-6 py-4">
-                            @php $colors = ['pending'=>'bg-yellow-100 text-yellow-800','confirmed'=>'bg-blue-100 text-blue-800','shipped'=>'bg-green-100 text-green-800','completed'=>'bg-green-100 text-green-800','cancelled'=>'bg-red-100 text-red-800']; @endphp
+                            @php $colors = ['pending'=>'bg-yellow-100 text-yellow-800','confirmed'=>'bg-blue-100 text-blue-800','processing'=>'bg-indigo-100 text-indigo-800','shipped'=>'bg-green-100 text-green-800','completed'=>'bg-green-100 text-green-800','cancelled'=>'bg-red-100 text-red-800']; @endphp
                             <span class="inline-flex px-2.5 py-0.5 rounded-full text-xs font-medium {{ $colors[$subOrder->status] ?? '' }}">{{ ucfirst($subOrder->status) }}</span>
                         </td>
                         <td class="px-6 py-4 text-sm">
-                            @if($subOrder->status === 'pending')
-                                <form method="POST" action="{{ route('seller.orders.confirm', $subOrder) }}" class="inline">@csrf @method('PATCH')
-                                    <button class="text-green-600 hover:underline">Confirm</button>
-                                </form>
-                            @endif
+                            @php $orderPaid = ! in_array($subOrder->order->status, ['pending_payment', 'cancelled']); @endphp
+                            <div class="flex items-center gap-3">
+                                @if($subOrder->status === 'pending')
+                                    @if($orderPaid)
+                                        <form method="POST" action="{{ route('seller.orders.confirm', $subOrder) }}" class="inline">@csrf @method('PATCH')
+                                            <button class="text-green-600 hover:underline">Confirm & Ship</button>
+                                        </form>
+                                    @else
+                                        <span class="text-gray-400">Menunggu pembayaran</span>
+                                    @endif
+                                    <span class="text-gray-300">|</span>
+                                    <a href="{{ route('seller.orders.show', $subOrder) }}" class="text-gray-500 hover:underline">Detail</a>
+                                @elseif(in_array($subOrder->status, ['confirmed', 'processing']))
+                                    <form method="POST" action="{{ route('seller.orders.confirm', $subOrder) }}" class="inline">@csrf @method('PATCH')
+                                        <button class="text-blue-600 hover:underline">Kirim</button>
+                                    </form>
+                                    <span class="text-gray-300">|</span>
+                                    <a href="{{ route('seller.orders.show', $subOrder) }}" class="text-gray-500 hover:underline">Detail</a>
+                                @elseif($subOrder->status === 'shipped')
+                                    <a href="{{ route('seller.orders.show', $subOrder) }}" class="text-indigo-600 hover:underline">Track</a>
+                                @elseif($subOrder->status === 'completed')
+                                    <span class="text-gray-400">Selesai</span>
+                                @elseif($subOrder->status === 'cancelled')
+                                    <span class="text-gray-400">—</span>
+                                @endif
+                            </div>
                         </td>
                     </tr>
                 @empty

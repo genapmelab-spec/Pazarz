@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
         // Seed roles and permissions via Spatie
         $this->call(PermissionSeeder::class);
 
+        // Seed marketplace categories (parents + subcategories)
+        $this->call(CategorySeeder::class);
+
         // Create Admin
         $admin = User::create([
             'name' => 'Admin Pazarz',

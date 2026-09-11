@@ -30,12 +30,8 @@ class LoginController extends Controller
                 return back()->withErrors(['email' => 'Your account has been suspended.']);
             }
 
-            // Redirect based on role
-            return match(true) {
-                $user->isAdmin() => redirect()->intended(route('admin.dashboard')),
-                $user->isSeller() => redirect()->intended(route('seller.dashboard')),
-                default => redirect()->intended('/'),
-            };
+            // Redirect based on role (falls back to the storefront for customers)
+            return redirect()->intended($user->dashboardUrl());
         }
 
         return back()->withErrors([

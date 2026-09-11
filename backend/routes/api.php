@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\CheckoutController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\PaymentController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\StoreController;
@@ -67,12 +68,14 @@ Route::prefix('v1')->group(function () {
 
         // Checkout
         Route::post('/checkout', [CheckoutController::class, 'store']);
-        Route::post('/checkout/payment-callback', [CheckoutController::class, 'paymentCallback']);
 
         // Orders
         Route::get('/orders', [OrderController::class, 'index']);
+        Route::get('/orders/{orderNumber}/payment-status', [PaymentController::class, 'status']);
         Route::get('/orders/{orderNumber}', [OrderController::class, 'show']);
-        Route::post('/orders/{orderNumber}/complete', [OrderController::class, 'complete']);
+
+        // Payment (Midtrans Snap)
+        Route::post('/orders/{orderNumber}/pay', [PaymentController::class, 'pay']);
 
         // Reviews
         Route::post('/reviews', [ReviewController::class, 'store']);
@@ -89,8 +92,10 @@ Route::prefix('v1')->group(function () {
         // Become a Seller
         Route::post('/become-seller', [AuthController::class, 'becomeSeller']);
         Route::get('/seller-status', [AuthController::class, 'sellerStatus']);
+
+
     });
 
-    // Payment callback (webhook - no user auth, uses signature verification)
-    Route::post('/payment/webhook', [CheckoutController::class, 'webhook']);
+    // Midtrans notification webhook (no user auth; signature-verified in service)
+    Route::post('/payment/notification', [PaymentController::class, 'notification']);
 });

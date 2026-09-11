@@ -5,7 +5,8 @@ interface User {
   id: number
   name: string
   email: string
-  role: string
+  role_id: string
+  avatar_url?: string | null
   email_verified_at: string | null
 }
 

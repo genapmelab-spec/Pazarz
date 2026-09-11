@@ -18,6 +18,9 @@ class Shipment extends Model
         'status',
         'shipped_at',
         'delivered_at',
+        'estimated_delivery_at',
+        'simulation_started_at',
+        'simulation_state',
     ];
 
     protected function casts(): array
@@ -25,6 +28,8 @@ class Shipment extends Model
         return [
             'shipped_at' => 'datetime',
             'delivered_at' => 'datetime',
+            'estimated_delivery_at' => 'datetime',
+            'simulation_started_at' => 'datetime',
         ];
     }
 

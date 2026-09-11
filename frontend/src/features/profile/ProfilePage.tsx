@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { User, MapPin, Heart, Settings, ShoppingBag } from 'lucide-react'
+import { User, MapPin, Heart, Settings, ShoppingBag, Store, AlertTriangle, ExternalLink } from 'lucide-react'
 import api from '@/lib/api'
 import { useAuthStore } from '@/store/authStore'
 import { Button } from '@/components/ui/Button'
@@ -22,6 +22,9 @@ export function ProfilePage() {
   const [phone, setPhone] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [sellerStatus, setSellerStatus] = useState<{ is_seller: boolean; status: string | null; business_name?: string } | null>(null)
+
+  const BLADE_URL = 'http://127.0.0.1:8000'
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -39,6 +42,8 @@ export function ProfilePage() {
       }
     }
     fetchProfile()
+    // Fetch seller status
+    api.get('/seller-status').then(res => setSellerStatus(res.data.data)).catch(() => {})
   }, [user])
 
   const handleSave = async (e: React.FormEvent) => {
@@ -87,6 +92,54 @@ export function ProfilePage() {
         {/* Content */}
         <div className="flex-1">
           <h1 className="text-2xl font-bold tracking-tight mb-6">Profil Saya</h1>
+
+          {/* Seller Dashboard Link */}
+          {sellerStatus?.is_seller && sellerStatus?.status === 'verified' && (
+            <div className="mb-6 bg-white rounded-2xl border border-divider p-5">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 bg-accent/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <Store className="w-5 h-5 text-accent" />
+                </div>
+                <div className="flex-1">
+                  <h3 className="text-sm font-semibold text-text-primary">Dashboard Seller</h3>
+                  <p className="text-xs text-text-secondary mt-0.5">
+                    Kelola produk, pesanan, dan inventaris toko kamu.
+                  </p>
+                  <div className="flex items-center gap-2 mt-3">
+                    <a
+                      href={`${BLADE_URL}/dashboard/login`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-white rounded-xl text-xs font-medium hover:bg-primary/90 transition-colors"
+                    >
+                      Buka Dashboard
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                  <div className="flex items-start gap-2 mt-3 p-3 bg-yellow-50 border border-yellow-200 rounded-xl">
+                    <AlertTriangle className="w-4 h-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <p className="text-xs text-yellow-700">
+                      <strong>Jangan bagikan</strong> link dashboard ini kepada orang lain. Dashboard hanya untuk kamu sebagai seller terverifikasi.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {sellerStatus?.is_seller && sellerStatus?.status === 'pending' && (
+            <div className="mb-6 bg-white rounded-2xl border border-divider p-5">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-yellow-100 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <span className="w-2.5 h-2.5 bg-yellow-500 rounded-full" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-text-primary">Aplikasi Seller Pending</h3>
+                  <p className="text-xs text-text-secondary">Menunggu persetujuan admin. Kamu akan dihubungi via email.</p>
+                </div>
+              </div>
+            </div>
+          )}
 
           <form onSubmit={handleSave} className="max-w-[480px] space-y-4">
             {success && (

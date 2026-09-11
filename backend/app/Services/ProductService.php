@@ -96,8 +96,9 @@ class ProductService
             ]);
 
             // Create images
-            if (!empty($data['images'])) {
-                foreach ($data['images'] as $index => $imageUrl) {
+            $images = array_values(array_filter($data['images'] ?? [], fn($url) => trim((string) $url) !== ''));
+            if (!empty($images)) {
+                foreach ($images as $index => $imageUrl) {
                     $product->images()->create([
                         'url' => $imageUrl,
                         'sort_order' => $index,
@@ -166,8 +167,9 @@ class ProductService
 
             // Update images if provided
             if (isset($data['images'])) {
+                $images = array_values(array_filter($data['images'], fn($url) => trim((string) $url) !== ''));
                 $product->images()->delete();
-                foreach ($data['images'] as $index => $imageUrl) {
+                foreach ($images as $index => $imageUrl) {
                     $product->images()->create([
                         'url' => $imageUrl,
                         'sort_order' => $index,
