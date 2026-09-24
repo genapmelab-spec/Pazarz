@@ -4,6 +4,7 @@ import api from '@/lib/api'
 interface CartItem {
   id: number
   product_variant_id: number
+  chosen_size?: string | null
   quantity: number
   price_snapshot: number
   variant: {
@@ -42,7 +43,7 @@ interface CartState {
   subtotal: number
 
   fetchCart: () => Promise<void>
-  addItem: (productVariantId: number, quantity: number) => Promise<void>
+  addItem: (productVariantId: number, quantity: number, chosenSize?: string | null) => Promise<void>
   updateItem: (cartItemId: number, quantity: number) => Promise<void>
   removeItem: (cartItemId: number) => Promise<void>
   clearCart: () => Promise<void>
@@ -69,10 +70,14 @@ export const useCartStore = create<CartState>((set, get) => ({
     }
   },
 
-  addItem: async (productVariantId: number, quantity: number) => {
+  addItem: async (productVariantId: number, quantity: number, chosenSize?: string | null) => {
     set({ isLoading: true })
     try {
-      await api.post('/cart/items', { product_variant_id: productVariantId, quantity })
+      await api.post('/cart/items', {
+        product_variant_id: productVariantId,
+        quantity,
+        chosen_size: chosenSize || undefined,
+      })
       await get().fetchCart()
     } finally {
       set({ isLoading: false })

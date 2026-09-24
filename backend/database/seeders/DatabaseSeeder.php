@@ -16,6 +16,9 @@ class DatabaseSeeder extends Seeder
         // Seed marketplace categories (parents + subcategories)
         $this->call(CategorySeeder::class);
 
+        // Seed product attributes (Size/Color) + backfill existing variants
+        $this->call(ProductAttributeSeeder::class);
+
         // Create Admin
         $admin = User::create([
             'name' => 'Admin Pazarz',

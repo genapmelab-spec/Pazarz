@@ -31,6 +31,7 @@ class CartController extends Controller
     {
         $validated = $request->validate([
             'product_variant_id' => 'required|exists:product_variants,id',
+            'chosen_size' => 'nullable|string|max:16',
             'quantity' => 'required|integer|min:1|max:99',
         ]);
 
@@ -38,7 +39,8 @@ class CartController extends Controller
             $cart = $this->cartService->addItem(
                 $request->user(),
                 $validated['product_variant_id'],
-                $validated['quantity']
+                $validated['quantity'],
+                $validated['chosen_size'] ?? null
             );
 
             return response()->json([
@@ -50,6 +52,11 @@ class CartController extends Controller
                 'success' => false,
                 'error' => ['code' => 'INSUFFICIENT_STOCK', 'message' => $e->getMessage()],
             ], 409);
+        } catch (\InvalidArgumentException $e) {
+            return response()->json([
+                'success' => false,
+                'error' => ['code' => 'INVALID_SIZE', 'message' => $e->getMessage()],
+            ], 422);
         }
     }
 

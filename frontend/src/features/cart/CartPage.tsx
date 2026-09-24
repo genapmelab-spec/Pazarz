@@ -181,7 +181,10 @@ export function CartPage() {
                           {item.variant.product.name}
                         </Link>
                         <p className="text-xs text-text-muted mt-0.5">
-                          {item.variant.attribute_values?.map((av) => av.value).join(' / ')}
+                          {[
+                            item.variant.attribute_values?.map((av) => av.value).join(' / '),
+                            item.chosen_size,
+                          ].filter(Boolean).join(' / ')}
                         </p>
                       </div>
 

@@ -55,6 +55,9 @@ interface Product {
   category: { id: number; name: string; slug: string }
   images: ProductImage[]
   variants: ProductVariant[]
+  // Standard sizes the backend offers when a fashion product has no
+  // seller-defined variants (null when the product has real variants).
+  size_options?: string[] | null
   reviews?: Array<any>
   reviews_summary?: {
     average_rating: number
@@ -72,6 +75,10 @@ export function ProductDetailPage() {
   const [product, setProduct] = useState<Product | null>(null)
   const [selectedVariant, setSelectedVariant] = useState<ProductVariant | null>(null)
   const [selectedImage, setSelectedImage] = useState<ProductImage | null>(null)
+  const [selectedSize, setSelectedSize] = useState<string | null>(null)
+  // True once the customer has actually picked a size (or when there is only
+  // one variant, so there is nothing to choose).
+  const [sizeConfirmed, setSizeConfirmed] = useState(false)
   const [quantity, setQuantity] = useState(1)
   const [activeTab, setActiveTab] = useState<'description' | 'specs' | 'reviews'>('description')
   const [relatedProducts, setRelatedProducts] = useState<any[]>([])
@@ -88,8 +95,15 @@ export function ProductDetailPage() {
         const p = res.data.data
         setProduct(p)
         setSelectedImage(p.images?.find((img: ProductImage) => img.is_primary) || p.images?.[0] || null)
+        setSelectedSize(null)
         if (p.variants?.length > 0) {
-          setSelectedVariant(p.variants[0])
+          // Auto-confirm only when there is exactly ONE variant AND no
+          // standard size choice (nothing to choose at all). Sizeless fashion
+          // products also have one default variant but REQUIRE a size pick.
+          const single = p.variants.length === 1 && !p.size_options
+          const firstAvailable = p.variants.find((v: ProductVariant) => (v.inventory?.quantity ?? v.stock_quantity ?? 0) > 0)
+          setSelectedVariant(firstAvailable || p.variants[0])
+          setSizeConfirmed(single)
         }
         if (p.category?.slug) {
           const relatedRes = await api.get(`/products?category=${p.category.slug}&per_page=4`)
@@ -106,13 +120,21 @@ export function ProductDetailPage() {
   }, [slug])
 
   const handleAddToCart = async () => {
+    // Size is mandatory whenever sizes are shown (standard sizes or seller
+    // variant options) but the customer has not confirmed a choice yet.
+    const showSizes = !!sizeOptions || Object.keys(attributeGroups).length > 0
+    if (showSizes && !sizeConfirmed) {
+      setToast({ message: 'Pilih ukuran terlebih dahulu.', type: 'error' })
+      setTimeout(() => setToast(null), 3000)
+      return
+    }
     if (!selectedVariant || !isAuthenticated) {
       if (!isAuthenticated) navigate('/login')
       return
     }
     setIsAddingToCart(true)
     try {
-      await addItem(selectedVariant.id, quantity)
+      await addItem(selectedVariant.id, quantity, selectedSize)
       setToast({ message: 'Ditambahkan ke keranjang!', type: 'success' })
       setTimeout(() => setToast(null), 3000)
     } catch (err: any) {
@@ -132,6 +154,15 @@ export function ProductDetailPage() {
     })
     return groups
   }, {} as Record<string, Map<string, ProductVariant>>) || {}
+
+  // Standard size choice for products without seller-defined variants —
+  // driven entirely by the backend's size_options (no hardcoded sizes here).
+  const sizeOptions = product?.size_options ?? null
+  const sizelessStock = selectedVariant?.inventory?.quantity
+    ?? selectedVariant?.stock_quantity
+    ?? 0
+  const showSizes = !!sizeOptions || Object.keys(attributeGroups).length > 0
+  const needsSizeChoice = showSizes && !sizeConfirmed
 
   const currentPrice = selectedVariant?.price
     ? Number(selectedVariant.price)
@@ -240,16 +271,28 @@ export function ProductDetailPage() {
                   <p className="text-sm font-medium text-text-primary mb-2">{attrName}</p>
                   <div className="flex flex-wrap gap-2">
                     {Array.from(valueMap.entries()).map(([value, variant]) => {
-                      const isSelected = selectedVariant?.id === variant.id
+                      const isSelected = selectedVariant?.id === variant.id && sizeConfirmed
+                      const variantStock = variant.inventory?.quantity ?? variant.stock_quantity ?? 0
+                      // Data-driven: when the backend only provides ONE option for an
+                      // attribute (e.g. a single "Size M" variant), the button is shown
+                      // gray/disabled — it is informational, not a choice the customer
+                      // must make. With multiple options, stock rules apply.
+                      const isOnlyOption = valueMap.size <= 1
+                      const outOfStock = variantStock <= 0
+                      const isDisabled = isOnlyOption || outOfStock
                       return (
                         <button
                           key={value}
-                          onClick={() => { setSelectedVariant(variant); setQuantity(1) }}
+                          onClick={() => { setSelectedVariant(variant); setSizeConfirmed(true); setQuantity(1) }}
+                          disabled={isDisabled}
+                          title={outOfStock ? 'Stok habis' : isOnlyOption ? 'Satu-satunya varian yang tersedia' : undefined}
                           className={cn(
                             'px-4 py-2 rounded-full border text-sm transition-all',
-                            isSelected
+                            isSelected && !isDisabled
                               ? 'border-primary bg-primary text-white'
-                              : 'border-border hover:border-text-muted'
+                              : 'border-border hover:border-text-muted',
+                            outOfStock && 'opacity-40 cursor-not-allowed line-through hover:border-border',
+                            isOnlyOption && !outOfStock && 'bg-surface text-text-muted cursor-not-allowed opacity-70'
                           )}
                         >
                           {value}
@@ -259,6 +302,45 @@ export function ProductDetailPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          )}
+
+          {/* Standard sizes for products without seller-defined variants —
+              sizes come from the backend (size_options); the shared default
+              variant's stock backs every size. */}
+          {sizeOptions && (
+            <div>
+              <p className="text-sm font-medium text-text-primary mb-2">Ukuran</p>
+              <div className="flex flex-wrap gap-2">
+                {sizeOptions.map((size) => {
+                  const isSelected = selectedSize === size
+                  // The shared default variant's stock backs every standard
+                  // size: product stock 0 => ALL sizes gray/strikethrough.
+                  const outOfStock = sizelessStock <= 0
+                  return (
+                    <button
+                      key={size}
+                      onClick={() => { setSelectedSize(size); setSizeConfirmed(true); setQuantity(1) }}
+                      disabled={outOfStock}
+                      title={outOfStock ? 'Stok habis' : undefined}
+                      className={cn(
+                        'px-4 py-2 rounded-full border text-sm transition-all',
+                        isSelected
+                          ? 'border-primary bg-primary text-white'
+                          : 'border-border hover:border-text-muted',
+                        outOfStock && 'opacity-40 cursor-not-allowed line-through hover:border-border'
+                      )}
+                    >
+                      {size}
+                    </button>
+                  )
+                })}
+              </div>
+              {sizelessStock <= 0 ? (
+                <p className="text-xs text-text-muted mt-2">Stok habis untuk semua ukuran.</p>
+              ) : !sizeConfirmed && (
+                <p className="text-xs text-text-muted mt-2">Pilih ukuran terlebih dahulu.</p>
+              )}
             </div>
           )}
 
@@ -289,9 +371,15 @@ export function ProductDetailPage() {
 
           {/* CTA */}
           <div className="flex gap-3">
-            <Button onClick={handleAddToCart} isLoading={isAddingToCart} disabled={!inStock} className="flex-1" size="lg">
+            <Button
+              onClick={handleAddToCart}
+              isLoading={isAddingToCart}
+              disabled={!inStock || needsSizeChoice}
+              className="flex-1"
+              size="lg"
+            >
               <ShoppingBag className="w-5 h-5" />
-              {!inStock ? 'Stok Habis' : 'Tambah ke Keranjang'}
+              {!inStock ? 'Stok Habis' : needsSizeChoice ? 'Pilih Ukuran' : 'Tambah ke Keranjang'}
             </Button>
             <Button variant="secondary" size="lg" className="w-12 flex-shrink-0" aria-label="Add to wishlist">
               <Heart className="w-5 h-5" />
@@ -350,6 +438,12 @@ export function ProductDetailPage() {
                 <span className="text-sm text-text-primary">{av.value}</span>
               </div>
             ))}
+            {selectedSize && (
+              <div className="contents">
+                <span className="text-sm text-text-muted">Ukuran</span>
+                <span className="text-sm text-text-primary">{selectedSize}</span>
+              </div>
+            )}
           </div>
         )}
         {activeTab === 'reviews' && (

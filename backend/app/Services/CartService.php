@@ -28,11 +28,45 @@ class CartService
     }
 
     /**
+     * Standard size choice for products without seller-defined variants.
+     * Validated against the product's own size_options (currently S/M/L/XL for
+     * size-less fashion products) so only sizes the backend advertises pass.
+     */
+    protected function resolveChosenSize(ProductVariant $variant, ?string $chosenSize): ?string
+    {
+        $product = $variant->product;
+        $allowed = $product->size_options ?? [];
+
+        if ($chosenSize === null || trim($chosenSize) === '') {
+            // Products that advertise standard sizes REQUIRE a size choice
+            if ($allowed !== []) {
+                throw new \InvalidArgumentException(
+                    "Pilih ukuran untuk {$product->name} (" . implode(', ', $allowed) . ').'
+                );
+            }
+
+            return null;
+        }
+
+        $size = strtoupper(trim($chosenSize));
+
+        if (! in_array($size, $allowed, true)) {
+            throw new \InvalidArgumentException(
+                "Size {$chosenSize} is not available for {$product->name}."
+            );
+        }
+
+        return $size;
+    }
+
+    /**
      * Add item to cart
      */
-    public function addItem(User $user, int $variantId, int $quantity = 1): Cart
+    public function addItem(User $user, int $variantId, int $quantity = 1, ?string $chosenSize = null): Cart
     {
-        $variant = ProductVariant::with('inventory')->findOrFail($variantId);
+        $variant = ProductVariant::with(['inventory', 'product.category'])->findOrFail($variantId);
+
+        $chosenSize = $this->resolveChosenSize($variant, $chosenSize);
 
         // Validate stock
         if (!$variant->inventory || !$variant->inventory->hasStock($quantity)) {
@@ -43,7 +77,10 @@ class CartService
 
         $cart = $this->getCart($user);
 
-        $existingItem = $cart->items()->where('product_variant_id', $variantId)->first();
+        $existingItem = $cart->items()
+            ->where('product_variant_id', $variantId)
+            ->where('chosen_size', $chosenSize)
+            ->first();
 
         if ($existingItem) {
             $newQuantity = $existingItem->quantity + $quantity;
@@ -59,6 +96,7 @@ class CartService
         } else {
             $cart->items()->create([
                 'product_variant_id' => $variantId,
+                'chosen_size' => $chosenSize,
                 'quantity' => $quantity,
                 'price_snapshot' => $variant->effective_price,
             ]);

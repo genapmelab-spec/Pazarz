@@ -14,6 +14,12 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes;
 
+    /**
+     * Standard sizes offered for size-less fashion products (products whose
+     * seller did not define size variants). Shared with the cart validation.
+     */
+    public const STANDARD_SIZES = ['S', 'M', 'L', 'XL'];
+
     protected $fillable = [
         'store_id',
         'category_id',
@@ -38,6 +44,8 @@ class Product extends Model
             'sold_count' => 'integer',
         ];
     }
+
+    protected $appends = ['size_options'];
 
     public function store(): BelongsTo
     {
@@ -100,5 +108,32 @@ class Product extends Model
         return $variant->attributeValues
             ->map(fn($av) => $av->value)
             ->implode(' / ');
+    }
+
+    /**
+     * Standard size options offered by the storefront when a product has no
+     * seller-defined variants. Size-less stock (the single default variant)
+     * is shared by all of them, so they are only offered for fashion products.
+     * Serialized as `size_options` on every product API response.
+     */
+    public function getSizeOptionsAttribute(): ?array
+    {
+        if ($this->relationLoaded('variants')) {
+            $hasRealVariants = $this->variants->contains(
+                fn ($variant) => $variant->relationLoaded('attributeValues')
+                    ? $variant->attributeValues->isNotEmpty()
+                    : $variant->attributeValues()->exists()
+            );
+        } else {
+            $hasRealVariants = $this->variants()
+                ->whereHas('attributeValues')
+                ->exists();
+        }
+
+        if ($hasRealVariants || ! $this->category?->isFashion()) {
+            return null;
+        }
+
+        return self::STANDARD_SIZES;
     }
 }

@@ -104,11 +104,17 @@ class CheckoutService
                     $variant = $item->variant;
                     $product = $variant->product;
 
+                    // Size chosen on the storefront for size-less products
+                    // (standard S/M/L/XL) travels with the order item here.
+                    $variantLabel = $item->chosen_size
+                        ? trim($variant->label . ($variant->label !== '' ? ' / ' : '') . $item->chosen_size)
+                        : $variant->label;
+
                     OrderItem::create([
                         'sub_order_id' => $subOrder->id,
                         'product_variant_id' => $variant->id,
                         'product_name_snapshot' => $product->name,
-                        'variant_label_snapshot' => $variant->label,
+                        'variant_label_snapshot' => $variantLabel,
                         'price_snapshot' => $item->price_snapshot,
                         'quantity' => $item->quantity,
                         'subtotal' => $item->price_snapshot * $item->quantity,

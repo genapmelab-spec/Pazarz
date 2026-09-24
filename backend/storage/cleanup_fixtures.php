@@ -43,6 +43,9 @@ if (! function_exists('pazarz_cleanup')) {
             ->pluck('id');
         $shipmentIds = DB::table('shipments')->whereIn('sub_order_id', $subOrderIds)->pluck('id');
         $variantIds = DB::table('product_variants')->whereIn('product_id', $productIds)->pluck('id');
+        $attributeValueIds = Schema::hasTable('product_attribute_values')
+            ? DB::table('product_attribute_values')->whereIn('product_variant_id', $variantIds)->pluck('id')
+            : collect();
         $cartIds = DB::table('carts')->whereIn('user_id', $userIds)->pluck('id');
         $reviewIds = Schema::hasTable('reviews')
             ? DB::table('reviews')->whereIn('user_id', $userIds)->pluck('id')
@@ -62,6 +65,8 @@ if (! function_exists('pazarz_cleanup')) {
             'carts' => fn () => DB::table('carts')->whereIn('id', $cartIds)->delete(),
             'addresses' => fn () => DB::table('addresses')->where('addressable_type', User::class)
                 ->whereIn('addressable_id', $userIds)->delete(),
+            'product_attribute_values' => fn () => Schema::hasTable('product_attribute_values')
+                ? DB::table('product_attribute_values')->whereIn('id', $attributeValueIds)->delete() : 0,
             'inventories' => fn () => DB::table('inventories')->whereIn('product_variant_id', $variantIds)->delete(),
             'product_variants' => fn () => DB::table('product_variants')->whereIn('id', $variantIds)->delete(),
             'products' => fn () => DB::table('products')->whereIn('id', $productIds)->delete(),

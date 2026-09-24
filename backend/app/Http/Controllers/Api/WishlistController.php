@@ -68,7 +68,16 @@ class WishlistController extends Controller
         }
 
         $cartService = app(\App\Services\CartService::class);
-        $cart = $cartService->addItem($request->user(), $variant->id, 1);
+
+        try {
+            $cart = $cartService->addItem($request->user(), $variant->id, 1);
+        } catch (\InvalidArgumentException $e) {
+            // Size-less fashion products require a size choice on the product page
+            return response()->json([
+                'success' => false,
+                'error' => ['code' => 'INVALID_SIZE', 'message' => $e->getMessage()],
+            ], 422);
+        }
 
         return response()->json([
             'success' => true,

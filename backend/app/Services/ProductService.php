@@ -18,7 +18,7 @@ class ProductService
      */
     public function getProducts(array $filters = []): LengthAwarePaginator
     {
-        $query = Product::with(['store', 'category', 'primaryImage', 'variants'])
+        $query = Product::with(['store', 'category', 'primaryImage', 'variants.attributeValues'])
             ->where('status', 'active');
 
         if (!empty($filters['q'])) {
@@ -67,7 +67,7 @@ class ProductService
     {
         return Product::with([
             'store',
-            'category',
+            'category.parent',
             'images',
             'variants.inventory',
             'variants.attributeValues.attribute',

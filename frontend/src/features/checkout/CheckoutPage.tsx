@@ -228,7 +228,10 @@ export function CheckoutPage() {
                       <div className="flex-1 min-w-0">
                         <p className="text-sm line-clamp-1">{item.variant.product.name}</p>
                         <p className="text-xs text-text-muted">
-                          {item.variant.attribute_values?.map((av: any) => av.value).join(' / ')} × {item.quantity}
+                          {[
+                            item.variant.attribute_values?.map((av: any) => av.value).join(' / '),
+                            item.chosen_size,
+                          ].filter(Boolean).join(' / ')} × {item.quantity}
                         </p>
                       </div>
                       <span className="text-sm font-medium">{formatPrice(item.price_snapshot * item.quantity)}</span>

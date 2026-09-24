@@ -58,4 +58,23 @@ class Category extends Model
     {
         return $this->is_active;
     }
+
+    /**
+     * Whether this category (or any of its ancestors) belongs to fashion.
+     * Used to decide if size-less products get the standard S/M/L/XL choice.
+     */
+    public function isFashion(): bool
+    {
+        $category = $this;
+
+        while ($category) {
+            if (str_starts_with((string) $category->slug, 'fashion')) {
+                return true;
+            }
+
+            $category = $category->parent;
+        }
+
+        return false;
+    }
 }
